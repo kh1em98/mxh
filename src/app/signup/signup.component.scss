@@ -5,8 +5,8 @@ form {
   width: 473.83px;
   padding-left: 58px;
   padding-right: 58px;
-  padding-top: 58px;
-  padding-bottom: 58px;
+  padding-top: 43px;
+  padding-bottom: 43px;
 }
 
 .form__headings {
@@ -18,30 +18,17 @@ form {
   letter-spacing: -0.035em;
 }
 
+.form___body {
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: -0.035em;
+}
+
 .input-group {
   width: 356.48px !important;
 }
 
-::-webkit-input-placeholder {
-  font-size: 16px;
-  line-height: 22px;
-  letter-spacing: -0.035em;
-  color: #828282;
-}
-
-:-ms-input-placeholder {
-  font-size: 16px;
-  line-height: 22px;
-  letter-spacing: -0.035em;
-  color: #828282;
-}
-
-::-ms-input-placeholder {
-  font-size: 16px;
-  line-height: 22px;
-  letter-spacing: -0.035em;
-  color: #828282;
-}
 
 ::placeholder {
   font-size: 16px;
@@ -58,7 +45,8 @@ button {
   line-height: 22px;
 }
 
-.form__footer img {
-  border: 1px solid #828282;
+.form__footer {
+  img {
+    border: 1px solid #828282;
+  }
 }
-/*# sourceMappingURL=login.component.css.map */
