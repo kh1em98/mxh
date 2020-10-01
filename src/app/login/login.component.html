@@ -10,9 +10,9 @@
     <div class="d-flex flex-column justify-content-center align-items-center mt-4">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text" id="basic-addon1"> <img src="../../assets/icons/email.svg" /> </span>
+          <span class="input-group-text" id="basic-addon1"><img src="../../assets/icons/account.svg" /> </span>
         </div>
-        <input type="text" class="form-control" placeholder="Email">
+        <input type="text" class="form-control" placeholder="Username">
       </div>
       <div class="input-group mb-3">
         <div class="input-group-prepend">
@@ -37,7 +37,7 @@
           line-height: 19px;
           letter-spacing: -0.035em;
           color: #828282;
-          margin-bottom: 0">Don't have an account? <a href="#">Register</a> </p>
+          margin-bottom: 0">Don't have an account? <a [routerLink]="['/signup']">Register</a> </p>
     </div>
 
   </form>
