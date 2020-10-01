@@ -1,8 +1,13 @@
+.app__profile {
+  letter-spacing: -0.035em;
+}
+
 .card {
+  background: #FAFAFB;
   width: 845.91px;
   border: 1px solid #E0E0E0;
   border-radius: 12px;
-  letter-spacing: -0.035em;
+
 }
 
 
@@ -57,6 +62,6 @@
     font-weight: 500;
     font-size: 18px;
     line-height: 25px;
-    color: #333;
+    color: #111;
   }
 }

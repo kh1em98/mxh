@@ -1,0 +1,78 @@
+.profile__edit {
+  width: 40%;
+  margin: 0 auto;
+}
+
+.profile__edit a {
+  text-decoration: none;
+}
+
+.profile__edit .edit__form {
+  border: 1px solid #E0E0E0;
+  border-radius: 12px;
+}
+
+.profile__edit img {
+  width: 72px;
+  height: 72px;
+  border-radius: 8px;
+}
+
+.profile__edit ::-webkit-input-placeholder {
+  color: #BDBDBD;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.profile__edit :-ms-input-placeholder {
+  color: #BDBDBD;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.profile__edit ::-ms-input-placeholder {
+  color: #BDBDBD;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.profile__edit ::placeholder {
+  color: #BDBDBD;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.profile__edit .form-group textarea {
+  width: 70%;
+  border-radius: 12px;
+}
+
+.profile__edit .form-group input {
+  width: 70%;
+  border-radius: 12px;
+}
+
+.profile__edit button {
+  background: #2F80ED;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  color: white;
+}
+
+.profile__edit button:hover {
+  background: #2a73d4;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer !important;
+}
+/*# sourceMappingURL=edit.component.css.map */

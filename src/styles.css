@@ -10,6 +10,9 @@
 body {
   height: 100vh;
   width: 100vw;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background: #FAFAFB;
+  letter-spacing: -0.035em;
 }
 /*# sourceMappingURL=styles.css.map */

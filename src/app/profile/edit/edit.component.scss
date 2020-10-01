@@ -1,0 +1,62 @@
+.profile__edit {
+  width: 40%;
+  margin: 0 auto;
+
+  a {
+    text-decoration: none;
+  }
+
+  .edit__form {
+    border: 1px solid #E0E0E0;
+    border-radius: 12px;
+  }
+
+  img {
+    width: 72px;
+    height: 72px;
+    border-radius: 8px;
+  }
+
+  ::placeholder {
+    color: #BDBDBD;
+    font-weight: 500;
+    font-size: 13px;
+  }
+
+  .form-group {
+
+    textarea {
+      width: 70%;
+      border-radius: 12px;
+    }
+
+    input {
+      width: 70%;
+      border-radius: 12px;
+    }
+  }
+
+  button {
+    background: #2F80ED;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    color: white;
+
+    &:hover {
+      background: #2a73d4;
+    }
+  }
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer !important;
+}
