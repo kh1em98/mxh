@@ -29,4 +29,10 @@ nav .navbar__body .active {
 nav .navbar__footer a {
   font-weight: bold;
 }
+
+nav .navbar__footer img {
+  width: 32px;
+  height: 32px;
+  border-radius: 3px;
+}
 /*# sourceMappingURL=navbar.component.css.map */
