@@ -7,6 +7,9 @@ import { SignupComponent } from './signup/signup.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EditComponent } from './profile/edit/edit.component';
+import { FormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app-routing.module';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -15,10 +18,13 @@ import { EditComponent } from './profile/edit/edit.component';
     SignupComponent,
     NavbarComponent,
     ProfileComponent,
-    EditComponent
+    EditComponent,
+    UserComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
