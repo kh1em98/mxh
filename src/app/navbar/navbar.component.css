@@ -1,0 +1,32 @@
+nav {
+  background: white;
+}
+
+nav a {
+  color: #333;
+}
+
+nav a:hover {
+  text-decoration: none;
+}
+
+nav .navbar__head a {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+nav .navbar__body a {
+  font-weight: 500;
+  color: #828282;
+}
+
+nav .navbar__body .active {
+  font-weight: 600;
+  color: #2F80ED;
+  border-bottom: 2px solid #2F80ED;
+}
+
+nav .navbar__footer a {
+  font-weight: bold;
+}
+/*# sourceMappingURL=navbar.component.css.map */

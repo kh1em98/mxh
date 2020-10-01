@@ -1,0 +1,37 @@
+nav {
+  background: white;
+
+  a {
+    color: #333;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .navbar__head {
+    a {
+      font-weight: 600;
+      font-size: 18px;
+    }
+  }
+
+  .navbar__body {
+    a {
+      font-weight: 500;
+      color: #828282;
+    }
+
+    .active {
+      font-weight: 600;
+      color: #2F80ED;
+      border-bottom: 2px solid #2F80ED;
+    }
+  }
+
+  .navbar__footer {
+    a {
+      font-weight: bold;
+    }
+  }
+}
