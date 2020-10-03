@@ -27,10 +27,10 @@ const routes: Routes = [
         path: ':username', component: ProfileComponent,
         children: [
             {
-                path: 'edit', component: EditComponent, canActivate: [OnlyMeGuard]
+                path: 'profile', component: UserComponent
             },
             {
-                path: 'profile', component: UserComponent
+                path: 'edit', component: EditComponent, canActivate: [OnlyMeGuard]
             }
         ],
         canActivate: [AuthGuard]

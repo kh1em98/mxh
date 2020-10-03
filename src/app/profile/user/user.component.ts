@@ -16,9 +16,6 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.user
-      .pipe(
-        take(1)
-      )
       .subscribe(
         (user: User) => {
           this.user = user;
