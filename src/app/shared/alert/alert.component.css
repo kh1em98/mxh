@@ -1,0 +1,33 @@
+.backdrop {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 50;
+}
+
+.alert-box {
+  letter-spacing: 0.01em;
+  border-radius: 8px;
+  width: 500px;
+  position: absolute;
+  z-index: 51;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.alert-box-actions {
+  text-align: right;
+}
+
+img {
+  width: 90px;
+  height: 90px;
+}
+
+button {
+  background: #3085d6;
+}

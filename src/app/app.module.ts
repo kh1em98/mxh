@@ -11,6 +11,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { UserComponent } from './profile/user/user.component';
+import { AlertComponent } from './shared/alert/alert.component';
+import { PlaceholderDirective } from './shared/placeholder/placeholder.directive';
+import { NewsFeedComponent } from './news-feed/news-feed.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -21,6 +25,9 @@ import { UserComponent } from './profile/user/user.component';
     ProfileComponent,
     EditComponent,
     UserComponent,
+    AlertComponent,
+    PlaceholderDirective,
+    NewsFeedComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +36,7 @@ import { UserComponent } from './profile/user/user.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

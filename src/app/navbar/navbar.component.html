@@ -1,17 +1,43 @@
-<nav class="d-flex justify-content-around row">
-  <div class="navbar__head col-md-4 d-flex justify-content-around">
-    <a href="#" class="pt-3 pb-3"> <img src="../../assets/icons/tweeter.svg" alt=""> </a>
+<nav class="d-flex justify-content-around mr-0">
+  <div class="navbar__head col-md-4 d-flex justify-content-around align-items-center">
+    <a routerLink="/" class="pt-3 pb-3"> <img src="../../assets/icons/tweeter.svg" alt=""> </a>
+
+    <i class="fas fa-bars" id="toggleBtn" (click)="toggleHamburgerMenu()"></i>
   </div>
 
   <div class="navbar__body col-md-4 d-flex justify-content-around">
-    <a href="#" class="pt-3 pb-3 pl-4 pr-4 active">Home</a>
-    <a href="#" class="pt-3 pb-3 pl-4 pr-4">Profile</a>
-    <a href="#" class="pt-3 pb-3 pl-4 pr-4">Chat</a>
+    <a routerLink="/" class="pt-3 pb-3 pl-4 pr-4 active">Home</a>
+    <a routerLink="/profile" class="pt-3 pb-3 pl-4 pr-4">Profile</a>
+    <a href="#" class="pt-3 pb-3 pl-4 pr-4">Messages</a>
+  </div>
+
+  <div class="navbar__footer col-md-4 d-flex justify-content-center align-items-center">
+    <div class="dropdown">
+      <button class="btn dropdown-toggle d-flex justify-content-center align-items-center fontweight-2 gray-8" type="button" id="dropdownMenuButton"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img [src]="user.avatar" class="mr-3" alt="">
+        {{user.name}}
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item fontweight-1 gray-7 pt-2 pb-2"><i class="far fa-user mr-3"></i> Profile</a>
+        <a class="dropdown-item fontweight-1 gray-7 pt-2 pb-2" style="color :#e74c3c"><i class="fas fa-sign-out-alt mr-3"></i> Log Out</a>
+      </div>
+    </div>
   </div>
 
 
-  <div class="navbar__footer col-md-4 d-flex justify-content-center">
-    <img src="../../assets/imgs/khiem.png" class="mt-3 mr-2" alt="">
-    <a href="#" class="pt-3 pb-3">Profile</a>
+  <div class="hamburger-menu" [ngStyle]="{'display': isOpenHamburgerMenu ? 'block' : 'none'}">
+    <ul class=" navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#"> <i class="far fa-user mr-3"></i>Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="far fa-envelope mr-3"></i>Messages</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="fas fa-sign-out-alt mr-3"></i>Log Out</a>
+      </li>
+    </ul>
   </div>
+
 </nav>
