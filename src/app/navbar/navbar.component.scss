@@ -75,6 +75,17 @@ nav {
       flex-direction: row !important;
       justify-content: space-between !important;
     }
+
+    .nav-item {
+      cursor: pointer;
+
+      &:hover {
+        a {
+          color: #696969 !important;
+        }
+
+      }
+    }
   }
 
   .navbar__body {

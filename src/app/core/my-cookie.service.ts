@@ -36,4 +36,9 @@ export class MyCookieService {
     }
     return null;
   }
+
+  delete(prop: string) {
+    this.cookieService.delete(prop);
+  }
+
 }

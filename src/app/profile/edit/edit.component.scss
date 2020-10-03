@@ -1,5 +1,5 @@
 .profile__edit {
-  width: 40%;
+  width: 700px;
   margin: 0 auto;
 
   a {
@@ -26,12 +26,12 @@
   .form-group {
 
     textarea {
-      width: 70%;
+      width: 80%;
       border-radius: 12px;
     }
 
     input {
-      width: 70%;
+      width: 80%;
       border-radius: 12px;
     }
   }
@@ -59,4 +59,20 @@ input[type="file"] {
   display: inline-block;
   padding: 6px 12px;
   cursor: pointer !important;
+}
+
+@media (max-width: 767.98px) {
+  .profile__edit {
+    width: 90%;
+  }
+
+  .form-group {
+    textarea {
+      width: 100% !important;
+    }
+
+    input {
+      width: 100% !important;
+    }
+  }
 }

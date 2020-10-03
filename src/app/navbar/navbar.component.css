@@ -76,6 +76,12 @@ nav .navbar__footer .dropdown-item:active {
         -ms-flex-pack: justify !important;
             justify-content: space-between !important;
   }
+  nav .nav-item {
+    cursor: pointer;
+  }
+  nav .nav-item:hover a {
+    color: #696969 !important;
+  }
   .navbar__body {
     display: none !important;
   }

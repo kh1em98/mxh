@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes, CanActivate } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { UserComponent } from './profile/user/user.component';
@@ -8,6 +8,7 @@ import { EditComponent } from './profile/edit/edit.component';
 import { ForwardAuthGuard } from './core/guard/forwardAuth.guard';
 import { AuthGuard } from './core/guard/auth.guard';
 import { NewsFeedComponent } from './news-feed/news-feed.component';
+import { OnlyMeGuard } from './core/guard/only-me.guard';
 
 const routes: Routes = [
     {
@@ -23,16 +24,13 @@ const routes: Routes = [
         canActivate: [ForwardAuthGuard]
     },
     {
-        path: 'profile', component: ProfileComponent,
+        path: ':username', component: ProfileComponent,
         children: [
             {
-                path: '', pathMatch: 'full', redirectTo: 'user'
+                path: 'edit', component: EditComponent, canActivate: [OnlyMeGuard]
             },
             {
-                path: 'edit', component: EditComponent
-            },
-            {
-                path: 'user', component: UserComponent
+                path: 'profile', component: UserComponent
             }
         ],
         canActivate: [AuthGuard]

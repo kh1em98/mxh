@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../../shared/user.model';
+import { AuthService } from '../../core/auth.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
-  constructor() { }
+  user: User = null;
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.authService.user
+      .pipe(
+        take(1)
+      )
+      .subscribe(
+        (user: User) => {
+          this.user = user;
+        }
+      )
   }
 
 }

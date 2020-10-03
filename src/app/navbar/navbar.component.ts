@@ -27,6 +27,10 @@ export class NavbarComponent implements OnInit {
       )
   }
 
+  onLogout() {
+    this.authService.logout();
+  }
+
   toggleHamburgerMenu() {
     this.isOpenHamburgerMenu = !this.isOpenHamburgerMenu;
   }

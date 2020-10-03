@@ -4,21 +4,25 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { User } from '../../shared/user.model';
 import { MyCookieService } from '../my-cookie.service';
+import { take, map } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
 
-    constructor(private authService: AuthService, private router: Router,
-        private myCookieService: MyCookieService) { }
+    constructor(private authService: AuthService, private router: Router) { }
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-        const user: User = this.myCookieService.decodePayload();
+        return this.authService.user
+            .pipe(
+                take(1),
+                map((user: User) => {
+                    if (user === null) {
+                        return this.router.createUrlTree(['/login']);
+                    }
+                    return true;
+                })
+            )
 
-        if (user === null) {
-            return this.router.createUrlTree(['/login']);
-        }
-
-        return true;
     }
 }
