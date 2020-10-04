@@ -3,7 +3,6 @@ import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree, Rout
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { User } from '../../shared/user.model';
-import { MyCookieService } from '../my-cookie.service';
 import { take, map } from 'rxjs/operators';
 
 @Injectable({
@@ -21,7 +20,7 @@ export class ForwardAuthGuard implements CanActivate {
                     if (user === null) {
                         return true;
                     }
-                    return this.router.createUrlTree(['/'])
+                    return this.router.createUrlTree(['/']);
                 })
             )
     }

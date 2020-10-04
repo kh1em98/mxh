@@ -24,7 +24,7 @@ const routes: Routes = [
         canActivate: [ForwardAuthGuard]
     },
     {
-        path: ':username', component: ProfileComponent,
+        path: ':username', component: ProfileComponent, canActivate: [AuthGuard],
         children: [
             {
                 path: 'edit', component: EditComponent, canActivate: [OnlyMeGuard]
@@ -33,11 +33,8 @@ const routes: Routes = [
                 path: 'profile', component: UserComponent
             }
         ],
-        canActivate: [AuthGuard]
     },
-
 ]
-
 
 @NgModule({
     imports: [
@@ -47,6 +44,4 @@ const routes: Routes = [
         RouterModule
     ]
 })
-export class AppRoutingModule {
-
-}
+export class AppRoutingModule { }

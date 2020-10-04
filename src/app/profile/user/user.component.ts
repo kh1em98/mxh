@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../shared/user.model';
 import { AuthService } from '../../core/auth.service';
 import { take } from 'rxjs/operators';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-user',
@@ -9,16 +10,13 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-
   user: User = null;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+    private cookieService: CookieService) { }
 
   ngOnInit(): void {
     this.authService.user
-      .pipe(
-        take(1)
-      )
       .subscribe(
         (user: User) => {
           this.user = user;

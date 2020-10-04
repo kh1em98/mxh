@@ -47,7 +47,6 @@ export class SignupComponent implements OnInit {
   }
 
   onCloseAlert() {
-    console.log('Close alert component');
     this.errorMessage = '';
   }
 }

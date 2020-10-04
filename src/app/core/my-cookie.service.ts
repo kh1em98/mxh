@@ -6,7 +6,6 @@ import { User } from '../shared/user.model';
   providedIn: 'root'
 })
 export class MyCookieService {
-
   constructor(private cookieService: CookieService) { };
 
   decodePayload(): User {
@@ -38,7 +37,6 @@ export class MyCookieService {
   }
 
   delete(prop: string) {
-    this.cookieService.delete(prop);
+    this.cookieService.delete(prop, '/');
   }
-
 }

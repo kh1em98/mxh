@@ -16,10 +16,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.authService.user.
-      pipe(
-        take(1),
-      )
+    this.authService.user
       .subscribe(
         (user: User) => {
           this.user = user;
@@ -34,5 +31,6 @@ export class NavbarComponent implements OnInit {
   toggleHamburgerMenu() {
     this.isOpenHamburgerMenu = !this.isOpenHamburgerMenu;
   }
+
 
 }
