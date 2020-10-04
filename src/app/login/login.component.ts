@@ -15,15 +15,17 @@ export class LoginComponent implements OnInit, OnDestroy {
   alertClose: Subscription = null;
   errorMessage: string = '';
   loginForm: FormGroup = null;
+  showNeedLoginAlert: boolean = false;
 
   @ViewChild(PlaceholderDirective, { static: false }) alertHost: PlaceholderDirective;
 
 
   constructor(private authService: AuthService,
     private componentFactoryResolver: ComponentFactoryResolver,
-    private router: Router) { }
+    private router: Router,) { }
 
   ngOnInit(): void {
+    this.showNeedLoginAlert = this.authService.showNeedLoginAlert;
     this.loginForm = new FormGroup({
       email: new FormControl('', [
         Validators.email,
@@ -71,6 +73,11 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.alertClose.unsubscribe();
         hostViewContainerRef.clear();
       })
+  }
+
+  closeNeedLoginAlert() {
+    this.showNeedLoginAlert = false;
+    this.authService.showNeedLoginAlert = false;
   }
 
 }

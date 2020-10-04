@@ -7,9 +7,9 @@
 
     <form>
       <div class="d-flex pt-2 form-group align-items-center">
-        <img src="../../../assets/imgs/khiem.png" alt="khiem">
+        <img [src]="user.avatar" alt="khiem">
         <label for="avatarUpload" class="customFileUpload ml-3 fonweight-1 fontsize-2" style="color : #828282">
-          <img src="../../../assets/icons/upload.svg" style="width: 24px; height: 24px" /> CHANGE PHOTO
+          <img src="../../../assets/icons/upload.svg" style="width: 24px; height: 24px; cursor: pointer;" /> CHANGE PHOTO
         </label>
         <input id="avatarUpload" type="file" />
       </div>

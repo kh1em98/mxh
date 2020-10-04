@@ -9,6 +9,7 @@ import { MyCookieService } from './my-cookie.service';
   providedIn: 'root'
 })
 export class AuthService {
+  showNeedLoginAlert: boolean = false;
   user: BehaviorSubject<User> = new BehaviorSubject(null);
 
   constructor(private http: HttpClient,

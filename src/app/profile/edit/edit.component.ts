@@ -10,7 +10,6 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
-
   user: User = null;
   constructor(private authService: AuthService) { }
 

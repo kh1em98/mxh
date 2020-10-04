@@ -16,6 +16,7 @@ export class AuthGuard implements CanActivate {
             take(1),
             map((user: User) => {
                 if (user === null) {
+                    this.authService.showNeedLoginAlert = true;
                     return this.router.createUrlTree(['/login']);
                 }
                 return true;

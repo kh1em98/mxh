@@ -22,7 +22,6 @@ export class AppComponent implements OnInit {
     this.authService.user
       .subscribe((user) => {
         if (user === null) {
-          this.router.navigate(['/login']);
           this.isLoggedIn = false;
         }
         else {
