@@ -8,9 +8,8 @@
       Login
     </p>
 
-    <div class="alert alert-warning alert-dismissible fade show" role="alert" *ngIf="showNeedLoginAlert">
-      <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="closeNeedLoginAlert()">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="showNeedLoginAlert">Bạn cần đăng nhập để xem nội dung này
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
@@ -31,7 +30,7 @@
     </div>
 
 
-    <button type="submit" class="btn btn-primary btn-block mt-2" [disabled]="!loginForm.valid">Login</button>
+    <button type="submit" id="submitBtn" class="btn btn-primary btn-block mt-2" [disabled]="!loginForm.valid">Login</button>
 
 
     <div class="form__footer d-flex flex-column align-items-center mt-4 mb-1">

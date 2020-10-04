@@ -42,6 +42,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     if (this.alertClose) {
       this.alertClose.unsubscribe();
     }
+
+    this.authService.showNeedLoginAlert = false;
   }
 
   onSubmit() {
@@ -73,11 +75,6 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.alertClose.unsubscribe();
         hostViewContainerRef.clear();
       })
-  }
-
-  closeNeedLoginAlert() {
-    this.showNeedLoginAlert = false;
-    this.authService.showNeedLoginAlert = false;
   }
 
 }

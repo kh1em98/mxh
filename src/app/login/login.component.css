@@ -50,7 +50,7 @@ form {
   color: #828282;
 }
 
-button {
+#submitBtn {
   background: #2F80ED;
   border-radius: 8px;
   font-weight: 600;
