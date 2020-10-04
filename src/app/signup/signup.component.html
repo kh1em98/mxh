@@ -1,6 +1,6 @@
 <app-alert *ngIf="errorMessage" [message]="errorMessage" (close)="onCloseAlert()"></app-alert>
 
-<div class="app-not-login d-flex justify-content-center align-items-center">
+<div class="app-not-login">
   <form class="pt-5 pb-5" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
 
     <img src="../../assets/icons/tweeter.svg" class="mb-4" alt="">
@@ -13,7 +13,7 @@
     </p>
 
 
-    <div class="d-flex flex-column justify-content-center align-items-center mt-4">
+    <div class="d-flex flex-column  mt-4">
 
       <div class="input-group mb-3">
         <div class="input-group-prepend">

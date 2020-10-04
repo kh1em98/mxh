@@ -2,11 +2,7 @@ form {
   border: 1px solid #BDBDBD;
   border-radius: 24px;
   color: #333;
-  width: 473.83px;
-  padding-left: 58px;
-  padding-right: 58px;
-  padding-top: 58px;
-  padding-bottom: 58px;
+  padding: 58px;
 }
 
 .form__headings {
@@ -41,4 +37,16 @@ form {
   img {
     border: 1px solid #828282;
   }
+}
+
+@media (max-width: 767.98px) {
+
+  form {
+    padding: 16px;
+  }
+
+  .input-group {
+    width: 305px !important;
+  }
+
 }

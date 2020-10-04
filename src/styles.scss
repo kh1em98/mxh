@@ -10,13 +10,18 @@
 body {
   height: 100vh;
   width: 100vw;
-  overflow: scroll;
+  overflow: hidden;
   background: #FAFAFB;
   letter-spacing: -0.035em;
 }
 
 .app-not-login {
-  background: white;
-  width: 100vw;
   height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: #FAFAFB;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

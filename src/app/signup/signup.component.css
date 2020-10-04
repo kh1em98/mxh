@@ -68,4 +68,13 @@ button {
 .form__footer img {
   border: 1px solid #828282;
 }
+
+@media (max-width: 767.98px) {
+  form {
+    padding: 25px;
+  }
+  .input-group {
+    width: 100% !important;
+  }
+}
 /*# sourceMappingURL=signup.component.css.map */
