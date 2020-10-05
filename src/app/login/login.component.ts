@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   alertClose: Subscription = null;
   errorMessage: string = '';
   loginForm: FormGroup = null;
-  showNeedLoginAlert: boolean = false;
+  alertLabel = null;
 
   @ViewChild(PlaceholderDirective, { static: false }) alertHost: PlaceholderDirective;
 
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private router: Router,) { }
 
   ngOnInit(): void {
-    this.showNeedLoginAlert = this.authService.showNeedLoginAlert;
+    this.alertLabel = this.authService.alertLabel;
     this.loginForm = new FormGroup({
       email: new FormControl('', [
         Validators.email,
@@ -42,8 +42,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     if (this.alertClose) {
       this.alertClose.unsubscribe();
     }
-
-    this.authService.showNeedLoginAlert = false;
+    this.alertLabel = null;
+    this.authService.alertLabel = null;
   }
 
   onSubmit() {
@@ -76,5 +76,4 @@ export class LoginComponent implements OnInit, OnDestroy {
         hostViewContainerRef.clear();
       })
   }
-
 }

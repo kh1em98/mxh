@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../core/auth.service';
-import { User } from '../../shared/user.model';
-import { Router } from '@angular/router';
-import { take } from 'rxjs/operators';
+import { AuthService } from 'src/app/core/auth.service';
+import { User } from 'src/app/shared/user.model';
 
 @Component({
   selector: 'app-edit',
@@ -10,6 +8,7 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
+
   user: User = null;
   constructor(private authService: AuthService) { }
 

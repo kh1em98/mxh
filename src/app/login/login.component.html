@@ -8,11 +8,7 @@
       Login
     </p>
 
-    <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="showNeedLoginAlert">Bạn cần đăng nhập để xem nội dung này
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
+    <app-alert-label *ngIf="alertLabel !== null" [message]="alertLabel.message" [typeAlert]="alertLabel.typeAlert"></app-alert-label>
 
     <div class="d-flex flex-column justify-content-center align-items-center mt-4">
       <div class="input-group mb-3">

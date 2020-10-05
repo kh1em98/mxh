@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './core/auth.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -12,9 +11,7 @@ export class AppComponent implements OnInit {
 
   isLoggedIn: boolean = false;
 
-  constructor(private authService: AuthService,
-    private router: Router,
-  ) { };
+  constructor(private authService: AuthService) { };
 
   ngOnInit() {
     this.authService.autoLogin();

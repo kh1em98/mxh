@@ -42,7 +42,13 @@ export class SignupComponent implements OnInit {
   onSubmit() {
     this.authService.signUp(this.signUpForm.value)
       .subscribe(
-        () => this.router.navigate(['/login']),
+        () => {
+          this.authService.alertLabel = {
+            message: 'Đăng ký thành công. Hãy đăng nhập',
+            typeAlert: 'alert-success'
+          }
+          this.router.navigate(['/login']);
+        },
         (error) => {
           this.errorMessage = error;
         }

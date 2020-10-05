@@ -16,7 +16,10 @@ export class AuthGuard implements CanActivate {
             take(1),
             map((user: User) => {
                 if (user === null) {
-                    this.authService.showNeedLoginAlert = true;
+                    this.authService.alertLabel = {
+                        typeAlert: 'alert-danger',
+                        message: 'Bạn cần đăng nhập để xem nội dung này'
+                    }
                     return this.router.createUrlTree(['/login']);
                 }
                 return true;

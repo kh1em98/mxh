@@ -5,16 +5,18 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { ProfileComponent } from './profile/profile.component';
-import { EditComponent } from './profile/edit/edit.component';
+import { ProfileComponent } from './user/profile/profile.component';
+import { EditComponent } from './user/edit/edit.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-import { UserComponent } from './profile/user/user.component';
+import { UserComponent } from './user/user.component';
 import { AlertComponent } from './shared/alert/alert.component';
 import { PlaceholderDirective } from './shared/placeholder/placeholder.directive';
 import { NewsFeedComponent } from './news-feed/news-feed.component';
 import { CookieService } from 'ngx-cookie-service';
+import { WallComponent } from './user/wall/wall.component';
+import { AlertLabelComponent } from './shared/alert-label/alert-label.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { CookieService } from 'ngx-cookie-service';
     AlertComponent,
     PlaceholderDirective,
     NewsFeedComponent,
+    WallComponent,
+    AlertLabelComponent,
   ],
   imports: [
     BrowserModule,

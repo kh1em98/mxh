@@ -4,16 +4,18 @@ import { BehaviorSubject, throwError, } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators'
 import { User } from '../shared/user.model';
 import { MyCookieService } from './my-cookie.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  showNeedLoginAlert: boolean = false;
+  alertLabel: { message: string, typeAlert: string } = null;
   user: BehaviorSubject<User> = new BehaviorSubject(null);
 
   constructor(private http: HttpClient,
-    private myCookieService: MyCookieService) { }
+    private myCookieService: MyCookieService,
+    private router: Router) { }
 
   signUp(formValue) {
     const { username, email, password, name } = formValue;
@@ -36,6 +38,7 @@ export class AuthService {
   }
 
   logout() {
+    this.router.navigate(['/login']);
     this.myCookieService.delete('headerAndPayload');
     this.user.next(null);
   }
