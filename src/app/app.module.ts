@@ -17,6 +17,9 @@ import { NewsFeedComponent } from './news-feed/news-feed.component';
 import { CookieService } from 'ngx-cookie-service';
 import { WallComponent } from './user/wall/wall.component';
 import { AlertLabelComponent } from './shared/alert-label/alert-label.component';
+import { PostComponent } from './post/post.component';
+import { RightComponent } from './news-feed/right/right.component';
+import { CreatePostComponent } from './create-post/create-post.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,9 @@ import { AlertLabelComponent } from './shared/alert-label/alert-label.component'
     NewsFeedComponent,
     WallComponent,
     AlertLabelComponent,
+    PostComponent,
+    RightComponent,
+    CreatePostComponent,
   ],
   imports: [
     BrowserModule,

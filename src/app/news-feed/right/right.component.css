@@ -1,0 +1,92 @@
+.news-feed__right {
+  width: 350px;
+}
+
+input {
+  width: 100%;
+}
+
+.trends,
+.friends {
+  background: white;
+  -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+}
+
+.trends .title,
+.friends .title {
+  color: #4F4F4F;
+  border-bottom: 1px solid #E0E0E0;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 18px;
+  padding-bottom: 8px;
+}
+
+.trend {
+  padding-top: 12px;
+}
+
+.trend p {
+  margin-bottom: 8px;
+}
+
+.trend .trend__title {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  color: #333;
+}
+
+.trend .trend__stat {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  color: #828282;
+}
+
+.friend {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.friend .friend__name {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #000000;
+  margin-bottom: 8px;
+}
+
+.friend .friend__username {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #828282;
+}
+
+.friend p {
+  margin-bottom: 0;
+}
+
+.friend img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+@media (max-width: 992px) {
+  .news-feed__right {
+    display: none;
+  }
+}
+/*# sourceMappingURL=right.component.css.map */

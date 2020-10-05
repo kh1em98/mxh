@@ -1,0 +1,55 @@
+.create-post {
+  background: #FFFFFF;
+  -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+}
+
+.create-post p {
+  margin-bottom: 8px;
+}
+
+.create-post__header {
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 18px;
+  color: #4F4F4F;
+  border-bottom: 1px solid #E0E0E0;
+}
+
+textarea {
+  width: 100%;
+  border: none;
+  outline: none;
+  color: #4F4F4F;
+  word-wrap: break;
+}
+
+::-webkit-input-placeholder {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  color: #BDBDBD;
+}
+
+:-ms-input-placeholder {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  color: #BDBDBD;
+}
+
+::-ms-input-placeholder {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  color: #BDBDBD;
+}
+
+::placeholder {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  color: #BDBDBD;
+}
+/*# sourceMappingURL=create-post.component.css.map */
