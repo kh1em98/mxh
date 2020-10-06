@@ -5,12 +5,9 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { ProfileComponent } from './user/profile/profile.component';
-import { EditComponent } from './user/edit/edit.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-import { UserComponent } from './user/user.component';
 import { AlertComponent } from './shared/alert/alert.component';
 import { PlaceholderDirective } from './shared/placeholder/placeholder.directive';
 import { NewsFeedComponent } from './news-feed/news-feed.component';
@@ -21,6 +18,7 @@ import { PostComponent } from './post/post.component';
 import { RightComponent } from './news-feed/right/right.component';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { CommentComponent } from './comment/comment.component';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
@@ -28,9 +26,6 @@ import { CommentComponent } from './comment/comment.component';
     LoginComponent,
     SignupComponent,
     NavbarComponent,
-    ProfileComponent,
-    EditComponent,
-    UserComponent,
     AlertComponent,
     PlaceholderDirective,
     NewsFeedComponent,
@@ -46,7 +41,8 @@ import { CommentComponent } from './comment/comment.component';
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    UserModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]
