@@ -13,7 +13,11 @@ p {
   margin-bottom: 8px;
 }
 
-.wall {
+.mobile {
+  display: none;
+}
+
+.wall__component {
   width: 60%;
   top: -50px;
   position: relative;
@@ -35,7 +39,7 @@ p {
   }
 
   .stat {
-    max-width: 80%;
+    width: 80%;
   }
 
   .bio {
@@ -81,25 +85,43 @@ p {
   }
 }
 
-@media (max-width: 1200px) {
-  .wall {
+
+@media (max-width: 1400px) {
+  .wall__component {
     width: 80%;
   }
 }
 
+
+@media (max-width: 1200px) {
+  .wall__component {
+    width: 85%;
+  }
+}
+
 @media (max-width: 992px) {
-  .wall {
+  .wall__component {
     width: 90%;
   }
 }
 
 @media (max-width: 768px) {
-  .wall {
+
+  .desktop {
+    display: none !important;
+  }
+
+  .mobile {
+    display: block !important;
+    height: 320px !important;
+  }
+
+  .wall__component {
     width: 75%;
   }
 
   .stat {
-    max-width: 100% !important;
+    width: 100% !important;
     margin-top: 16px;
     flex-direction: column !important;
     align-items: center !important;
@@ -107,10 +129,7 @@ p {
   }
 
   .wall__info {
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    padding-bottom: 24px !important;
+    padding-bottom: 0 !important;
 
     img {
       top: 0;
@@ -118,11 +137,22 @@ p {
     }
   }
 
+  .wall__info__wrap {
+    position: relative;
+    top: -80px;
+  }
+
   button {
     margin-top: 16px;
   }
 
-  .wall__left {
-    display: none;
+  .wall__body {
+    flex-direction: column;
+
+    .wall__left {
+      width: 100%;
+      text-align: center
+    }
   }
+
 }

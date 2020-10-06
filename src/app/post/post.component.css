@@ -1,3 +1,11 @@
+.retweet {
+  color: #828282;
+}
+
+.retweet p {
+  margin-bottom: 0;
+}
+
 .post {
   width: 100%;
   overflow-x: hidden;

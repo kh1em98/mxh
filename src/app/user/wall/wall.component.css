@@ -13,7 +13,11 @@ p {
   margin-bottom: 8px;
 }
 
-.wall {
+.mobile {
+  display: none;
+}
+
+.wall__component {
   width: 60%;
   top: -50px;
   position: relative;
@@ -37,7 +41,7 @@ p {
 }
 
 .wall__info .stat {
-  max-width: 80%;
+  width: 80%;
 }
 
 .wall__info .bio {
@@ -83,24 +87,37 @@ p {
   border-radius: 3px;
 }
 
-@media (max-width: 1200px) {
-  .wall {
+@media (max-width: 1400px) {
+  .wall__component {
     width: 80%;
   }
 }
 
+@media (max-width: 1200px) {
+  .wall__component {
+    width: 85%;
+  }
+}
+
 @media (max-width: 992px) {
-  .wall {
+  .wall__component {
     width: 90%;
   }
 }
 
 @media (max-width: 768px) {
-  .wall {
+  .desktop {
+    display: none !important;
+  }
+  .mobile {
+    display: block !important;
+    height: 320px !important;
+  }
+  .wall__component {
     width: 75%;
   }
   .stat {
-    max-width: 100% !important;
+    width: 100% !important;
     margin-top: 16px;
     -webkit-box-orient: vertical !important;
     -webkit-box-direction: normal !important;
@@ -114,27 +131,28 @@ p {
             justify-content: center !important;
   }
   .wall__info {
-    -webkit-box-orient: vertical !important;
-    -webkit-box-direction: normal !important;
-        -ms-flex-direction: column !important;
-            flex-direction: column !important;
-    -webkit-box-pack: center !important;
-        -ms-flex-pack: center !important;
-            justify-content: center !important;
-    -webkit-box-align: center !important;
-        -ms-flex-align: center !important;
-            align-items: center !important;
-    padding-bottom: 24px !important;
+    padding-bottom: 0 !important;
   }
   .wall__info img {
     top: 0;
     margin-right: 0 !important;
   }
+  .wall__info__wrap {
+    position: relative;
+    top: -80px;
+  }
   button {
     margin-top: 16px;
   }
-  .wall__left {
-    display: none;
+  .wall__body {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .wall__body .wall__left {
+    width: 100%;
+    text-align: center;
   }
 }
 /*# sourceMappingURL=wall.component.css.map */

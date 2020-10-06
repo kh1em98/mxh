@@ -7,7 +7,7 @@
 
   <div class="navbar__body col-md-4 d-flex justify-content-around">
     <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="pt-3 pb-3 pl-4 pr-4">Home</a>
-    <a [routerLink]="['', user.username, 'profile']" routerLinkActive="active" class="pt-3 pb-3 pl-4 pr-4">Profile</a>
+    <a [routerLink]="['', user.username]" routerLinkActive="active" class="pt-3 pb-3 pl-4 pr-4">Profile</a>
     <a class="pt-3 pb-3 pl-4 pr-4">Messages</a>
   </div>
 
@@ -19,7 +19,7 @@
         {{user.name}}
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a [routerLink]="['', user.username, 'profile']" class="dropdown-item fontweight-1 gray-7 pt-2 pb-2"><i class="far fa-user mr-3"></i>
+        <a [routerLink]="['', user.username]" class="dropdown-item fontweight-1 gray-7 pt-2 pb-2"><i class="far fa-user mr-3"></i>
           Profile</a>
         <a class="dropdown-item fontweight-1 gray-7 pt-2 pb-2" (click)="onLogout()" style="color :#e74c3c"><i class="fas fa-sign-out-alt mr-3"></i>
           Log Out</a>
@@ -31,7 +31,7 @@
   <div class="hamburger-menu" [ngStyle]="{'display': isOpenHamburgerMenu ? 'block' : 'none'}">
     <ul class=" navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" [routerLink]="['', user.username, 'profile']"> <i class="far fa-user mr-3"></i>Profile</a>
+        <a class="nav-link" [routerLink]="['', user.username]"> <i class="far fa-user mr-3"></i>Profile</a>
       </li>
       <li class="nav-item">
         <a class="nav-link"><i class="far fa-envelope mr-3"></i>Messages</a>
