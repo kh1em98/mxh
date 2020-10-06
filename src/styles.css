@@ -8,6 +8,8 @@
 }
 
 body {
+  width: 100vw;
+  height: 100vh;
   background: #FAFAFB;
   letter-spacing: -0.035em;
 }

@@ -71,11 +71,18 @@ p {
   width: 300px;
   height: 100%;
 
-  p {
+  a {
+    cursor: pointer;
     font-weight: 600;
     font-size: 14px;
     line-height: 21px;
     color: #828282;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: none;
+      color: #595959;
+    }
   }
 
   .active {

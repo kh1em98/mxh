@@ -41,11 +41,11 @@
 
 
     <div class="wall__body d-flex justify-content-between mt-2">
-      <div class="wall__nav mt-3 pt-3 pb-3 mr-4">
-        <p class="pl-4 pr-4 pt-2 pb-2 active">Wall</p>
-        <p class="pl-4 pr-4 pt-2 pb-2">Profile</p>
-        <p class="pl-4 pr-4 pt-2 pb-2">Followers</p>
-        <p class="pl-4 pr-4 pt-2 pb-2">Album</p>
+      <div class="wall__nav d-flex flex-column mt-3 pt-3 pb-3 mr-4">
+        <a class="pl-4 pr-4 pt-2 pb-2 active">Wall</a>
+        <a [routerLink]="['profile']" class="pl-4 pr-4 pt-2 pb-2">Profile</a>
+        <a class="pl-4 pr-4 pt-2 pb-2">Followers</a>
+        <a class="pl-4 pr-4 pt-2 pb-2">Album</a>
       </div>
 
       <div>
