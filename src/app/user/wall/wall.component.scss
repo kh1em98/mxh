@@ -64,7 +64,7 @@ p {
   }
 }
 
-.wall__left {
+.wall__nav {
   background: white;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
@@ -149,10 +149,9 @@ p {
   .wall__body {
     flex-direction: column;
 
-    .wall__left {
+    .wall__nav {
       width: 100%;
       text-align: center
     }
   }
-
 }

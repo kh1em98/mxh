@@ -1,0 +1,21 @@
+.comment__component p {
+  margin-bottom: 0;
+}
+
+.comment__component img {
+  width: 45px;
+  height: 45px;
+  border-radius: 7px;
+}
+
+.comment__component .text-part {
+  background: #FAFAFA;
+  border-radius: 8px;
+}
+
+.comment__component .reaction-part {
+  font-weight: 500;
+  color: #adadad;
+  font-size: 12px;
+}
+/*# sourceMappingURL=comment.component.css.map */

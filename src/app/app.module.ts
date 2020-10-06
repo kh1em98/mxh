@@ -20,6 +20,7 @@ import { AlertLabelComponent } from './shared/alert-label/alert-label.component'
 import { PostComponent } from './post/post.component';
 import { RightComponent } from './news-feed/right/right.component';
 import { CreatePostComponent } from './create-post/create-post.component';
+import { CommentComponent } from './comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { CreatePostComponent } from './create-post/create-post.component';
     PostComponent,
     RightComponent,
     CreatePostComponent,
+    CommentComponent,
   ],
   imports: [
     BrowserModule,

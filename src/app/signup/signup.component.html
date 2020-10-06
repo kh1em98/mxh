@@ -1,6 +1,6 @@
 <app-alert *ngIf="errorMessage" [message]="errorMessage" (close)="onCloseAlert()"></app-alert>
 
-<div class="app-container align-items-center">
+<div class="app-container d-flex justify-content-center align-items-center">
   <div class="signup__component">
     <form class="pt-5 pb-5" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
 

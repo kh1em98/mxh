@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAGE,mBAHiB,CAGjB,CAAC,CAAC;EACA,aAAa,EAAE,CAAC;CACjB;;AALH,AAOE,mBAPiB,CAOjB,GAAG,CAAC;EACF,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,IAAI;EACZ,aAAa,EAAE,GAAG;CACnB;;AAXH,AAaE,mBAbiB,CAajB,UAAU,CAAC;EACT,UAAU,EAAE,OAAO;EACnB,aAAa,EAAE,GAAG;CACnB;;AAhBH,AAkBE,mBAlBiB,CAkBjB,cAAc,CAAC;EACb,WAAW,EAAE,GAAG;EAChB,KAAK,EAAE,OAAO;EACd,SAAS,EAAE,IAAI;CAChB",
+    "sources": [
+        "comment.component.scss"
+    ],
+    "names": [],
+    "file": "comment.component.css"
+}

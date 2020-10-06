@@ -1,1 +1,28 @@
-/* No CSS *//*# sourceMappingURL=news-feed.component.css.map */
+.news-feed__component {
+  width: 35%;
+}
+
+@media (max-width: 1300px) {
+  .news-feed__component {
+    width: 55%;
+  }
+}
+
+@media (max-width: 992px) {
+  .news-feed__component {
+    width: 65%;
+  }
+}
+
+@media (max-width: 768px) {
+  .news-feed__component {
+    width: 75%;
+  }
+}
+
+@media (max-width: 576px) {
+  .news-feed__component {
+    width: 90%;
+  }
+}
+/*# sourceMappingURL=news-feed.component.css.map */
