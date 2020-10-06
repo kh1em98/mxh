@@ -9,6 +9,7 @@ import { ForwardAuthGuard } from './core/guard/forwardAuth.guard';
 import { AuthGuard } from './core/guard/auth.guard';
 import { NewsFeedComponent } from './news-feed/news-feed.component';
 import { OnlyMeGuard } from './core/guard/only-me.guard';
+import { WallComponent } from './user/wall/wall.component';
 
 const routes: Routes = [
     {
@@ -26,6 +27,9 @@ const routes: Routes = [
     {
         path: ':username', component: UserComponent, canActivate: [AuthGuard],
         children: [
+            {
+                path: '', component: WallComponent
+            },
             {
                 path: 'edit', component: EditComponent, canActivate: [OnlyMeGuard]
             },
