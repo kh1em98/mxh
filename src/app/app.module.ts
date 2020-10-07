@@ -8,17 +8,17 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-import { AlertComponent } from './shared/alert/alert.component';
-import { PlaceholderDirective } from './shared/placeholder/placeholder.directive';
+
 import { NewsFeedComponent } from './news-feed/news-feed.component';
 import { CookieService } from 'ngx-cookie-service';
 import { WallComponent } from './user/wall/wall.component';
-import { AlertLabelComponent } from './shared/alert-label/alert-label.component';
+
 import { PostComponent } from './post/post.component';
 import { RightComponent } from './news-feed/right/right.component';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { CommentComponent } from './comment/comment.component';
 import { UserModule } from './user/user.module';
+import { AlertModule } from './shared/alert.module';
 
 @NgModule({
   declarations: [
@@ -26,11 +26,8 @@ import { UserModule } from './user/user.module';
     LoginComponent,
     SignupComponent,
     NavbarComponent,
-    AlertComponent,
-    PlaceholderDirective,
     NewsFeedComponent,
     WallComponent,
-    AlertLabelComponent,
     PostComponent,
     RightComponent,
     CreatePostComponent,
@@ -42,7 +39,8 @@ import { UserModule } from './user/user.module';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    UserModule
+    UserModule,
+    AlertModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

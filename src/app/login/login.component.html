@@ -1,4 +1,4 @@
-<ng-template appPlaceholder></ng-template>
+<app-alert *ngIf="errorMessage" [message]="errorMessage" (close)="onCloseAlert()"></app-alert>
 
 <div class="app-container d-flex justify-content-center align-items-center">
   <div class="login__component">

@@ -7,6 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../core/guard/auth.guard';
 import { OnlyMeGuard } from '../core/guard/only-me.guard';
 import { WallComponent } from './wall/wall.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 const userRoutes: Routes = [{
@@ -31,7 +32,7 @@ const userRoutes: Routes = [{
         EditComponent,
         UserComponent,
     ],
-    imports: [CommonModule, RouterModule, RouterModule.forChild(userRoutes)]
+    imports: [CommonModule, RouterModule.forChild(userRoutes), ReactiveFormsModule, FormsModule]
 })
 export class UserModule {
 

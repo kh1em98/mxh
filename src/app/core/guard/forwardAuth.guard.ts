@@ -17,6 +17,7 @@ export class ForwardAuthGuard implements CanActivate {
             .pipe(
                 take(1),
                 map((user: User) => {
+                    console.log('Cut');
                     if (user === null) {
                         return true;
                     }
