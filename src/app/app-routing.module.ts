@@ -8,6 +8,9 @@ const routes: Routes = [
         path: '', pathMatch: 'full', canActivate: [AuthGuard],
         component: NewsFeedComponent,
     },
+    {
+        path: ':username', loadChildren: () => import('./user/user.module').then(m => m.UserModule)
+    }
 ]
 
 @NgModule({

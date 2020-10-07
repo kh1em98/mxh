@@ -7,7 +7,6 @@ import { UserRoutingModule } from './user-routing.module';
 import { WallComponent } from './wall/wall.component';
 import { SharedModule } from '../shared/shared.module';
 
-
 @NgModule({
     declarations: [
         ProfileComponent,

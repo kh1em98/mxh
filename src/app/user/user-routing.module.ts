@@ -9,7 +9,7 @@ import { WallComponent } from './wall/wall.component';
 
 
 const userRoutes: Routes = [{
-    path: ':username', component: UserComponent, canActivate: [AuthGuard],
+    path: '', component: UserComponent, canActivate: [AuthGuard],
     children: [
         {
             path: '', component: WallComponent

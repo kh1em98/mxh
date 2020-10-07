@@ -11,7 +11,7 @@ import { NewsFeedComponent } from './news-feed/news-feed.component';
 import { CookieService } from 'ngx-cookie-service';
 
 import { RightComponent } from './news-feed/right/right.component';
-import { UserModule } from './user/user.module';
+
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './core/auth.module';
 
@@ -28,10 +28,9 @@ import { AuthModule } from './core/auth.module';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule,
     AuthModule,
     SharedModule,
-    UserModule
+    AppRoutingModule,
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]
