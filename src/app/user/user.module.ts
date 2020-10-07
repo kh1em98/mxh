@@ -2,11 +2,10 @@ import { ProfileComponent } from './profile/profile.component';
 import { NgModule } from '@angular/core';
 import { EditComponent } from './edit/edit.component';
 import { UserComponent } from './user.component';
-import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UserRoutingModule } from './user-routing.module';
-
-
+import { WallComponent } from './wall/wall.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -14,8 +13,9 @@ import { UserRoutingModule } from './user-routing.module';
         ProfileComponent,
         EditComponent,
         UserComponent,
+        WallComponent
     ],
-    imports: [CommonModule, UserRoutingModule, ReactiveFormsModule, FormsModule]
+    imports: [SharedModule, UserRoutingModule, ReactiveFormsModule, FormsModule]
 })
 export class UserModule {
 
