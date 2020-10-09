@@ -25,7 +25,8 @@ export class PostComponent implements OnInit {
       this.user = user;
     });
 
-    this.isLiked = !this.post.likes.findIndex((user) => user === this.user._id);
+    this.isLiked =
+      this.post.likes.findIndex((user) => user === this.user._id) !== -1;
   }
 
   onToggleLike() {
