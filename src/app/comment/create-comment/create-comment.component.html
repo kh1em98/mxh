@@ -1,3 +1,11 @@
+<app-alert
+  [message]="error"
+  *ngIf="error"
+  (close)="closeAlertError()"
+></app-alert>
+
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+
 <form [formGroup]="commentForm" (ngSubmit)="onCreateComment()">
   <div class="footer__comment d-flex align-items-center pb-2">
     <img [src]="user.avatar" class="mr-3" alt="" />

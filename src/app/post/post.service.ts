@@ -22,6 +22,9 @@ export class PostService {
     avatar: string;
   }) {
     const { content, name, username, avatar } = post;
+
+    console.log('Bai dinh post : ', post);
+
     return this.http.post('/api/post', { content }).pipe(
       catchError(this.handleError),
       tap((response: any) => {
@@ -38,7 +41,7 @@ export class PostService {
           [],
           []
         );
-        this.allPost.push(newPost);
+        this.allPost.unshift(newPost);
         this.postsChanged.next(this.allPost.slice());
       })
     );
@@ -51,7 +54,7 @@ export class PostService {
       tap(() => {
         for (let post of this.allPost) {
           if (post._id === postId) {
-            post.comments.push({
+            post.comments.unshift({
               timeCreated: new Date(),
               content,
               userComment: {
@@ -60,7 +63,6 @@ export class PostService {
                 avatar,
               },
             });
-            console.log('Sau khi them comment : ', post.comments);
             break;
           }
         }
@@ -83,6 +85,12 @@ export class PostService {
 
   handleError(errorRes: HttpErrorResponse) {
     const errorMessage = errorRes.error.message;
-    return throwError(errorMessage);
+
+    console.log(typeof errorMessage);
+
+    if (typeof errorMessage === 'string') {
+      return throwError(errorMessage);
+    }
+    return throwError('Lỗi không xác định');
   }
 }
