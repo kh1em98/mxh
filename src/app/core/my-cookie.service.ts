@@ -19,6 +19,7 @@ export class MyCookieService {
         payload = JSON.parse(payload);
 
         const user: User = {
+          _id: payload._id,
           username: payload.username,
           name: payload.name,
           email: payload.email,

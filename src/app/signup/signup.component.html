@@ -6,7 +6,9 @@
 
 <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
 
-<div class="app-container d-flex justify-content-center align-items-center">
+<div
+  class="one-screen-container d-flex justify-content-center align-items-center"
+>
   <div class="signup__component">
     <form class="pt-5 pb-5" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
       <img src="../../assets/icons/tweeter.svg" class="mb-4" alt="" />

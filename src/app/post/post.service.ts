@@ -72,6 +72,37 @@ export class PostService {
     );
   }
 
+  likePost({ userId, postId }) {
+    return this.http.post('/api/post/like', { postId }).pipe(
+      tap(() => {
+        for (let post of this.allPost) {
+          if (post._id === postId) {
+            post.likes.push(userId);
+            break;
+          }
+        }
+        this.postsChanged.next(this.allPost.slice());
+      })
+    );
+  }
+
+  unlikePost({ userId, postId }) {
+    return this.http.post('/api/post/unlike', { postId }).pipe(
+      tap(() => {
+        for (let post of this.allPost) {
+          if (post._id === postId) {
+            let indexItemToDelete = post.likes.findIndex(
+              (userLike) => userLike === userId
+            );
+            post.likes.splice(indexItemToDelete, 1);
+            break;
+          }
+        }
+        this.postsChanged.next(this.allPost.slice());
+      })
+    );
+  }
+
   fetchPosts() {
     this.http
       .get('/api/post')
