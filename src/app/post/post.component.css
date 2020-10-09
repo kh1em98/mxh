@@ -30,15 +30,15 @@
 }
 
 .post__footer .footer__stat p {
-  color: #BDBDBD;
+  color: #bdbdbd;
   font-size: 12px;
   margin-left: 16px;
   margin-bottom: 10px;
 }
 
 .post__footer .footer__actions {
-  border-top: 1px solid #F2F2F2;
-  border-bottom: 1px solid #F2F2F2;
+  border-top: 1px solid #f2f2f2;
+  border-bottom: 1px solid #f2f2f2;
 }
 
 .post__footer .footer__actions p {
@@ -58,48 +58,7 @@
 }
 
 .post__footer .footer__actions .action:hover {
-  background: #F2F2F2;
+  background: #f2f2f2;
   border-radius: 8px;
-}
-
-.post__footer .footer__comment {
-  border-bottom: 1px solid #F2F2F2;
-  position: relative;
-}
-
-.post__footer .footer__comment img {
-  width: 45px;
-  border-radius: 8px;
-}
-
-.post__footer .footer__comment input {
-  font-size: 14px;
-  color: #4f4f4f;
-  width: 100%;
-  background: #FAFAFA;
-  border: 1px solid #F2F2F2;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  border-radius: 8px;
-}
-
-.post__footer .footer__comment input:focus {
-  border: 1px solid #d6d6d6;
-  outline: none;
-}
-
-.post__footer .footer__comment .list-icons {
-  z-index: 100;
-  position: absolute;
-  left: 93%;
-}
-
-.post__footer .footer__comment .list-icons i {
-  cursor: pointer;
-  color: #4f4f4f;
-}
-
-.post__footer .footer__comment .list-icons i:hover {
-  color: #6b6b6b;
 }
 /*# sourceMappingURL=post.component.css.map */

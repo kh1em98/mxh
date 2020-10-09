@@ -1,49 +1,89 @@
-<ng-template appPlaceholder></ng-template>
+<app-alert
+  *ngIf="errorMessage"
+  [message]="errorMessage"
+  (close)="onCloseAlert()"
+></app-alert>
 
-<div class="app-container d-flex justify-content-center align-items-center">
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+
+<div
+  class="one-screen-container d-flex justify-content-center align-items-center"
+>
   <div class="login__component">
     <form class="pt-5 pb-5" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <img src="../../assets/icons/tweeter.svg" class="mb-4" alt="">
+      <img src="../../assets/icons/tweeter.svg" class="mb-4" alt="" />
 
-      <p class="form__headings w-75">
-        Login
-      </p>
+      <p class="form__headings w-75">Login</p>
 
-      <app-alert-label *ngIf="alertLabel !== null" [message]="alertLabel.message" [typeAlert]="alertLabel.typeAlert"></app-alert-label>
+      <app-alert-label
+        *ngIf="alertLabel !== null"
+        [message]="alertLabel.message"
+        [typeAlert]="alertLabel.typeAlert"
+      ></app-alert-label>
 
-      <div class="d-flex flex-column justify-content-center align-items-center mt-4">
+      <div
+        class="d-flex flex-column justify-content-center align-items-center mt-4"
+      >
         <div class="input-group mb-3">
           <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1"><img src="../../assets/icons/email.svg" /> </span>
+            <span class="input-group-text" id="basic-addon1"
+              ><img src="../../assets/icons/email.svg" />
+            </span>
           </div>
-          <input formControlName="email" type="email" class="form-control" placeholder="Email">
+          <input
+            formControlName="email"
+            type="email"
+            class="form-control"
+            placeholder="Email"
+          />
         </div>
         <div class="input-group mb-3">
           <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1"> <img src="../../assets/icons/key.svg" /> </span>
+            <span class="input-group-text" id="basic-addon1">
+              <img src="../../assets/icons/key.svg" />
+            </span>
           </div>
-          <input formControlName="password" type="password" class="form-control" placeholder="Password">
+          <input
+            formControlName="password"
+            type="password"
+            class="form-control"
+            placeholder="Password"
+          />
         </div>
       </div>
 
-
-      <button type="submit" id="submitBtn" class="btn btn-primary btn-block mt-2" [disabled]="!loginForm.valid">Login</button>
-
+      <button
+        type="submit"
+        id="submitBtn"
+        class="btn btn-primary btn-block mt-2"
+        [disabled]="!loginForm.valid"
+      >
+        Login
+      </button>
 
       <div class="form__footer d-flex flex-column align-items-center mt-4 mb-1">
-        <p style="font-size: 14px;
-            line-height: 19px;
-            color: #828282;">Or continue with these social profile</p>
+        <p style="font-size: 14px; line-height: 19px; color: #828282">
+          Or continue with these social profile
+        </p>
 
-        <img src="../../assets/icons/facebook.svg" class="rounded-circle pt-2 pl-2 pr-2 pb-2" />
+        <img
+          src="../../assets/icons/facebook.svg"
+          class="rounded-circle pt-2 pl-2 pr-2 pb-2"
+        />
 
-        <p class="mt-4" style="font-size: 14px;
+        <p
+          class="mt-4"
+          style="
+            font-size: 14px;
             line-height: 19px;
             letter-spacing: -0.035em;
             color: #828282;
-            margin-bottom: 0">Don't have an account? <a [routerLink]="['/signup']">Register</a> </p>
+            margin-bottom: 0;
+          "
+        >
+          Don't have an account? <a [routerLink]="['/signup']">Register</a>
+        </p>
       </div>
-
     </form>
   </div>
 </div>

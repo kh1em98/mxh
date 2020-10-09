@@ -1,41 +1,29 @@
-import { Component, OnInit, ComponentFactoryResolver, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../core/auth.service';
-import { AlertComponent } from '../shared/alert/alert.component';
-import { PlaceholderDirective } from '../shared/placeholder/placeholder.directive';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit, OnDestroy {
+  isLoading: boolean = false;
   alertClose: Subscription = null;
   errorMessage: string = '';
   loginForm: FormGroup = null;
   alertLabel = null;
 
-  @ViewChild(PlaceholderDirective, { static: false }) alertHost: PlaceholderDirective;
-
-
-  constructor(private authService: AuthService,
-    private componentFactoryResolver: ComponentFactoryResolver,
-    private router: Router,) { }
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.alertLabel = this.authService.alertLabel;
     this.loginForm = new FormGroup({
-      email: new FormControl('', [
-        Validators.email,
-        Validators.required
-      ]),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.min(3)
-      ])
-    })
+      email: new FormControl('', [Validators.email, Validators.required]),
+      password: new FormControl('', [Validators.required, Validators.min(3)]),
+    });
   }
 
   ngOnDestroy() {
@@ -47,33 +35,20 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.authService.login(this.loginForm.value)
-      .subscribe(
-        () => {
-          this.router.navigate(['/']);
-        },
-        (error) => {
-          this.errorMessage = error;
-          this.showAlertError(error);
-        }
-      )
+    this.isLoading = true;
+    this.authService.login(this.loginForm.value).subscribe(
+      () => {
+        this.isLoading = false;
+        this.router.navigate(['/']);
+      },
+      (error) => {
+        this.isLoading = false;
+        this.errorMessage = error;
+      }
+    );
   }
 
-  private showAlertError(error: string) {
-    const alertCmpFactory = this.componentFactoryResolver.
-      resolveComponentFactory(AlertComponent);
-
-    const hostViewContainerRef = this.alertHost.viewContainerRef;
-    hostViewContainerRef.clear();
-
-    const alertCmpRef = hostViewContainerRef.createComponent(alertCmpFactory);
-
-    alertCmpRef.instance.message = error;
-
-    this.alertClose = alertCmpRef.instance.close
-      .subscribe(() => {
-        this.alertClose.unsubscribe();
-        hostViewContainerRef.clear();
-      })
+  onCloseAlert() {
+    this.errorMessage = '';
   }
 }

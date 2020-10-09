@@ -71,11 +71,18 @@ p {
   width: 300px;
   height: 100%;
 
-  p {
+  a {
+    cursor: pointer;
     font-weight: 600;
     font-size: 14px;
     line-height: 21px;
     color: #828282;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: none;
+      color: #595959;
+    }
   }
 
   .active {
@@ -85,13 +92,11 @@ p {
   }
 }
 
-
 @media (max-width: 1400px) {
   .wall__component {
     width: 80%;
   }
 }
-
 
 @media (max-width: 1200px) {
   .wall__component {
@@ -106,7 +111,6 @@ p {
 }
 
 @media (max-width: 768px) {
-
   .desktop {
     display: none !important;
   }
@@ -151,7 +155,7 @@ p {
 
     .wall__nav {
       width: 100%;
-      text-align: center
+      text-align: center;
     }
   }
 }

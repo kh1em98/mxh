@@ -74,11 +74,18 @@ p {
   height: 100%;
 }
 
-.wall__nav p {
+.wall__nav a {
+  cursor: pointer;
   font-weight: 600;
   font-size: 14px;
   line-height: 21px;
   color: #828282;
+  text-decoration: none;
+}
+
+.wall__nav a:hover {
+  text-decoration: none;
+  color: #595959;
 }
 
 .wall__nav .active {

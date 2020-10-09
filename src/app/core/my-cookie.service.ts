@@ -3,10 +3,10 @@ import { CookieService } from 'ngx-cookie-service';
 import { User } from '../shared/user.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MyCookieService {
-  constructor(private cookieService: CookieService) { };
+  constructor(private cookieService: CookieService) {}
 
   decodePayload(): User {
     if (document.cookie) {
@@ -19,6 +19,7 @@ export class MyCookieService {
         payload = JSON.parse(payload);
 
         const user: User = {
+          _id: payload._id,
           username: payload.username,
           name: payload.name,
           email: payload.email,
@@ -26,10 +27,9 @@ export class MyCookieService {
           role: 'user',
           phone: payload.phone ? payload.phone : '',
           bio: payload.bio ? payload.bio : '',
-        }
-        return user
-      }
-      catch (err) {
+        };
+        return user;
+      } catch (err) {
         return null;
       }
     }

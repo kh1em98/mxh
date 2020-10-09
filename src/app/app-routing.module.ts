@@ -1,51 +1,27 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { SignupComponent } from './signup/signup.component';
-import { LoginComponent } from './login/login.component';
-import { UserComponent } from './user/user.component';
-import { ProfileComponent } from './user/profile/profile.component';
-import { EditComponent } from './user/edit/edit.component';
-import { ForwardAuthGuard } from './core/guard/forwardAuth.guard';
+import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 import { AuthGuard } from './core/guard/auth.guard';
 import { NewsFeedComponent } from './news-feed/news-feed.component';
-import { OnlyMeGuard } from './core/guard/only-me.guard';
-import { WallComponent } from './user/wall/wall.component';
 
 const routes: Routes = [
-    {
-        path: '', pathMatch: 'full', canActivate: [AuthGuard],
-        component: NewsFeedComponent,
-    },
-    {
-        path: 'login', component: LoginComponent,
-        canActivate: [ForwardAuthGuard]
-    },
-    {
-        path: 'signup', component: SignupComponent,
-        canActivate: [ForwardAuthGuard]
-    },
-    {
-        path: ':username', component: UserComponent, canActivate: [AuthGuard],
-        children: [
-            {
-                path: '', component: WallComponent
-            },
-            {
-                path: 'edit', component: EditComponent, canActivate: [OnlyMeGuard]
-            },
-            {
-                path: 'profile', component: ProfileComponent
-            }
-        ],
-    },
-]
+  {
+    path: '',
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
+    component: NewsFeedComponent,
+  },
+  {
+    path: ':username',
+    loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
+  },
+];
 
 @NgModule({
-    imports: [
-        RouterModule.forRoot(routes)
-    ],
-    exports: [
-        RouterModule
-    ]
+  imports: [
+    RouterModule.forRoot(routes, {
+      preloadingStrategy: PreloadAllModules,
+    }),
+  ],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

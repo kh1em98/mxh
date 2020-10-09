@@ -1,12 +1,15 @@
 <div class="backdrop" (click)="onClose()"></div>
-<div class="alert-box d-flex flex-column align-items-center bg-gray-1 pt-4 pb-4">
-
-  <img src="../../../assets/icons/cancel.svg" alt="">
+<div
+  class="alert-box d-flex flex-column align-items-center bg-gray-1 pt-4 pb-4"
+>
+  <img src="../../../assets/icons/cancel.svg" alt="" />
 
   <h3 class="fontweight-2 fontsize-7 gray-7 mt-4 mb-2">Có lỗi xảy ra</h3>
 
-  <p class="fontsize-4 gray-6 mt-3">{{message}}</p>
+  <p class="fontsize-4 gray-6 mt-3">{{ message }}</p>
   <div class="alert-box-actions mt-3">
-    <button class="btn btn-primary pt-2 pb-2 pl-5 pr-5" (click)="onClose()">OK</button>
+    <button class="btn btn-primary pt-2 pb-2 pl-5 pr-5" (click)="onClose()">
+      OK
+    </button>
   </div>
 </div>
