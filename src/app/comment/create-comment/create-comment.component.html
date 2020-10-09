@@ -1,0 +1,10 @@
+<form [formGroup]="commentForm" (ngSubmit)="onCreateComment()">
+  <div class="footer__comment d-flex align-items-center pb-2">
+    <img [src]="user.avatar" class="mr-3" alt="" />
+    <input type="text" class="pl-3 pr-2 pt-2 pb-2" formControlName="content" />
+
+    <div class="list-icons d-flex">
+      <i class="far fa-smile-beam"></i>
+    </div>
+  </div>
+</form>

@@ -7,12 +7,12 @@ import { LoginComponent } from '../login/login.component';
 import { SignupComponent } from '../signup/signup.component';
 
 @NgModule({
-    declarations: [
-        LoginComponent,
-        SignupComponent,
-    ],
-    imports: [AuthRoutingModule, SharedModule, ReactiveFormsModule, HttpClientModule]
+  declarations: [LoginComponent, SignupComponent],
+  imports: [
+    AuthRoutingModule,
+    SharedModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
 })
-export class AuthModule {
-
-}
+export class AuthModule {}

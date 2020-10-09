@@ -1,68 +1,45 @@
-import {
-  Injectable
-} from '@angular/core';
-import {
-  HttpClient,
-  HttpErrorResponse
-} from '@angular/common/http';
-import {
-  BehaviorSubject,
-  throwError,
-} from 'rxjs';
-import {
-  catchError,
-  tap
-} from 'rxjs/operators'
-import {
-  User
-} from '../shared/user.model';
-import {
-  MyCookieService
-} from './my-cookie.service';
-import {
-  Router
-} from '@angular/router';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { BehaviorSubject, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { User } from '../shared/user.model';
+import { MyCookieService } from './my-cookie.service';
+import { Router } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   alertLabel: {
-    message: string,
-    typeAlert: string
+    message: string;
+    typeAlert: string;
   } = null;
-  user: BehaviorSubject < User > = new BehaviorSubject(null);
+  user: BehaviorSubject<User> = new BehaviorSubject(null);
 
-  constructor(private http: HttpClient,
+  constructor(
+    private http: HttpClient,
     private myCookieService: MyCookieService,
-    private router: Router) {}
+    private router: Router
+  ) {}
 
   signUp(formValue) {
-    const {
-      username,
-      email,
-      password,
-      name
-    } = formValue;
-    return this.http.post('/api/register', {
+    const { username, email, password, name } = formValue;
+    return this.http
+      .post('/api/register', {
         name,
         username,
         email,
-        password
+        password,
       })
-      .pipe(
-        catchError(this.handleError)
-      )
+      .pipe(catchError(this.handleError));
   }
 
   login(formValue) {
-    const {
-      email,
-      password
-    } = formValue;
-    return this.http.post('/api/login', {
+    const { email, password } = formValue;
+    return this.http
+      .post('/api/login', {
         email,
-        password
+        password,
       })
       .pipe(
         catchError(this.handleError),
@@ -70,7 +47,7 @@ export class AuthService {
           const user: User = this.myCookieService.decodePayload();
           this.user.next(user);
         })
-      )
+      );
   }
 
   logout() {
