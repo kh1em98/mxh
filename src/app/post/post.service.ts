@@ -52,9 +52,9 @@ export class PostService {
     return this.http.post('/api/post/comment', { postId, content }).pipe(
       catchError(this.handleError),
       tap(() => {
-        for (let post of this.allPost) {
-          if (post._id === postId) {
-            post.comments.unshift({
+        for (let i = 0; i < this.allPost.length; i++) {
+          if (this.allPost[i]._id === postId) {
+            this.allPost[i].comments.unshift({
               timeCreated: new Date(),
               content,
               userComment: {
@@ -66,6 +66,7 @@ export class PostService {
             break;
           }
         }
+
         this.postsChanged.next(this.allPost.slice());
       })
     );

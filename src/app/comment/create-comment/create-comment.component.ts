@@ -54,4 +54,8 @@ export class CreateCommentComponent implements OnInit {
         }
       );
   }
+
+  closeAlertError() {
+    this.error = '';
+  }
 }
