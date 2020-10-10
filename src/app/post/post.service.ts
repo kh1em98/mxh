@@ -23,8 +23,6 @@ export class PostService {
   }) {
     const { content, name, username, avatar } = post;
 
-    console.log('Bai dinh post : ', post);
-
     return this.http.post('/api/post', { content }).pipe(
       catchError(this.handleError),
       tap((response: any) => {
@@ -74,6 +72,7 @@ export class PostService {
 
   likePost({ userId, postId }) {
     return this.http.post('/api/post/like', { postId }).pipe(
+      catchError(this.handleError),
       tap(() => {
         for (let post of this.allPost) {
           if (post._id === postId) {
@@ -88,6 +87,7 @@ export class PostService {
 
   unlikePost({ userId, postId }) {
     return this.http.post('/api/post/unlike', { postId }).pipe(
+      catchError(this.handleError),
       tap(() => {
         for (let post of this.allPost) {
           if (post._id === postId) {
@@ -95,6 +95,21 @@ export class PostService {
               (userLike) => userLike === userId
             );
             post.likes.splice(indexItemToDelete, 1);
+            break;
+          }
+        }
+        this.postsChanged.next(this.allPost.slice());
+      })
+    );
+  }
+
+  retweetPost({ postId, userId }) {
+    return this.http.post('/api/post/retweet', { postId }).pipe(
+      catchError(this.handleError),
+      tap(() => {
+        for (let post of this.allPost) {
+          if (post._id === postId) {
+            post.retweets.push(userId);
             break;
           }
         }

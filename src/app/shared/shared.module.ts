@@ -9,6 +9,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CreatePostComponent } from '../create-post/create-post.component';
 import { CreateCommentComponent } from '../comment/create-comment/create-comment.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     CommentComponent,
     CreateCommentComponent,
     LoadingSpinnerComponent,
+    NotificationComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, FormsModule],
   exports: [
@@ -32,6 +34,7 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     PlaceholderDirective,
     CommonModule,
     LoadingSpinnerComponent,
+    NotificationComponent,
   ],
 })
 export class SharedModule {}

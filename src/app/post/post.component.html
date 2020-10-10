@@ -3,6 +3,12 @@
   <p>Khiem Nguyen Retweeted</p>
 </div> -->
 
+<app-notification
+  *ngIf="notification"
+  [message]="notification.message"
+  [typeNotification]="notification.typeNotification"
+></app-notification>
+
 <div class="post pl-4 pr-4 pt-4 pb-4 mt-3 mb-3">
   <div class="post__header d-flex mb-2">
     <img [src]="post.userPost.avatar" class="mr-3" alt="" />
@@ -47,6 +53,8 @@
       </div>
       <div
         class="action col-4 d-flex pt-2 pb-2 align-items-center justify-content-center retweeted"
+        [ngClass]="{ retweeted: isRetweeted }"
+        (click)="onRetweet()"
       >
         <i class="fas fa-retweet mr-2"></i>
         <p>Retweets</p>

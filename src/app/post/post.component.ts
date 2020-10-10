@@ -11,6 +11,7 @@ import { PostService } from './post.service';
   styleUrls: ['./post.component.css'],
 })
 export class PostComponent implements OnInit {
+  notification: { message: string; typeNotification: string } = null;
   @Input() post: Post;
   isLiked: boolean = false;
   isRetweeted: boolean = false;
@@ -25,8 +26,17 @@ export class PostComponent implements OnInit {
       this.user = user;
     });
 
+    this.isPostLiked();
+  }
+
+  isPostLiked() {
     this.isLiked =
       this.post.likes.findIndex((user) => user === this.user._id) !== -1;
+  }
+
+  isPostRetweeted() {
+    this.isRetweeted =
+      this.post.retweets.findIndex((user) => user === this.user._id) !== -1;
   }
 
   onToggleLike() {
@@ -41,6 +51,23 @@ export class PostComponent implements OnInit {
       this.postService
         .likePost({ userId: this.user._id, postId: this.post._id })
         .subscribe();
+    }
+  }
+
+  onRetweet() {
+    if (this.isRetweeted) {
+      this.notification = {
+        message: 'Bạn đã chia sẻ bài viết rồi',
+        typeNotification: 'alert-danger',
+      };
+      console.log('Ahihi');
+    } else {
+      this.isRetweeted = true;
+      this.notification = {
+        message: 'Chia sẻ bài viết thành công',
+        typeNotification: 'alert-success',
+      };
+      console.log('Ahuhu');
     }
   }
 }
