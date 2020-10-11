@@ -15,15 +15,27 @@
 <div class="post pl-4 pr-4 pt-4 pb-4 mt-3 mb-3">
   <div class="d-flex justify-content-between">
     <div class="post__header d-flex mb-2">
-      <img [src]="post.userPost.avatar" class="mr-3" alt="" />
+      <img
+        style="cursor: pointer"
+        [routerLink]="['', post.userPost.username]"
+        [src]="post.userPost.avatar"
+        class="mr-3"
+        alt=""
+      />
       <div>
-        <p class="fontweight-2 mb-0">{{ post.userPost.name }}</p>
+        <p
+          style="cursor: pointer"
+          [routerLink]="['', post.userPost.username]"
+          class="fontweight-2 mb-0"
+        >
+          {{ post.userPost.name }}
+        </p>
         <p class="fontweight-1 fontsize-1 gray-5 mt-1">
           {{ post.timeCreated | date: "MMM d y, h:mm a" }}
         </p>
       </div>
     </div>
-    <div class="post__options dropdown">
+    <div class="post__options dropdown" *ngIf="isMyPost">
       <button
         class="btn dropdown-toggle gray-6"
         id="dropdownMenuButton"
@@ -53,17 +65,10 @@
 
   <div class="post__footer mt-2 mb-1">
     <div class="footer__stat d-flex justify-content-end">
-      <p (click)="showUserLike()">{{ post.likes.length }} likes</p>
+      <p>{{ post.likes.length }} likes</p>
       <p>{{ post.comments.length }} comments</p>
-      <p (click)="showUserRetweet()">{{ post.retweets.length }} retweets</p>
+      <p>{{ post.retweets.length }} retweets</p>
     </div>
-
-    <app-box
-      (close)="closeBox()"
-      *ngIf="box"
-      [header]="box.header"
-      [users]="box.users"
-    ></app-box>
 
     <div class="footer__actions mb-2 row">
       <div
@@ -96,6 +101,8 @@
   <div class="comments">
     <app-comment
       *ngFor="let comment of post.comments"
+      [userId]="user._id"
+      [postId]="post._id"
       [comment]="comment"
     ></app-comment>
   </div>

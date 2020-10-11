@@ -48,24 +48,23 @@ export class PostService {
   }
 
   createComment(comment) {
-    const { postId, content, name, username, avatar } = comment;
+    const { postId, content, name, username, avatar, userId } = comment;
     return this.http.post('/api/post/comment', { postId, content }).pipe(
       catchError(this.handleError),
-      tap(() => {
-        for (let i = 0; i < this.allPost.length; i++) {
-          if (this.allPost[i]._id === postId) {
-            this.allPost[i].comments.unshift({
-              timeCreated: new Date(),
-              content,
-              userComment: {
-                name,
-                username,
-                avatar,
-              },
-            });
-            break;
-          }
-        }
+      tap((response: any) => {
+        const postIndex = this.allPost.findIndex((post) => post._id === postId);
+
+        this.allPost[postIndex].comments.unshift({
+          _id: response.newCommentId,
+          timeCreated: new Date(),
+          content,
+          userComment: {
+            _id: userId,
+            name,
+            username,
+            avatar,
+          },
+        });
 
         this.postsChanged.next(this.allPost.slice());
       })
@@ -76,12 +75,10 @@ export class PostService {
     return this.http.post('/api/post/like', { postId }).pipe(
       catchError(this.handleError),
       tap(() => {
-        for (let post of this.allPost) {
-          if (post._id === postId) {
-            post.likes.push(userId);
-            break;
-          }
-        }
+        const postIndex = this.allPost.findIndex((post) => post._id === postId);
+
+        this.allPost[postIndex].likes.push(userId);
+
         this.postsChanged.next(this.allPost.slice());
       })
     );
@@ -91,15 +88,14 @@ export class PostService {
     return this.http.post('/api/post/unlike', { postId }).pipe(
       catchError(this.handleError),
       tap(() => {
-        for (let post of this.allPost) {
-          if (post._id === postId) {
-            let indexItemToDelete = post.likes.findIndex(
-              (userLike) => userLike === userId
-            );
-            post.likes.splice(indexItemToDelete, 1);
-            break;
-          }
-        }
+        const postIndex = this.allPost.findIndex((post) => post._id === postId);
+
+        const userToDeleteIndex = this.allPost[postIndex].likes.findIndex(
+          (userLike) => userLike === userId
+        );
+
+        this.allPost[postIndex].likes.splice(userToDeleteIndex, 1);
+
         this.postsChanged.next(this.allPost.slice());
       })
     );
@@ -109,12 +105,9 @@ export class PostService {
     return this.http.post('/api/post/retweet', { postId }).pipe(
       catchError(this.handleError),
       tap(() => {
-        for (let post of this.allPost) {
-          if (post._id === postId) {
-            post.retweets.push(userId);
-            break;
-          }
-        }
+        const postIndex = this.allPost.findIndex((post) => post._id === postId);
+        this.allPost[postIndex].retweets.push(userId);
+
         this.postsChanged.next(this.allPost.slice());
       })
     );
@@ -124,24 +117,34 @@ export class PostService {
     return this.http.delete(`/api/post/${postId}`).pipe(
       catchError(this.handleError),
       tap(() => {
-        for (let i = 0; i < this.allPost.length; i++) {
-          if (this.allPost[i]._id === postId) {
-            this.allPost.splice(i, 1);
-            break;
-          }
-        }
+        const postIndex = this.allPost.findIndex((post) => post._id === postId);
+        this.allPost.splice(postIndex, 1);
+
+        this.postsChanged.next(this.allPost.slice());
+      })
+    );
+  }
+
+  deleteComment({ postId, commentId }) {
+    return this.http.delete(`/api/post/comment/${postId}/${commentId}`).pipe(
+      catchError(this.handleError),
+      tap(() => {
+        const indexPost = this.allPost.findIndex((post) => post._id === postId);
+        const indexComment = this.allPost[indexPost].comments.findIndex(
+          (comment) => comment._id === commentId
+        );
+
+        this.allPost[indexPost].comments.splice(indexComment, 1);
         this.postsChanged.next(this.allPost.slice());
       })
     );
   }
 
   fetchPosts() {
-    console.log('Fetch post');
     this.http
       .get('/api/post')
       .pipe(
         tap((allPost: any) => {
-          console.log('Da lay duoc het post : ', allPost);
           this.allPost = allPost;
           this.postsChanged.next(this.allPost.slice());
         })
@@ -151,8 +154,6 @@ export class PostService {
 
   handleError(errorRes: HttpErrorResponse) {
     const errorMessage = errorRes.error.message;
-
-    console.log(typeof errorMessage);
 
     if (typeof errorMessage === 'string') {
       return throwError(errorMessage);

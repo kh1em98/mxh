@@ -1,4 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { PostService } from '../post/post.service';
+import { tap } from 'rxjs/operators';
+import { noop } from 'rxjs';
 
 @Component({
   selector: 'app-comment',
@@ -6,8 +9,33 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./comment.component.css'],
 })
 export class CommentComponent implements OnInit {
+  isLoading: boolean = false;
   @Input() comment;
-  constructor() {}
+  @Input() userId: string;
+  @Input() postId: string;
+  isMyComment: boolean = false;
+  constructor(private postService: PostService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.checkIsMyComment();
+  }
+
+  checkIsMyComment() {
+    this.isMyComment = this.userId === this.comment.userComment._id;
+  }
+
+  onDeleteComment() {
+    this.isLoading = true;
+    this.postService
+      .deleteComment({
+        postId: this.postId,
+        commentId: this.comment._id,
+      })
+      .pipe(
+        tap(() => {
+          this.isLoading = false;
+        })
+      )
+      .subscribe();
+  }
 }

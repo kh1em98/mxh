@@ -18,6 +18,7 @@ import { noop } from 'rxjs';
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css'],
   animations: [
+    // Animation fade notification
     trigger('fade', [
       state(
         'in',
@@ -42,33 +43,15 @@ import { noop } from 'rxjs';
         ),
       ]),
     ]),
-
-    /* trigger('fade', [
-      state(
-        'in',
-        style({
-          opacity: 1,
-        })
-      ),
-      // fade in when created. this could also be written as transition('void => *')
-      transition(':enter', [style({ opacity: 0 }), animate(350)]),
-
-      // fade out when destroyed. this could also be written as transition('void => *')
-      transition(':leave', animate(350, style({ opacity: 0 }))),
-    ]), */
   ],
 })
 export class PostComponent implements OnInit {
-  box: {
-    header: string;
-    users: any;
-  } = null;
-
   isLoading: boolean = false;
   notification: { message: string; typeNotification: string } = null;
   @Input() post: Post;
   isLiked: boolean = false;
   isRetweeted: boolean = false;
+  isMyPost: boolean = false;
   user: User = null;
   constructor(
     private authService: AuthService,
@@ -80,18 +63,9 @@ export class PostComponent implements OnInit {
       this.user = user;
     });
 
-    this.isPostLiked();
-    this.isPostRetweeted();
-  }
-
-  isPostLiked() {
-    this.isLiked =
-      this.post.likes.findIndex((user) => user === this.user._id) !== -1;
-  }
-
-  isPostRetweeted() {
-    this.isRetweeted =
-      this.post.retweets.findIndex((user) => user === this.user._id) !== -1;
+    this.checkIsMyPost();
+    this.checkIsPostLiked();
+    this.checkIsPostRetweeted();
   }
 
   onToggleLike() {
@@ -99,21 +73,18 @@ export class PostComponent implements OnInit {
       this.isLiked = false;
       this.postService
         .unlikePost({ userId: this.user._id, postId: this.post._id })
-        .subscribe();
+        .subscribe(noop, (error) => this.showNotificationError(error));
     } else {
       this.isLiked = true;
       this.postService
         .likePost({ userId: this.user._id, postId: this.post._id })
-        .subscribe();
+        .subscribe(noop, (error) => this.showNotificationError(error));
     }
   }
 
   onRetweet() {
     if (this.isRetweeted) {
-      this.notification = {
-        message: 'Bạn đã chia sẻ bài viết rồi',
-        typeNotification: 'alert-danger',
-      };
+      this.showNotificationError('Bạn đã chia sẻ bài viết rồi');
     } else {
       this.isRetweeted = true;
       this.notification = {
@@ -141,29 +112,31 @@ export class PostComponent implements OnInit {
           this.isLoading = false;
         })
       )
-      .subscribe(noop, (error) => {
-        this.notification = {
-          message: error,
-          typeNotification: 'alert-danger',
-        };
-      });
+      .subscribe(noop, (error) => this.showNotificationError(error));
   }
 
-  showUserLike() {
-    this.box = {
-      header: 'Users Liked',
-      users: this.post.likes,
+  checkIsMyPost() {
+    this.isMyPost = this.post.userPost._id === this.user._id;
+  }
+
+  checkIsPostLiked() {
+    this.isLiked =
+      this.post.likes.findIndex((user) => user === this.user._id) !== -1;
+  }
+
+  checkIsPostRetweeted() {
+    this.isRetweeted =
+      this.post.retweets.findIndex((user) => user === this.user._id) !== -1;
+  }
+
+  showNotificationError(error) {
+    this.notification = {
+      message: error,
+      typeNotification: 'alert-danger',
     };
-  }
 
-  showUserRetweet() {
-    this.box = {
-      header: 'Users Retweeted',
-      users: this.post.retweets,
-    };
-  }
-
-  closeBox() {
-    this.box = null;
+    setTimeout(() => {
+      this.notification = null;
+    }, 1500);
   }
 }

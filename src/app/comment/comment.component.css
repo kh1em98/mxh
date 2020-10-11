@@ -1,4 +1,5 @@
 .comment__component p {
+  cursor: pointer;
   margin-bottom: 0;
 }
 
@@ -9,7 +10,7 @@
 }
 
 .comment__component .text-part {
-  background: #FAFAFA;
+  background: #fafafa;
   border-radius: 8px;
 }
 

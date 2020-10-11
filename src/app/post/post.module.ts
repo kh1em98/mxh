@@ -7,6 +7,7 @@ import { PostDropdownComponent } from './post-dropdown/post-dropdown.component';
 import { BoxComponent } from './box/box.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { SharedModule } from '../shared/shared.module';
     PostDropdownComponent,
     BoxComponent,
   ],
-  imports: [ReactiveFormsModule, FormsModule, SharedModule],
+  imports: [ReactiveFormsModule, FormsModule, SharedModule, RouterModule],
   exports: [
     PostComponent,
     CreatePostComponent,

@@ -40,6 +40,7 @@ export class CreateCommentComponent implements OnInit {
         .createComment({
           ...this.commentForm.value,
           postId: this.postId,
+          userId: this.user._id,
           name: this.user.name,
           avatar: this.user.avatar,
           username: this.user.username,
