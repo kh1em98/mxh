@@ -21,25 +21,27 @@ export class CreatePostComponent implements OnInit {
   }
 
   onCreatePost() {
-    this.isLoading = true;
-    this.postService
-      .createPost({
-        ...this.createPostForm.value,
-        name: this.user.name,
-        avatar: this.user.avatar,
-        username: this.user.username,
-      })
-      .subscribe(
-        () => {
-          this.createPostForm.reset();
-          this.isLoading = false;
-        },
-        (errorMessage) => {
-          this.createPostForm.reset();
-          this.isLoading = false;
-          this.error = errorMessage;
-        }
-      );
+    if (this.createPostForm.valid) {
+      this.isLoading = true;
+      this.postService
+        .createPost({
+          ...this.createPostForm.value,
+          name: this.user.name,
+          avatar: this.user.avatar,
+          username: this.user.username,
+        })
+        .subscribe(
+          () => {
+            this.createPostForm.reset();
+            this.isLoading = false;
+          },
+          (errorMessage) => {
+            this.createPostForm.reset();
+            this.isLoading = false;
+            this.error = errorMessage;
+          }
+        );
+    }
   }
 
   closeAlertError() {

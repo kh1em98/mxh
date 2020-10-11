@@ -1,0 +1,36 @@
+.backdrop {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 50;
+}
+
+.box__component {
+  overflow-y: scroll;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 101;
+  transform: translate(-50%, -50%);
+  max-width: 500px;
+  min-width: 300px;
+  height: 500px;
+  background: white;
+}
+
+.box__header {
+  border-bottom: 1px solid#e6e6e6;
+}
+
+img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+a:hover {
+  text-decoration: none;
+}

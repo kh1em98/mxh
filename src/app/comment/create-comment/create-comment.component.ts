@@ -33,26 +33,28 @@ export class CreateCommentComponent implements OnInit {
   }
 
   onCreateComment() {
-    this.isLoading = true;
-    this.postService
-      .createComment({
-        ...this.commentForm.value,
-        postId: this.postId,
-        name: this.user.name,
-        avatar: this.user.avatar,
-        username: this.user.username,
-      })
-      .subscribe(
-        () => {
-          this.commentForm.reset();
-          this.isLoading = false;
-        },
-        (errorMessage) => {
-          this.commentForm.reset();
-          this.isLoading = false;
-          this.error = errorMessage;
-        }
-      );
+    if (this.commentForm.valid) {
+      this.isLoading = true;
+      this.postService
+        .createComment({
+          ...this.commentForm.value,
+          postId: this.postId,
+          name: this.user.name,
+          avatar: this.user.avatar,
+          username: this.user.username,
+        })
+        .subscribe(
+          () => {
+            this.commentForm.reset();
+            this.isLoading = false;
+          },
+          (errorMessage) => {
+            this.commentForm.reset();
+            this.isLoading = false;
+            this.error = errorMessage;
+          }
+        );
+    }
   }
 
   closeAlertError() {

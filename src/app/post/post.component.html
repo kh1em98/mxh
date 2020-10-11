@@ -4,6 +4,7 @@
 </div> -->
 
 <app-notification
+  [@fade]="'in'"
   *ngIf="notification"
   [message]="notification.message"
   [typeNotification]="notification.typeNotification"
@@ -31,10 +32,17 @@
 
   <div class="post__footer mt-2 mb-1">
     <div class="footer__stat d-flex justify-content-end">
-      <p>{{ post.likes.length }} likes</p>
+      <p (click)="showUserLike()">{{ post.likes.length }} likes</p>
       <p>{{ post.comments.length }} comments</p>
-      <p>{{ post.retweets.length }} retweets</p>
+      <p (click)="showUserRetweet()">{{ post.retweets.length }} retweets</p>
     </div>
+
+    <app-box
+      (close)="closeBox()"
+      *ngIf="box"
+      [header]="box.header"
+      [users]="box.users"
+    ></app-box>
 
     <div class="footer__actions mb-2 row">
       <div

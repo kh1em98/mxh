@@ -33,10 +33,15 @@
 .post__footer {
   .footer__stat {
     p {
+      cursor: pointer;
       color: #bdbdbd;
       font-size: 12px;
       margin-left: 16px;
       margin-bottom: 10px;
+
+      &:hover {
+        color: #949494;
+      }
     }
   }
 
