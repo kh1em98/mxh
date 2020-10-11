@@ -4,13 +4,65 @@ import { AuthService } from '../core/auth.service';
 import { take } from 'rxjs/operators';
 import { User } from '../shared/user.model';
 import { PostService } from './post.service';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css'],
+  animations: [
+    trigger('fade', [
+      state(
+        'in',
+        style({
+          opacity: 1,
+        })
+      ),
+
+      transition('void => *', [
+        style({
+          opacity: 0,
+        }),
+        animate(350),
+      ]),
+
+      transition('* => void', [
+        animate(
+          350,
+          style({
+            opacity: 0,
+          })
+        ),
+      ]),
+    ]),
+
+    /* trigger('fade', [
+      state(
+        'in',
+        style({
+          opacity: 1,
+        })
+      ),
+      // fade in when created. this could also be written as transition('void => *')
+      transition(':enter', [style({ opacity: 0 }), animate(350)]),
+
+      // fade out when destroyed. this could also be written as transition('void => *')
+      transition(':leave', animate(350, style({ opacity: 0 }))),
+    ]), */
+  ],
 })
 export class PostComponent implements OnInit {
+  box: {
+    header: string;
+    users: any;
+  } = null;
+
   notification: { message: string; typeNotification: string } = null;
   @Input() post: Post;
   isLiked: boolean = false;
@@ -27,6 +79,7 @@ export class PostComponent implements OnInit {
     });
 
     this.isPostLiked();
+    this.isPostRetweeted();
   }
 
   isPostLiked() {
@@ -40,7 +93,6 @@ export class PostComponent implements OnInit {
   }
 
   onToggleLike() {
-    console.log(this.isLiked);
     if (this.isLiked) {
       this.isLiked = false;
       this.postService
@@ -60,14 +112,39 @@ export class PostComponent implements OnInit {
         message: 'Bạn đã chia sẻ bài viết rồi',
         typeNotification: 'alert-danger',
       };
-      console.log('Ahihi');
     } else {
       this.isRetweeted = true;
       this.notification = {
         message: 'Chia sẻ bài viết thành công',
         typeNotification: 'alert-success',
       };
-      console.log('Ahuhu');
+      this.postService
+        .retweetPost({
+          postId: this.post._id,
+          userId: this.user._id,
+        })
+        .subscribe();
     }
+    setTimeout(() => {
+      this.notification = null;
+    }, 1500);
+  }
+
+  showUserLike() {
+    this.box = {
+      header: 'Users Liked',
+      users: this.post.likes,
+    };
+  }
+
+  showUserRetweet() {
+    this.box = {
+      header: 'Users Retweeted',
+      users: this.post.retweets,
+    };
+  }
+
+  closeBox() {
+    this.box = null;
   }
 }
