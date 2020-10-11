@@ -2,6 +2,7 @@ export class Post {
   constructor(
     public _id: string,
     public userPost: {
+      _id: string;
       name: string;
       username: string;
       avatar: string;

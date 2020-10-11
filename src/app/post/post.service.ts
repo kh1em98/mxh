@@ -16,12 +16,13 @@ export class PostService {
   constructor(private http: HttpClient) {}
 
   createPost(post: {
+    _idUserPost: string;
     content: string;
     name: string;
     username: string;
     avatar: string;
   }) {
-    const { content, name, username, avatar } = post;
+    const { content, name, username, avatar, _idUserPost } = post;
 
     return this.http.post('/api/post', { content }).pipe(
       catchError(this.handleError),
@@ -29,9 +30,10 @@ export class PostService {
         const newPost = new Post(
           response.newPostId,
           {
-            name: name,
-            avatar: avatar,
-            username: username,
+            _id: _idUserPost,
+            name,
+            avatar,
+            username,
           },
           content,
           new Date(),
@@ -118,11 +120,28 @@ export class PostService {
     );
   }
 
+  deletePost({ postId }) {
+    return this.http.delete(`/api/post/${postId}`).pipe(
+      catchError(this.handleError),
+      tap(() => {
+        for (let i = 0; i < this.allPost.length; i++) {
+          if (this.allPost[i]._id === postId) {
+            this.allPost.splice(i, 1);
+            break;
+          }
+        }
+        this.postsChanged.next(this.allPost.slice());
+      })
+    );
+  }
+
   fetchPosts() {
+    console.log('Fetch post');
     this.http
       .get('/api/post')
       .pipe(
         tap((allPost: any) => {
+          console.log('Da lay duoc het post : ', allPost);
           this.allPost = allPost;
           this.postsChanged.next(this.allPost.slice());
         })

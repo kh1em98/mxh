@@ -21,6 +21,10 @@
   border-radius: 7px;
 }
 
+.post__options a:active {
+  background: none;
+}
+
 .post__body {
   color: #4f4f4f !important;
 }

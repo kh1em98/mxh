@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { User } from 'src/app/shared/user.model';
 import { AuthService } from '../../core/auth.service';
-import { take } from 'rxjs/operators';
+import { take, tap } from 'rxjs/operators';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PostService } from '../../post/post.service';
+import { noop } from 'rxjs';
 
 @Component({
   selector: 'app-create-comment',
@@ -43,17 +44,15 @@ export class CreateCommentComponent implements OnInit {
           avatar: this.user.avatar,
           username: this.user.username,
         })
-        .subscribe(
-          () => {
+        .pipe(
+          tap(() => {
             this.commentForm.reset();
             this.isLoading = false;
-          },
-          (errorMessage) => {
-            this.commentForm.reset();
-            this.isLoading = false;
-            this.error = errorMessage;
-          }
-        );
+          })
+        )
+        .subscribe(noop, (errorMessage) => {
+          this.error = errorMessage;
+        });
     }
   }
 

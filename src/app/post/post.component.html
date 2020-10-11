@@ -10,14 +10,35 @@
   [typeNotification]="notification.typeNotification"
 ></app-notification>
 
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+
 <div class="post pl-4 pr-4 pt-4 pb-4 mt-3 mb-3">
-  <div class="post__header d-flex mb-2">
-    <img [src]="post.userPost.avatar" class="mr-3" alt="" />
-    <div>
-      <p class="fontweight-2 mb-0">{{ post.userPost.name }}</p>
-      <p class="fontweight-1 fontsize-1 gray-5 mt-1">
-        {{ post.timeCreated | date: "MMM d y, h:mm a" }}
-      </p>
+  <div class="d-flex justify-content-between">
+    <div class="post__header d-flex mb-2">
+      <img [src]="post.userPost.avatar" class="mr-3" alt="" />
+      <div>
+        <p class="fontweight-2 mb-0">{{ post.userPost.name }}</p>
+        <p class="fontweight-1 fontsize-1 gray-5 mt-1">
+          {{ post.timeCreated | date: "MMM d y, h:mm a" }}
+        </p>
+      </div>
+    </div>
+    <div class="post__options dropdown">
+      <button
+        class="btn dropdown-toggle gray-6"
+        id="dropdownMenuButton"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      ></button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a
+          (click)="onDeletePost()"
+          style="cursor: pointer"
+          class="dropdown-item gray-7"
+          ><i class="fas fa-trash mr-2"></i>Delete Post</a
+        >
+      </div>
     </div>
   </div>
 

@@ -26,6 +26,7 @@ export class CreatePostComponent implements OnInit {
       this.postService
         .createPost({
           ...this.createPostForm.value,
+          _idUserPost: this.user._id,
           name: this.user.name,
           avatar: this.user.avatar,
           username: this.user.username,

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Post } from './post.model';
 import { AuthService } from '../core/auth.service';
-import { take } from 'rxjs/operators';
+import { take, tap } from 'rxjs/operators';
 import { User } from '../shared/user.model';
 import { PostService } from './post.service';
 import {
@@ -11,6 +11,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { noop } from 'rxjs';
 
 @Component({
   selector: 'app-post',
@@ -63,6 +64,7 @@ export class PostComponent implements OnInit {
     users: any;
   } = null;
 
+  isLoading: boolean = false;
   notification: { message: string; typeNotification: string } = null;
   @Input() post: Post;
   isLiked: boolean = false;
@@ -128,6 +130,23 @@ export class PostComponent implements OnInit {
     setTimeout(() => {
       this.notification = null;
     }, 1500);
+  }
+
+  onDeletePost() {
+    this.isLoading = true;
+    this.postService
+      .deletePost({ postId: this.post._id })
+      .pipe(
+        tap(() => {
+          this.isLoading = false;
+        })
+      )
+      .subscribe(noop, (error) => {
+        this.notification = {
+          message: error,
+          typeNotification: 'alert-danger',
+        };
+      });
   }
 
   showUserLike() {
