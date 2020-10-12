@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Post } from './post.model';
-import { Subject, throwError } from 'rxjs';
+import { BehaviorSubject, Subject, throwError } from 'rxjs';
 import { User } from '../shared/user.model';
 import { tap, catchError } from 'rxjs/operators';
 
@@ -9,7 +9,9 @@ import { tap, catchError } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class PostService {
-  postsChanged = new Subject<Post[]>();
+  postPerScroll = 3;
+  postSkip = 0;
+  postsChanged = new BehaviorSubject<Post[]>([]);
   allPost: Post[] = [];
   user: User = null;
 
@@ -47,8 +49,8 @@ export class PostService {
     );
   }
 
-  createComment(comment) {
-    const { postId, content, name, username, avatar, userId } = comment;
+  createComment(info) {
+    const { postId, content, name, username, avatar, userId } = info;
     return this.http.post('/api/post/comment', { postId, content }).pipe(
       catchError(this.handleError),
       tap((response: any) => {
@@ -140,7 +142,7 @@ export class PostService {
     );
   }
 
-  fetchPosts() {
+  fetchAllPosts() {
     this.http
       .get('/api/post')
       .pipe(
@@ -150,6 +152,25 @@ export class PostService {
         })
       )
       .subscribe();
+  }
+
+  fetchPosts() {
+    console.log('Fetch post');
+    return this.http
+      .get(`/api/post/${this.postPerScroll}/${this.postSkip}`)
+      .pipe(
+        tap((posts: any) => {
+          this.postSkip += 3;
+          this.allPost = [...this.allPost, ...posts];
+          this.postsChanged.next(this.allPost.slice());
+        })
+      );
+  }
+
+  initNewsFeed() {
+    if (this.allPost.length === 0) {
+      this.fetchPosts().subscribe();
+    }
   }
 
   handleError(errorRes: HttpErrorResponse) {
