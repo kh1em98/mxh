@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PostService } from '../post/post.service';
-import { PickerModule } from '@ctrl/ngx-emoji-mart';
 
 @Component({
   selector: 'app-create-post',
