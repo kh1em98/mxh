@@ -32,6 +32,7 @@ export class NewsFeedComponent implements OnInit {
 
     this.authService.user.pipe(take(1)).subscribe((user) => (this.user = user));
 
+    // Load more post...
     this.subscription = scrollToBottom$
       .pipe(
         exhaustMap(() => {
