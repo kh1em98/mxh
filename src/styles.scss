@@ -1,5 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
-@import "~@ctrl/ngx-emoji-mart/picker";
+@font-face {
+  font-family: "Noto Sans";
+  src: url("./assets/fonts/NotoSans.ttf");
+}
 
 * {
   margin: 0;

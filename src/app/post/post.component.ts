@@ -63,6 +63,9 @@ export class PostComponent implements OnInit {
       this.user = user;
     });
 
+    console.log(this.user._id);
+    console.log(this.post.userPost._id);
+
     this.checkIsMyPost();
     this.checkIsPostLiked();
     this.checkIsPostRetweeted();

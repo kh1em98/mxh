@@ -16,6 +16,7 @@ import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './core/auth.module';
 import { ProtectCSRFInterceptor } from './core/protectCSRF-interceptor.service';
 import { PostModule } from './post/post.module';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { PostModule } from './post/post.module';
     NavbarComponent,
     NewsFeedComponent,
     RightComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

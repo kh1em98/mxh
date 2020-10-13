@@ -70,7 +70,10 @@
       <p>{{ post.retweets.length }} retweets</p>
     </div>
 
-    <div class="footer__actions mb-2 row">
+    <div
+      class="footer__actions mb-2 row"
+      *ngIf="user._id !== post.userPost._id"
+    >
       <div
         class="action col-4 d-flex pt-2 pb-2 align-items-center justify-content-center liked"
         (click)="onToggleLike()"
@@ -86,13 +89,32 @@
         <p>Comments</p>
       </div>
       <div
-        *ngIf="user._id !== post.userPost._id"
         class="action col-4 d-flex pt-2 pb-2 align-items-center justify-content-center retweeted"
         [ngClass]="{ retweeted: isRetweeted }"
         (click)="onRetweet()"
       >
         <i class="fas fa-retweet mr-2"></i>
         <p>Retweets</p>
+      </div>
+    </div>
+
+    <div
+      class="footer__actions mb-2 row"
+      *ngIf="user._id === post.userPost._id"
+    >
+      <div
+        class="action col-6 d-flex pt-2 pb-2 align-items-center justify-content-center liked"
+        (click)="onToggleLike()"
+        [ngClass]="{ liked: isLiked }"
+      >
+        <i class="far fa-thumbs-up mr-2"></i>
+        <p>Likes</p>
+      </div>
+      <div
+        class="action col-6 d-flex pt-2 pb-2 align-items-center justify-content-center"
+      >
+        <i class="far fa-comment mr-2"></i>
+        <p>Comments</p>
       </div>
     </div>
 
