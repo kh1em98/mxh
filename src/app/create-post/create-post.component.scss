@@ -1,5 +1,5 @@
 .create-post {
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
   border-radius: 12px;
 
@@ -8,21 +8,19 @@
   }
 }
 
-
-
 .create-post__header {
   font-weight: 600;
   font-size: 13px;
   line-height: 18px;
-  color: #3F3F3F;
-  border-bottom: 1px solid #E0E0E0;
+  color: #3f3f3f;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 textarea {
   width: 100%;
   border: none;
   outline: none;
-  color: #4F4F4F;
+  color: #4f4f4f;
   word-wrap: break;
 }
 
@@ -30,12 +28,12 @@ textarea {
   font-weight: 500;
   font-size: 16px;
   line-height: 22px;
-  color: #BDBDBD;
+  color: #bdbdbd;
 }
 
 .create-post__footer {
   button {
-    background: #2F80ED;
+    background: #2f80ed;
     border-radius: 4px;
     color: white;
     font-weight: 500;
@@ -48,12 +46,9 @@ textarea {
     }
   }
 
-  i {
-    color: #2F80ED;
+  img {
+    width: 18px;
+    height: 18px;
     cursor: pointer;
-
-    &:hover {
-      color: #358afc;
-    }
   }
 }

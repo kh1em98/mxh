@@ -9,6 +9,14 @@ import { tap, catchError } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class PostService {
+  canDeactivate: {
+    post: boolean;
+    comment: boolean;
+  } = {
+    post: true,
+    comment: true,
+  };
+
   needLoadMoreNewsFeed: boolean = true;
   postPerScroll = 3;
   postSkip = 0;

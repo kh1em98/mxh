@@ -1,13 +1,15 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PostService } from '../post/post.service';
+import { CanComponentDeactivate } from '../core/can-deactive-guard.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-create-post',
   templateUrl: './create-post.component.html',
   styleUrls: ['./create-post.component.css'],
 })
-export class CreatePostComponent implements OnInit {
+export class CreatePostComponent implements OnInit, CanComponentDeactivate {
   error: string = null;
   isLoading: boolean = false;
   createPostForm: FormGroup = null;
@@ -18,6 +20,10 @@ export class CreatePostComponent implements OnInit {
   ngOnInit(): void {
     this.createPostForm = new FormGroup({
       content: new FormControl('', Validators.required),
+    });
+
+    this.createPostForm.valueChanges.subscribe(() => {
+      this.postService.canDeactivate.post = !this.createPostForm.valid;
     });
   }
 
@@ -49,5 +55,13 @@ export class CreatePostComponent implements OnInit {
 
   closeAlertError() {
     this.error = '';
+  }
+
+  canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+    if (this.createPostForm.value) {
+      console.log('Co value : ', this.createPostForm.value);
+      return false;
+    }
+    return true;
   }
 }

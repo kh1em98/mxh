@@ -12,14 +12,18 @@ import { PostService } from '../post/post.service';
 import { Post } from '../post/post.model';
 import { HttpClient } from '@angular/common/http';
 import { scrollToBottom$ } from '../shared/utils';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
+import { CanComponentDeactivate } from '../core/can-deactive-guard.service';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-news-feed',
   templateUrl: './news-feed.component.html',
   styleUrls: ['./news-feed.component.css'],
 })
-export class NewsFeedComponent implements OnInit {
+export class NewsFeedComponent implements OnInit, CanComponentDeactivate {
+  createPostForm: FormGroup;
+
   subscription: Subscription;
   allPost: Post[] = [];
   user: User = null;
@@ -54,5 +58,17 @@ export class NewsFeedComponent implements OnInit {
         )
         .subscribe();
     }
+  }
+
+  canDeactivate(): boolean | Observable<boolean> | Promise<boolean> {
+    if (
+      this.postService.canDeactivate.post &&
+      this.postService.canDeactivate.comment
+    ) {
+      return true;
+    }
+    return confirm(
+      'Bạn chưa hoàn thành post hoặc comment. Bạn có chắc muốn đi tiếp?'
+    );
   }
 }

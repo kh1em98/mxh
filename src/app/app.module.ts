@@ -17,6 +17,7 @@ import { AuthModule } from './core/auth.module';
 import { ProtectCSRFInterceptor } from './core/protectCSRF-interceptor.service';
 import { PostModule } from './post/post.module';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { CanDeactivateGuard } from './core/can-deactive-guard.service';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
   ],
   providers: [
     CookieService,
+    CanDeactivateGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ProtectCSRFInterceptor,

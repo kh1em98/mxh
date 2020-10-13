@@ -31,6 +31,10 @@ export class CreateCommentComponent implements OnInit {
     this.authService.user.pipe(take(1)).subscribe((user) => {
       this.user = user;
     });
+
+    this.commentForm.valueChanges.subscribe(() => {
+      this.postService.canDeactivate.comment = !this.commentForm.valid;
+    });
   }
 
   onCreateComment() {
