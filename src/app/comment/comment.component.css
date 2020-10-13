@@ -20,5 +20,9 @@
   font-size: 12px;
 }
 
-
+@media (max-width: 576px) {
+  .comment__date {
+    display: none;
+  }
+}
 /*# sourceMappingURL=comment.component.css.map */

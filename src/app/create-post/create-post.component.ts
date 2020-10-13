@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PostService } from '../post/post.service';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
 
 @Component({
   selector: 'app-create-post',
@@ -12,6 +13,7 @@ export class CreatePostComponent implements OnInit {
   isLoading: boolean = false;
   createPostForm: FormGroup = null;
   @Input() user;
+
   constructor(private postService: PostService) {}
 
   ngOnInit(): void {
@@ -21,6 +23,7 @@ export class CreatePostComponent implements OnInit {
   }
 
   onCreatePost() {
+    console.log('Create post');
     if (this.createPostForm.valid) {
       this.isLoading = true;
       this.postService

@@ -86,6 +86,7 @@
         <p>Comments</p>
       </div>
       <div
+        *ngIf="user._id !== post.userPost._id"
         class="action col-4 d-flex pt-2 pb-2 align-items-center justify-content-center retweeted"
         [ngClass]="{ retweeted: isRetweeted }"
         (click)="onRetweet()"
@@ -103,6 +104,7 @@
       *ngFor="let comment of post.comments"
       [userId]="user._id"
       [postId]="post._id"
+      [userPostId]="post.userPost._id"
       [comment]="comment"
     ></app-comment>
   </div>

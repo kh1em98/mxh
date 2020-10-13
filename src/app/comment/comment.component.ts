@@ -9,10 +9,12 @@ import { noop } from 'rxjs';
   styleUrls: ['./comment.component.css'],
 })
 export class CommentComponent implements OnInit {
+  error = '';
   isLoading: boolean = false;
   @Input() comment;
   @Input() userId: string;
   @Input() postId: string;
+  @Input() userPostId: string;
   isMyComment: boolean = false;
   constructor(private postService: PostService) {}
 
@@ -36,6 +38,13 @@ export class CommentComponent implements OnInit {
           this.isLoading = false;
         })
       )
-      .subscribe();
+      .subscribe(noop, (errorMessage) => {
+        this.isLoading = false;
+        this.error = errorMessage;
+      });
+  }
+
+  closeAlertError() {
+    this.error = '';
   }
 }

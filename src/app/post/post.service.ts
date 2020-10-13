@@ -9,6 +9,7 @@ import { tap, catchError } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class PostService {
+  needLoadMoreNewsFeed: boolean = true;
   postPerScroll = 3;
   postSkip = 0;
   postsChanged = new BehaviorSubject<Post[]>([]);
@@ -155,14 +156,17 @@ export class PostService {
   }
 
   fetchPosts() {
-    console.log('Fetch post');
     return this.http
       .get(`/api/post/${this.postPerScroll}/${this.postSkip}`)
       .pipe(
         tap((posts: any) => {
-          this.postSkip += 3;
-          this.allPost = [...this.allPost, ...posts];
-          this.postsChanged.next(this.allPost.slice());
+          if (posts.length === 0) {
+            this.needLoadMoreNewsFeed = false;
+          } else {
+            this.postSkip += 3;
+            this.allPost = [...this.allPost, ...posts];
+            this.postsChanged.next(this.allPost.slice());
+          }
         })
       );
   }

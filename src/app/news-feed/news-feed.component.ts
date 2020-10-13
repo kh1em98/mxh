@@ -1,6 +1,12 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { AuthService } from '../core/auth.service';
-import { distinctUntilChanged, exhaustMap, take, tap } from 'rxjs/operators';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  exhaustMap,
+  take,
+  tap,
+} from 'rxjs/operators';
 import { User } from '../shared/user.model';
 import { PostService } from '../post/post.service';
 import { Post } from '../post/post.model';
@@ -19,8 +25,7 @@ export class NewsFeedComponent implements OnInit {
   user: User = null;
   constructor(
     private authService: AuthService,
-    private postService: PostService,
-    private http: HttpClient
+    private postService: PostService
   ) {}
 
   ngOnInit(): void {
@@ -30,20 +35,24 @@ export class NewsFeedComponent implements OnInit {
       this.allPost = allPost;
     });
 
-    this.authService.user.pipe(take(1)).subscribe((user) => (this.user = user));
+    this.authService.user.pipe(take(1)).subscribe((user) => {
+      this.user = user;
+    });
 
     // Load more post...
-    this.subscription = scrollToBottom$
-      .pipe(
-        exhaustMap(() => {
-          return this.postService.fetchPosts();
-        }),
-        tap((response: any) => {
-          if (response.length === 0) {
-            this.subscription.unsubscribe();
-          }
-        })
-      )
-      .subscribe();
+    if (this.postService.needLoadMoreNewsFeed) {
+      this.subscription = scrollToBottom$
+        .pipe(
+          exhaustMap(() => {
+            return this.postService.fetchPosts();
+          }),
+          tap((response: any) => {
+            if (response.length === 0) {
+              this.subscription.unsubscribe();
+            }
+          })
+        )
+        .subscribe();
+    }
   }
 }

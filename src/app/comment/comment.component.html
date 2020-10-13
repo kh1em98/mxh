@@ -1,5 +1,11 @@
 <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
 
+<app-alert
+  [message]="error"
+  *ngIf="error"
+  (close)="closeAlertError()"
+></app-alert>
+
 <div class="comment__component mt-3 mb-2">
   <div class="d-flex">
     <img
@@ -23,14 +29,17 @@
               {{ comment.userComment.name }}
             </p>
             <p
-              class="ml-3 fontweight-1 gray-5 fontsize-1"
+              class="ml-3 fontweight-1 gray-5 fontsize-1 comment__date"
               style="line-height: 16px"
             >
               {{ comment.timeCreated | date: "MMM d y, h:mm a" }}
             </p>
           </div>
 
-          <div class="comment__options dropdown" *ngIf="isMyComment">
+          <div
+            class="comment__options dropdown"
+            *ngIf="isMyComment || userId === userPostId"
+          >
             <button
               class="btn dropdown-toggle gray-6 pt-0 pb-0"
               id="dropdownMenuButton"
