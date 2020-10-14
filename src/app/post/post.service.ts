@@ -9,7 +9,7 @@ import { tap, catchError } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class PostService {
-  canDeactivate: {
+  canNewsFeedDeactivate: {
     post: boolean;
     comment: boolean;
   } = {
@@ -56,6 +56,10 @@ export class PostService {
         this.postsChanged.next(this.allPost.slice());
       })
     );
+  }
+
+  uploadImg(formData: FormData) {
+    this.http.post('/api/post/uploadImg', formData).subscribe();
   }
 
   createComment(info) {

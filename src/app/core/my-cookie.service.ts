@@ -24,7 +24,7 @@ export class MyCookieService {
           name: payload.name,
           email: payload.email,
           avatar: payload.avatar,
-          role: 'user',
+          role: payload.role,
           phone: payload.phone ? payload.phone : '',
           bio: payload.bio ? payload.bio : '',
         };

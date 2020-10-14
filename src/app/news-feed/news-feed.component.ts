@@ -62,8 +62,8 @@ export class NewsFeedComponent implements OnInit, CanComponentDeactivate {
 
   canDeactivate(): boolean | Observable<boolean> | Promise<boolean> {
     if (
-      this.postService.canDeactivate.post &&
-      this.postService.canDeactivate.comment
+      this.postService.canNewsFeedDeactivate.post &&
+      this.postService.canNewsFeedDeactivate.comment
     ) {
       return true;
     }

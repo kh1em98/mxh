@@ -33,7 +33,7 @@ export class CreateCommentComponent implements OnInit {
     });
 
     this.commentForm.valueChanges.subscribe(() => {
-      this.postService.canDeactivate.comment = !this.commentForm.valid;
+      this.postService.canNewsFeedDeactivate.comment = !this.commentForm.valid;
     });
   }
 
