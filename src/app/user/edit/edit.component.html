@@ -1,41 +1,72 @@
 <div class="profile__edit pt-4 pb-4">
-  <a class="pl-3" [routerLink]="['../', 'profile']"><span class="mr-2 fontweight-1 fontsize-6">&lt;</span> Back</a>
+  <a class="pl-3" [routerLink]="['../', 'profile']"
+    ><span class="mr-2 fontweight-1 fontsize-6">&lt;</span> Back</a
+  >
 
   <div class="edit__form pt-4 pl-5 pr-5 pb-4 mt-3">
     <h3>Change Info</h3>
-    <p class="fontsize-2 fontweight-1" style="color :#828282">Changes will be reflected to every services</p>
+    <p class="fontsize-2 fontweight-1" style="color: #828282">
+      Changes will be reflected to every services
+    </p>
 
     <form>
       <div class="d-flex pt-2 form-group align-items-center">
-        <img [src]="user.avatar" alt="khiem">
-        <label for="avatarUpload" class="customFileUpload ml-3 fonweight-1 fontsize-2" style="color : #828282">
-          <img src="../../../assets/icons/upload.svg" style="width: 24px; height: 24px; cursor: pointer;" /> CHANGE PHOTO
+        <img [src]="user.avatar" alt="khiem" />
+        <label
+          for="avatarUpload"
+          class="customFileUpload ml-3 fonweight-1 fontsize-2"
+          style="color: #828282"
+        >
+          <img
+            src="../../../assets/icons/upload.svg"
+            style="width: 24px; height: 24px; cursor: pointer"
+          />
+          CHANGE PHOTO
         </label>
         <input id="avatarUpload" type="file" />
       </div>
 
       <div class="form-group pt-2">
         <label for="name">Name</label>
-        <input placeholder="Enter your name..." type="text" class="form-control" id="name">
+        <input
+          placeholder="Enter your name..."
+          type="text"
+          class="form-control"
+          id="name"
+        />
       </div>
 
       <div class="form-group pt-2">
         <label for="bio">Bio</label>
-        <textarea placeholder="Enter your bio..." class="form-control" id="bio" rows="3"></textarea>
+        <textarea
+          placeholder="Enter your bio..."
+          class="form-control"
+          id="bio"
+          rows="3"
+        ></textarea>
       </div>
 
       <div class="form-group pt-2">
         <label for="phone">Phone</label>
-        <input placeholder="Enter your phone..." type="text" class="form-control" id="phone">
+        <input
+          placeholder="Enter your phone..."
+          type="text"
+          class="form-control"
+          id="phone"
+        />
       </div>
 
       <div class="form-group pt-2">
         <label for="email">Email</label>
-        <input placeholder="Enter your email..." type="email" class="form-control" id="email">
+        <input
+          placeholder="Enter your email..."
+          type="email"
+          class="form-control"
+          id="email"
+        />
       </div>
 
       <button class="btn mt-2">Save</button>
     </form>
   </div>
-
 </div>

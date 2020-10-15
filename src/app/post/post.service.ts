@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Post } from './post.model';
 import { BehaviorSubject, Subject, throwError } from 'rxjs';
 import { User } from '../shared/user.model';
-import { tap, catchError } from 'rxjs/operators';
+import { tap, catchError, concatMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -26,16 +26,14 @@ export class PostService {
 
   constructor(private http: HttpClient) {}
 
-  createPost(post: {
-    _idUserPost: string;
-    content: string;
-    name: string;
-    username: string;
-    avatar: string;
-  }) {
-    const { content, name, username, avatar, _idUserPost } = post;
+  createPost(post) {
+    const { content, name, username, avatar, _idUserPost, images } = post;
 
-    return this.http.post('/api/post', { content }).pipe(
+    const imagesToSend = JSON.stringify(images);
+    console.log('Images : ', images);
+    console.log(imagesToSend);
+
+    return this.http.post('/api/post', { content, images: imagesToSend }).pipe(
       catchError(this.handleError),
       tap((response: any) => {
         const newPost = new Post(
@@ -50,7 +48,8 @@ export class PostService {
           new Date(),
           [],
           [],
-          []
+          [],
+          images
         );
         this.allPost.unshift(newPost);
         this.postsChanged.next(this.allPost.slice());
@@ -59,7 +58,7 @@ export class PostService {
   }
 
   uploadImg(formData: FormData) {
-    this.http.post('/api/post/uploadImg', formData).subscribe();
+    return this.http.post('/api/post/uploadImg', formData);
   }
 
   createComment(info) {

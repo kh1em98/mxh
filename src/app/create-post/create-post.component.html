@@ -28,7 +28,12 @@
       class="create-post__footer d-flex align-items-center justify-content-between mt-3"
     >
       <div>
-        <img class="mr-3" src="../../assets/icons/insert_photo.svg" alt="" />
+        <img
+          class="mr-3"
+          src="../../assets/icons/insert_photo.svg"
+          alt=""
+          (click)="openAddPhoto()"
+        />
 
         <img class="mr-3" src="../../assets/icons/emoji.svg" alt="" />
 
@@ -39,8 +44,14 @@
       </button>
     </div>
 
-    <div class="form-group">
-      <input type="file" class="form-control-file" name="image" formControlName="image" (change) = "uploadImg($event)">
+    <div class="form-group mb-0 mt-3" *ngIf="isOpenAddPhoto">
+      <input
+        type="file"
+        class="form-control-file"
+        name="image"
+        formControlName="image"
+        (change)="uploadImg($event)"
+      />
     </div>
   </form>
 </div>

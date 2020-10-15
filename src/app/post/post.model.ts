@@ -11,7 +11,8 @@ export class Post {
     public timeCreated: Date,
     public comments: any,
     public likes: string[],
-    public retweets: string[]
+    public retweets: string[],
+    public images?: string[]
   ) {}
 }
 
