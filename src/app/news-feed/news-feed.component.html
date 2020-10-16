@@ -1,8 +1,6 @@
 <div class="app-container d-flex justify-content-center">
   <div class="news-feed__component">
-    <app-create-post
-      [user]="user"
-    ></app-create-post>
+    <app-create-post [user]="user"></app-create-post>
     <app-post *ngFor="let post of allPost" [post]="post"></app-post>
   </div>
 

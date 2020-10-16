@@ -18,7 +18,7 @@ p {
 }
 
 .wall__component {
-  width: 60%;
+  width: 50%;
   top: -50px;
   position: relative;
 }
@@ -96,19 +96,19 @@ p {
 
 @media (max-width: 1400px) {
   .wall__component {
-    width: 80%;
+    width: 70%;
   }
 }
 
 @media (max-width: 1200px) {
   .wall__component {
-    width: 85%;
+    width: 75%;
   }
 }
 
 @media (max-width: 992px) {
   .wall__component {
-    width: 90%;
+    width: 80%;
   }
 }
 

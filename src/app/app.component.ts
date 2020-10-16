@@ -12,9 +12,7 @@ export class AppComponent implements OnInit {
 
   isLoggedIn: boolean = false;
 
-  constructor(
-    private authService: AuthService,
-  ) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
     this.authService.autoLogin();

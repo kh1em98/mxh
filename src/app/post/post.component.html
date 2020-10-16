@@ -12,7 +12,7 @@
 
 <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
 
-<div class="post pl-4 pr-4 pt-4 pb-4 mt-3 mb-3">
+<div class="post pl-4 pr-4 pt-4 pb-4 mt-3 mb-3" *ngIf="post">
   <div class="d-flex justify-content-between">
     <div class="post__header d-flex mb-2">
       <img
