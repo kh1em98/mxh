@@ -66,8 +66,11 @@ export class PostService {
     return this.http.post('/api/post/comment', { postId, content }).pipe(
       catchError(this.handleError),
       tap((response: any) => {
+        console.log('Post id : ', postId);
         const postIndex = this.allPost.findIndex((post) => post._id === postId);
 
+        console.log('Post index : ', postIndex);
+        console.log(this.allPost);
         this.allPost[postIndex].comments.unshift({
           _id: response.newCommentId,
           timeCreated: new Date(),

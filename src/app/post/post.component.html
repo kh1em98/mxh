@@ -1,7 +1,7 @@
-<!-- <div class="retweet d-flex align-items-center mt-3">
+<div class="retweet d-flex align-items-center mt-3" *ngIf="isPostRetweeted">
   <i class="fas fa-retweet mr-2"></i>
-  <p>Khiem Nguyen Retweeted</p>
-</div> -->
+  <p>{{ userRetweeted.name }} Retweeted</p>
+</div>
 
 <app-notification
   [@fade]="'in'"

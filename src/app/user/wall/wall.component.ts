@@ -42,26 +42,17 @@ export class WallComponent implements OnInit, OnDestroy {
         this.isMe = true;
       }
 
-      if (this.userProfile && params.username === this.userProfile.username) {
-        console.log('Khong can load lai user : ', this.userProfile);
-      } else {
-        this.isLoading = true;
-        this.wallService
-          .getUserProfile(params.username)
-          .pipe(
-            tap(() => {
-              this.isLoading = false;
-            })
-          )
-          .subscribe(
-            () => {
-              console.log('Profile load : ', this.userProfile);
-            },
-            () => {
-              this.router.navigate(['/not-found']);
-            }
-          );
-      }
+      this.isLoading = true;
+      this.wallService
+        .getUserProfile(params.username)
+        .pipe(
+          tap(() => {
+            this.isLoading = false;
+          })
+        )
+        .subscribe(noop, () => {
+          this.router.navigate(['/not-found']);
+        });
     });
   }
 

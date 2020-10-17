@@ -56,6 +56,7 @@ export class CreateCommentComponent implements OnInit {
           })
         )
         .subscribe(noop, (errorMessage) => {
+          this.isLoading = false;
           this.error = errorMessage;
         });
     }

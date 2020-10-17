@@ -12,6 +12,7 @@ import {
   trigger,
 } from '@angular/animations';
 import { noop } from 'rxjs';
+import { UserProfile } from '../user/wall.service';
 
 @Component({
   selector: 'app-post',
@@ -49,6 +50,8 @@ export class PostComponent implements OnInit {
   isLoading: boolean = false;
   notification: { message: string; typeNotification: string } = null;
   @Input() post: Post;
+  @Input() isPostRetweeted = false;
+  @Input() userRetweeted: UserProfile = null;
   isLiked: boolean = false;
   isRetweeted: boolean = false;
   isMyPost: boolean = false;
