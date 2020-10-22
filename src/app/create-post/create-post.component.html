@@ -1,0 +1,57 @@
+<app-alert
+  *ngIf="error"
+  [message]="error"
+  (close)="closeAlertError()"
+></app-alert>
+
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+
+<div class="create-post mt-4 mt-2 pl-4 pr-4 pt-3 pb-3">
+  <p class="create-post__header pb-2">Say something</p>
+
+  <form [formGroup]="createPostForm" (ngSubmit)="onCreatePost()">
+    <div class="d-flex">
+      <img
+        [src]="user.avatar"
+        class="mr-1"
+        style="width: 45px; height: 45px; border-radius: 7px"
+        alt=""
+      />
+      <textarea
+        placeholder="What's happening?"
+        class="pl-2 pr-2"
+        formControlName="content"
+      ></textarea>
+    </div>
+
+    <div
+      class="create-post__footer d-flex align-items-center justify-content-between mt-3"
+    >
+      <div>
+        <img
+          class="mr-3"
+          src="../../assets/icons/insert_photo.svg"
+          alt=""
+          (click)="openAddPhoto()"
+        />
+
+        <img class="mr-3" src="../../assets/icons/emoji.svg" alt="" />
+
+        <img class="mr-3" src="../../assets/icons/public.svg" alt="" />
+      </div>
+      <button type="submit" class="btn" [disabled]="!createPostForm.valid">
+        Tweet
+      </button>
+    </div>
+
+    <div class="form-group mb-0 mt-3" *ngIf="isOpenAddPhoto">
+      <input
+        type="file"
+        class="form-control-file"
+        name="image"
+        formControlName="image"
+        (change)="uploadImg($event)"
+      />
+    </div>
+  </form>
+</div>

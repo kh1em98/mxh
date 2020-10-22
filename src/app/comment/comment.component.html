@@ -1,0 +1,67 @@
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+
+<app-alert
+  [message]="error"
+  *ngIf="error"
+  (close)="closeAlertError()"
+></app-alert>
+
+<div class="comment__component mt-3 mb-2">
+  <div class="d-flex">
+    <img
+      style="cursor: pointer"
+      [routerLink]="['', comment.userComment.username]"
+      [src]="comment.userComment.avatar"
+      class="mr-3"
+      alt=""
+    />
+
+    <div class="w-100">
+      <div class="text-part pt-2 pb-4 pl-3 pr-3">
+        <div class="d-flex justify-content-between">
+          <div class="d-flex align-items-center">
+            <p
+              style="cursor: pointer"
+              [routerLink]="['', comment.userComment.username]"
+              class="fontweight-2 gray-10 fontsize-2"
+              style="line-height: 21px"
+            >
+              {{ comment.userComment.name }}
+            </p>
+            <p
+              class="ml-3 fontweight-1 gray-5 fontsize-1 comment__date"
+              style="line-height: 16px"
+            >
+              {{ comment.timeCreated | date: "MMM d y, h:mm a" }}
+            </p>
+          </div>
+
+          <div
+            class="comment__options dropdown"
+            *ngIf="isMyComment || userId === userPostId"
+          >
+            <button
+              class="btn dropdown-toggle gray-6 pt-0 pb-0"
+              id="dropdownMenuButton"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            ></button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a
+                style="cursor: pointer"
+                class="dropdown-item gray-7"
+                (click)="onDeleteComment()"
+                ><i class="fas fa-trash mr-2"></i>Delete Comment</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <p class="mt-2" style="color: #4f4f4f">
+          {{ comment.content }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

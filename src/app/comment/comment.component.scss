@@ -1,0 +1,29 @@
+.comment__component {
+  p {
+    cursor: pointer;
+    margin-bottom: 0;
+  }
+
+  img {
+    width: 45px;
+    height: 45px;
+    border-radius: 7px;
+  }
+
+  .text-part {
+    background: #fafafa;
+    border-radius: 8px;
+  }
+
+  .reaction-part {
+    font-weight: 500;
+    color: #adadad;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 576px) {
+  .comment__date {
+    display: none;
+  }
+}

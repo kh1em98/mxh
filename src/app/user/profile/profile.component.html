@@ -1,0 +1,41 @@
+<div class="app__profile d-flex flex-column align-items-center">
+  <h2 class="pt-5 fontsize-8 gray-10">Personal Info</h2>
+  <p class="fontsize-4 fontweight-0 gray-10">
+    Basic info, like your name and photo
+  </p>
+
+  <div class="card">
+    <div class="card__row justify-content-between">
+      <div>
+        <p class="fontsize-6 gray-10">Profile</p>
+        <p class="fontsize-2 gray-5 fontweight-1 gray-6">
+          Some info may be invisible to other people
+        </p>
+      </div>
+      <a [routerLink]="['', user.username, 'edit']" class="btn" id="editBtn"
+        >Edit</a
+      >
+    </div>
+
+    <div class="card__row pt-2 pb-2">
+      <div class="label">Photo</div>
+      <img [src]="user.avatar" class="mr-5" alt="" />
+    </div>
+    <div class="card__row" class="ml-5">
+      <p class="label">Name</p>
+      <p class="info">{{ user.name }}</p>
+    </div>
+    <div class="card__row">
+      <p class="label">Bio</p>
+      <p class="info">{{ user.bio }}</p>
+    </div>
+    <div class="card__row">
+      <p class="label">Phone</p>
+      <p class="info">{{ user.phone }}</p>
+    </div>
+    <div class="card__row">
+      <p class="label">Email</p>
+      <p class="info">{{ user.email }}</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+.comment__component p {
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+.comment__component img {
+  width: 45px;
+  height: 45px;
+  border-radius: 7px;
+}
+
+.comment__component .text-part {
+  background: #fafafa;
+  border-radius: 8px;
+}
+
+.comment__component .reaction-part {
+  font-weight: 500;
+  color: #adadad;
+  font-size: 12px;
+}
+
+@media (max-width: 576px) {
+  .comment__date {
+    display: none;
+  }
+}
+/*# sourceMappingURL=comment.component.css.map */

@@ -1,0 +1,14 @@
+<div class="backdrop" (click)="onClose()"></div>
+
+<div class="box__component shadow-2">
+  <div class="box__header pl-4 pr-4 pt-3">
+    <p class="gray-6 fontsize-3">{{ header }}</p>
+  </div>
+
+  <div class="user mt-4 pl-4 pr-4" *ngFor="let user of users">
+    <img [src]="user.avatar" alt="user" />
+    <a [routerLink]="['', user.username]" class="gray-9 fontsize-4 ml-4">{{
+      user.name
+    }}</a>
+  </div>
+</div>

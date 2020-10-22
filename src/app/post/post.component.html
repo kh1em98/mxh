@@ -1,0 +1,130 @@
+<div class="retweet d-flex align-items-center mt-3" *ngIf="isPostRetweeted">
+  <i class="fas fa-retweet mr-2"></i>
+  <p>{{ userRetweeted.name }} Retweeted</p>
+</div>
+
+<app-notification
+  [@fade]="'in'"
+  *ngIf="notification"
+  [message]="notification.message"
+  [typeNotification]="notification.typeNotification"
+></app-notification>
+
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+
+<div class="post pl-4 pr-4 pt-4 pb-4 mt-3 mb-3" *ngIf="post">
+  <div class="d-flex justify-content-between">
+    <div class="post__header d-flex mb-2">
+      <img
+        style="cursor: pointer"
+        [routerLink]="['', post.userPost.username]"
+        [src]="post.userPost.avatar"
+        class="mr-3"
+        alt=""
+      />
+      <div>
+        <p
+          style="cursor: pointer"
+          [routerLink]="['', post.userPost.username]"
+          class="fontweight-2 mb-0"
+        >
+          {{ post.userPost.name }}
+        </p>
+        <p class="fontweight-1 fontsize-1 gray-5 mt-1">
+          {{ post.timeCreated | date: "MMM d y, h:mm a" }}
+        </p>
+      </div>
+    </div>
+    <div class="post__options dropdown" *ngIf="isMyPost">
+      <button
+        class="btn dropdown-toggle gray-6"
+        id="dropdownMenuButton"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      ></button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a
+          (click)="onDeletePost()"
+          style="cursor: pointer"
+          class="dropdown-item gray-7"
+          ><i class="fas fa-trash mr-2"></i>Delete Post</a
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="post__body">
+    <p>{{ post.content }}</p>
+
+    <img [src]="post.images[0]" alt="" />
+  </div>
+
+  <div class="post__footer mt-2 mb-1">
+    <div class="footer__stat d-flex justify-content-end">
+      <p>{{ post.likes.length }} likes</p>
+      <p>{{ post.comments.length }} comments</p>
+      <p>{{ post.retweets.length }} retweets</p>
+    </div>
+
+    <div
+      class="footer__actions mb-2 row"
+      *ngIf="user._id !== post.userPost._id"
+    >
+      <div
+        class="action col-4 d-flex pt-2 pb-2 align-items-center justify-content-center liked"
+        (click)="onToggleLike()"
+        [ngClass]="{ liked: isLiked }"
+      >
+        <i class="far fa-thumbs-up mr-2"></i>
+        <p>Likes</p>
+      </div>
+      <div
+        class="action col-4 d-flex pt-2 pb-2 align-items-center justify-content-center"
+      >
+        <i class="far fa-comment mr-2"></i>
+        <p>Comments</p>
+      </div>
+      <div
+        class="action col-4 d-flex pt-2 pb-2 align-items-center justify-content-center retweeted"
+        [ngClass]="{ retweeted: isRetweeted }"
+        (click)="onRetweet()"
+      >
+        <i class="fas fa-share mr-2"></i>
+        <p>Retweets</p>
+      </div>
+    </div>
+
+    <div
+      class="footer__actions mb-2 row"
+      *ngIf="user._id === post.userPost._id"
+    >
+      <div
+        class="action col-6 d-flex pt-2 pb-2 align-items-center justify-content-center liked"
+        (click)="onToggleLike()"
+        [ngClass]="{ liked: isLiked }"
+      >
+        <i class="far fa-thumbs-up mr-2"></i>
+        <p>Likes</p>
+      </div>
+      <div
+        class="action col-6 d-flex pt-2 pb-2 align-items-center justify-content-center"
+      >
+        <i class="far fa-comment mr-2"></i>
+        <p>Comments</p>
+      </div>
+    </div>
+
+    <app-create-comment [postId]="post._id"></app-create-comment>
+  </div>
+
+  <div class="comments">
+    <app-comment
+      *ngFor="let comment of post.comments"
+      [userId]="user._id"
+      [postId]="post._id"
+      [userPostId]="post.userPost._id"
+      [comment]="comment"
+    ></app-comment>
+  </div>
+</div>
