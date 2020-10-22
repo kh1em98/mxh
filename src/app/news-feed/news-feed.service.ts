@@ -1,8 +1,8 @@
-import { PostService } from './../post/post.service';
+import { IPostOperation, PostService } from './../post/post.service';
 import { Post } from './../post/post.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap } from 'rxjs/operators';
+import { scan, tap } from 'rxjs/operators';
 import { BehaviorSubject, Subject, Observable } from 'rxjs';
 import { operationAddPosts } from '../post/util-post';
 
@@ -25,7 +25,13 @@ export class NewsFeedService {
   canLoadMore: boolean = true;
   postPerScroll = 3;
   postSkip = 0;
-  constructor(private http: HttpClient, private postService: PostService) {}
+  constructor(private http: HttpClient, private postService: PostService) {
+    this.posts = this.postService.update.pipe(
+      scan((posts: Post[], operation: IPostOperation) => {
+        return operation(posts);
+      }, initialPosts)
+    );
+  }
 
   initNewsFeed() {
     this.fetchPosts().subscribe();

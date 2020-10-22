@@ -1,17 +1,13 @@
-import { IPostOperation } from './../post/post.service';
 import { NewsFeedService } from './news-feed.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../core/auth.service';
 import { exhaustMap, scan, tap } from 'rxjs/operators';
 import { User } from '../shared/user.model';
-import { PostService } from '../post/post.service';
 import { Post } from '../post/post.model';
 import { scrollToBottom$ } from '../shared/utils';
 import { Subscription, Observable } from 'rxjs';
 import { CanComponentDeactivate } from '../core/can-deactive-guard.service';
 import { FormGroup } from '@angular/forms';
-
-const initialPosts: Post[] = [];
 
 @Component({
   selector: 'app-news-feed',
@@ -29,7 +25,6 @@ export class NewsFeedComponent implements OnInit, CanComponentDeactivate {
   user: User = null;
   constructor(
     private authService: AuthService,
-    private postService: PostService,
     private newsFeedService: NewsFeedService
   ) {}
 
@@ -40,11 +35,7 @@ export class NewsFeedComponent implements OnInit, CanComponentDeactivate {
 
     this.newsFeedService.initNewsFeed();
 
-    this.posts = this.postService.update.pipe(
-      scan((posts: Post[], operation: IPostOperation) => {
-        return operation(posts);
-      }, initialPosts)
-    );
+    this.posts = this.newsFeedService.posts;
 
     // Load more post...
     if (this.newsFeedService.canLoadMore) {
