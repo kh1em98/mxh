@@ -63,7 +63,7 @@
       <div class="w-100">
         <app-create-post [user]="me" *ngIf="isMe"></app-create-post>
         <app-post
-          *ngFor="let post of userProfile.wallPosts"
+          *ngFor="let post of wallPosts | async"
           [post]="post"
           [isPostRetweeted]="post.userPost.username !== userProfile.username"
           [userRetweeted]="userProfile"

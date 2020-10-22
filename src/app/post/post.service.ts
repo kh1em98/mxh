@@ -48,7 +48,6 @@ export class PostService {
   likePost(postId, user: User) {
     return this.updatePostsServer.likePost(postId).pipe(
       tap(() => {
-        console.log('Dit me may');
         this.update.next(operationLike(postId, user._id));
       })
     );
@@ -57,7 +56,6 @@ export class PostService {
   unlikePost(postId, user: User) {
     return this.updatePostsServer.unlikePost(postId).pipe(
       tap(() => {
-        console.log(user);
         this.update.next(operationUnlike(postId, user._id));
       })
     );

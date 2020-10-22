@@ -14,8 +14,11 @@ import { FormGroup } from '@angular/forms';
   templateUrl: './news-feed.component.html',
   styleUrls: ['./news-feed.component.css'],
 })
-export class NewsFeedComponent implements OnInit, CanComponentDeactivate {
+export class NewsFeedComponent
+  implements OnInit, CanComponentDeactivate, OnDestroy {
   createPostForm: FormGroup;
+  postsPerScroll = 3;
+  postsSkip = 0;
 
   posts: Observable<Post[]> = null;
 
@@ -33,7 +36,11 @@ export class NewsFeedComponent implements OnInit, CanComponentDeactivate {
       this.user = user;
     });
 
-    this.newsFeedService.initNewsFeed();
+    this.newsFeedService
+      .initNewsFeed(this.postsSkip, this.postsPerScroll)
+      .subscribe(() => {
+        this.postsSkip += 3;
+      });
 
     this.posts = this.newsFeedService.posts;
 
@@ -42,9 +49,13 @@ export class NewsFeedComponent implements OnInit, CanComponentDeactivate {
       this.subscription = scrollToBottom$
         .pipe(
           exhaustMap(() => {
-            return this.newsFeedService.fetchPosts();
+            return this.newsFeedService.fetchPosts(
+              this.postsSkip,
+              this.postsPerScroll
+            );
           }),
           tap((response: any) => {
+            this.postsSkip += 3;
             if (response.length === 0) {
               this.subscription.unsubscribe();
             }
@@ -64,5 +75,9 @@ export class NewsFeedComponent implements OnInit, CanComponentDeactivate {
     return confirm(
       'Bạn chưa hoàn thành post hoặc comment. Bạn có chắc muốn đi tiếp?'
     );
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

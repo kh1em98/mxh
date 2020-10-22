@@ -23,8 +23,7 @@ export class NewsFeedService {
   };
 
   canLoadMore: boolean = true;
-  postPerScroll = 3;
-  postSkip = 0;
+
   constructor(private http: HttpClient, private postService: PostService) {
     this.posts = this.postService.update.pipe(
       scan((posts: Post[], operation: IPostOperation) => {
@@ -33,22 +32,20 @@ export class NewsFeedService {
     );
   }
 
-  initNewsFeed() {
-    this.fetchPosts().subscribe();
+  initNewsFeed(postsSkip: number, postsPerScroll: number) {
+    return this.fetchPosts(postsSkip, postsPerScroll);
   }
 
-  fetchPosts() {
-    return this.http
-      .get(`/api/post/${this.postPerScroll}/${this.postSkip}`)
-      .pipe(
-        tap((posts: any) => {
-          if (posts.length === 0) {
-            this.canLoadMore = false;
-          } else {
-            this.postSkip += 3;
-            this.postService.update.next(operationAddPosts(posts));
-          }
-        })
-      );
+  fetchPosts(postsSkip: number, postsPerScroll: number) {
+    console.log(`Post skips : ${postsSkip}, post scroll : ${postsPerScroll}`);
+    return this.http.get(`/api/post/${postsPerScroll}/${postsSkip}`).pipe(
+      tap((posts: any) => {
+        if (posts.length === 0) {
+          this.canLoadMore = false;
+        } else {
+          this.postService.update.next(operationAddPosts(posts));
+        }
+      })
+    );
   }
 }

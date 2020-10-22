@@ -19,7 +19,6 @@ export class CommentComponent implements OnInit {
   constructor(private postService: PostService) {}
 
   ngOnInit(): void {
-    console.log('Comment : ', this.comment);
     this.checkIsMyComment();
   }
 

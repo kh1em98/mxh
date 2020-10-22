@@ -62,8 +62,6 @@ export class PostComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.post);
-
     this.authService.user.pipe(take(1)).subscribe((user) => {
       this.user = user;
     });

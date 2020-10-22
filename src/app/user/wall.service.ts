@@ -24,15 +24,16 @@ export interface UserProfile {
 export class WallService {
   userProfile: UserProfile = null;
 
-  posts: Observable<Post[]> = null;
+  wallPosts: Observable<Post[]> = null;
 
   userProfileChanged = new BehaviorSubject<UserProfile>(null);
 
   constructor(private http: HttpClient, private postService: PostService) {
-    this.posts = this.postService.update.pipe(
+    this.wallPosts = this.postService.update.pipe(
       scan((posts: Post[], operation: IPostOperation) => {
         return operation(posts);
-      })
+      }, initialPosts),
+      tap((data) => {})
     );
   }
 
