@@ -29,6 +29,8 @@ export class WallComponent implements OnInit, OnDestroy {
   wallPosts: Observable<Post[]> = null;
 
   ngOnInit(): void {
+    console.log('WALL COMMPONENT');
+
     this.authService.user.pipe(take(1)).subscribe((user: User) => {
       this.me = user;
     });

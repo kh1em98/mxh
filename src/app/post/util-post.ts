@@ -8,7 +8,8 @@ export function operationCreatePost(newPost: Post): IPostOperation {
   };
 }
 
-export function operationAddPosts(newPosts: Post[]): IPostOperation {
+export function operationLoadPosts(newPosts: Post[]): IPostOperation {
+  console.log('Load posts');
   return (posts: Post[]) => {
     return [...posts, ...newPosts];
   };

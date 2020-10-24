@@ -1,14 +1,12 @@
-import { AuthService } from './../core/auth.service';
 import { UpdatePostsServer } from './updatePostsServer.service';
 import { Injectable, OnInit } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Post } from './post.model';
-import { BehaviorSubject, Subject, throwError, Observable } from 'rxjs';
+import { BehaviorSubject, Subject, Observable } from 'rxjs';
 import { User } from '../shared/user.model';
 import { tap, catchError, map } from 'rxjs/operators';
 import {
   createNewPost,
-  operationAddPosts,
+  operationLoadPosts,
   operationCreateComment,
   operationCreatePost,
   operationDeleteComment,
@@ -18,7 +16,6 @@ import {
   operationUnlike,
 } from './util-post';
 
-// Hàm này trả về 1 hàm nhận tham số là mảng Post[], trả về mảng Post[]
 export interface IPostOperation extends Function {
   (posts: Post[]): Post[];
 }

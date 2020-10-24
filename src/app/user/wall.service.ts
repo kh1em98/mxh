@@ -1,11 +1,11 @@
 import { PostService, IPostOperation } from './../post/post.service';
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../shared/user.model';
 import { scan, tap } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Post } from '../post/post.model';
-import { operationAddPosts } from '../post/util-post';
+import { operationLoadPosts } from '../post/util-post';
 
 const initialPosts: Post[] = [];
 
@@ -42,7 +42,7 @@ export class WallService {
       tap((response: any) => {
         this.userProfile = this.createUserProfile(response.user);
         this.postService.update.next(
-          operationAddPosts(this.userProfile.wallPosts)
+          operationLoadPosts(this.userProfile.wallPosts)
         );
         this.userProfileChanged.next(this.userProfile);
       })

@@ -4,9 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { scan, tap } from 'rxjs/operators';
 import { BehaviorSubject, Subject, Observable } from 'rxjs';
-import { operationAddPosts } from '../post/util-post';
-
-const initialPosts: Post[] = [];
+import { operationLoadPosts } from '../post/util-post';
 
 @Injectable({
   providedIn: 'root',
@@ -24,13 +22,7 @@ export class NewsFeedService {
 
   canLoadMore: boolean = true;
 
-  constructor(private http: HttpClient, private postService: PostService) {
-    this.posts = this.postService.update.pipe(
-      scan((posts: Post[], operation: IPostOperation) => {
-        return operation(posts);
-      }, initialPosts)
-    );
-  }
+  constructor(private http: HttpClient, private postService: PostService) {}
 
   initNewsFeed(postsSkip: number, postsPerScroll: number) {
     return this.fetchPosts(postsSkip, postsPerScroll);
@@ -43,7 +35,7 @@ export class NewsFeedService {
         if (posts.length === 0) {
           this.canLoadMore = false;
         } else {
-          this.postService.update.next(operationAddPosts(posts));
+          this.postService.update.next(operationLoadPosts(posts));
         }
       })
     );

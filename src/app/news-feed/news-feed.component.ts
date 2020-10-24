@@ -1,3 +1,4 @@
+import { PostService, IPostOperation } from './../post/post.service';
 import { NewsFeedService } from './news-feed.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../core/auth.service';
@@ -8,6 +9,8 @@ import { scrollToBottom$ } from '../shared/utils';
 import { Subscription, Observable } from 'rxjs';
 import { CanComponentDeactivate } from '../core/can-deactive-guard.service';
 import { FormGroup } from '@angular/forms';
+
+const initialPosts: Post[] = [];
 
 @Component({
   selector: 'app-news-feed',
@@ -28,7 +31,8 @@ export class NewsFeedComponent
   user: User = null;
   constructor(
     private authService: AuthService,
-    private newsFeedService: NewsFeedService
+    private newsFeedService: NewsFeedService,
+    private postService: PostService
   ) {}
 
   ngOnInit(): void {
@@ -36,13 +40,17 @@ export class NewsFeedComponent
       this.user = user;
     });
 
+    this.posts = this.postService.update.pipe(
+      scan((posts: Post[], operation: IPostOperation) => {
+        return operation(posts);
+      }, initialPosts)
+    );
+
     this.newsFeedService
       .initNewsFeed(this.postsSkip, this.postsPerScroll)
       .subscribe(() => {
         this.postsSkip += 3;
       });
-
-    this.posts = this.newsFeedService.posts;
 
     // Load more post...
     if (this.newsFeedService.canLoadMore) {
