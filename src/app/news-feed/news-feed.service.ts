@@ -1,7 +1,7 @@
 import { IPostOperation, PostService } from './../post/post.service';
 import { Post } from './../post/post.model';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { scan, tap } from 'rxjs/operators';
 import { BehaviorSubject, Subject, Observable } from 'rxjs';
 import { operationLoadPosts } from '../post/util-post';
@@ -9,7 +9,7 @@ import { operationLoadPosts } from '../post/util-post';
 @Injectable({
   providedIn: 'root',
 })
-export class NewsFeedService {
+export class NewsFeedService implements OnDestroy {
   posts: Observable<Post[]> = null;
 
   canNewsFeedDeactivate: {
@@ -39,5 +39,9 @@ export class NewsFeedService {
         }
       })
     );
+  }
+
+  ngOnDestroy() {
+    console.log('Destroy new feeds service');
   }
 }

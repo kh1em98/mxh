@@ -1,3 +1,4 @@
+import { Post } from './../../post/post.model';
 import { tap, take } from 'rxjs/operators';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../../core/auth.service';
@@ -5,7 +6,6 @@ import { User } from '../../shared/user.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserProfile, WallService } from '../wall.service';
 import { noop, Subscription, Observable } from 'rxjs';
-import { Post } from 'src/app/post/post.model';
 
 @Component({
   selector: 'app-wall',
@@ -14,7 +14,8 @@ import { Post } from 'src/app/post/post.model';
 })
 export class WallComponent implements OnInit, OnDestroy {
   isLoading: boolean = false;
-  subscription: Subscription;
+  userSubscription: Subscription;
+  postSubscription: Subscription;
 
   constructor(
     private authService: AuthService,
@@ -27,10 +28,7 @@ export class WallComponent implements OnInit, OnDestroy {
   me: User = null;
   userProfile: UserProfile = null;
   wallPosts: Observable<Post[]> = null;
-
   ngOnInit(): void {
-    console.log('WALL COMMPONENT');
-
     this.authService.user.pipe(take(1)).subscribe((user: User) => {
       this.me = user;
     });
@@ -57,7 +55,7 @@ export class WallComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.subscription = this.wallService.userProfileChanged.subscribe(
+    this.userSubscription = this.wallService.userProfileChanged.subscribe(
       (userProfile: UserProfile) => {
         this.userProfile = userProfile;
       }
@@ -67,6 +65,6 @@ export class WallComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.userSubscription.unsubscribe();
   }
 }

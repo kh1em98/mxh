@@ -3,7 +3,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../shared/user.model';
 import { scan, tap } from 'rxjs/operators';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { Post } from '../post/post.model';
 import { operationLoadPosts } from '../post/util-post';
 
@@ -23,24 +23,29 @@ export interface UserProfile {
 })
 export class WallService {
   userProfile: UserProfile = null;
+  subscription: Subscription = null;
 
-  wallPosts: Observable<Post[]> = null;
+  wallPosts = new BehaviorSubject<Post[]>([]);
 
   userProfileChanged = new BehaviorSubject<UserProfile>(null);
 
   constructor(private http: HttpClient, private postService: PostService) {
-    this.wallPosts = this.postService.update.pipe(
-      scan((posts: Post[], operation: IPostOperation) => {
-        return operation(posts);
-      }, initialPosts),
-      tap((data) => {})
-    );
+    this.subscription = this.postService.update
+      .pipe(
+        scan((posts: Post[], operation: IPostOperation) => {
+          return operation(posts);
+        }, initialPosts)
+      )
+      .subscribe(this.wallPosts);
   }
 
   getUserProfile(username: string) {
     return this.http.get<User>(`/api/user/${username}`).pipe(
       tap((response: any) => {
+        console.log(response.user);
+
         this.userProfile = this.createUserProfile(response.user);
+
         this.postService.update.next(
           operationLoadPosts(this.userProfile.wallPosts)
         );
@@ -58,5 +63,9 @@ export class WallService {
       bigAvatar: userResponse.bigAvatar,
       wallPosts: userResponse.wallPosts,
     };
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

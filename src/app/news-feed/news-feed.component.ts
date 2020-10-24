@@ -16,6 +16,7 @@ const initialPosts: Post[] = [];
   selector: 'app-news-feed',
   templateUrl: './news-feed.component.html',
   styleUrls: ['./news-feed.component.css'],
+  providers: [NewsFeedService]
 })
 export class NewsFeedComponent
   implements OnInit, CanComponentDeactivate, OnDestroy {
@@ -29,6 +30,7 @@ export class NewsFeedComponent
   postSubscription: Subscription;
 
   user: User = null;
+  isLoading : boolean = false; 
   constructor(
     private authService: AuthService,
     private newsFeedService: NewsFeedService,
