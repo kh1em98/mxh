@@ -42,16 +42,18 @@ export class WallService {
   }
 
   getUserProfile(username: string) {
-    return this.http.get<User>(`/api/user/${username}`).pipe(
-      tap((response: any) => {
-        this.userProfile = this.createUserProfile(response.user);
+    return this.http
+      .get<User>(`https://mxh-angular.herokuapp.com/api/user/${username}`)
+      .pipe(
+        tap((response: any) => {
+          this.userProfile = this.createUserProfile(response.user);
 
-        this.postService.update.next(
-          operationLoadPosts(this.userProfile.wallPosts)
-        );
-        this.userProfileChanged.next(this.userProfile);
-      })
-    );
+          this.postService.update.next(
+            operationLoadPosts(this.userProfile.wallPosts)
+          );
+          this.userProfileChanged.next(this.userProfile);
+        })
+      );
   }
 
   createUserProfile(userResponse): UserProfile {

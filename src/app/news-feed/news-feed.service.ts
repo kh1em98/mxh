@@ -21,18 +21,20 @@ export class NewsFeedService implements OnDestroy {
   }
 
   fetchPosts(postsSkip: number, postsPerScroll: number) {
-    return this.http.get(`/api/post/${postsPerScroll}/${postsSkip}`).pipe(
-      tap((posts: any) => {
-        if (posts.length === 0) {
-          this.canLoadMore = false;
-        } else {
-          this.postService.update.next(operationLoadPosts(posts));
-        }
-      })
-    );
+    return this.http
+      .get(
+        `https://mxh-angular.herokuapp.com/api/post/${postsPerScroll}/${postsSkip}`
+      )
+      .pipe(
+        tap((posts: any) => {
+          if (posts.length === 0) {
+            this.canLoadMore = false;
+          } else {
+            this.postService.update.next(operationLoadPosts(posts));
+          }
+        })
+      );
   }
 
-  ngOnDestroy() {
-
-  }
+  ngOnDestroy() {}
 }

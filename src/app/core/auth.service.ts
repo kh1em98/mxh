@@ -25,19 +25,22 @@ export class AuthService {
   signUp(formValue) {
     const { username, email, password, name } = formValue;
     return this.http
-      .post('/api/register', {
-        name,
-        username,
-        email,
-        password,
-      })
+      .post(
+        'https://mxh-angular.herokuapp.comhttps://mxh-angular.herokuapp.comhttps://mxh-angular.herokuapp.comhttps://mxh-angular.herokuapp.com/api/register',
+        {
+          name,
+          username,
+          email,
+          password,
+        }
+      )
       .pipe(catchError(this.handleError));
   }
 
   login(formValue) {
     const { email, password } = formValue;
     return this.http
-      .post('/api/login', {
+      .post('https://mxh-angular.herokuapp.com/api/login', {
         email,
         password,
       })

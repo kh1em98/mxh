@@ -42,7 +42,7 @@ export class EditComponent implements OnInit, OnDestroy {
   onSubmit() {
     this.isLoading = true;
     this.http
-      .post(`/api/user${this.router.url}`, {
+      .post(`https://mxh-angular.herokuapp.com/api/user${this.router.url}`, {
         ...this.editForm.value,
       })
       .pipe(
@@ -66,7 +66,10 @@ export class EditComponent implements OnInit, OnDestroy {
 
     this.isLoading = true;
     this.http
-      .post(`/api/user${this.router.url}/uploadAvatar`, formData)
+      .post(
+        `https://mxh-angular.herokuapp.com/api/user${this.router.url}/uploadAvatar`,
+        formData
+      )
       .pipe(tap(() => (this.isLoading = false)))
       .subscribe(
         () => {
