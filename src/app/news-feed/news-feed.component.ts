@@ -16,7 +16,7 @@ const initialPosts: Post[] = [];
   selector: 'app-news-feed',
   templateUrl: './news-feed.component.html',
   styleUrls: ['./news-feed.component.css'],
-  providers: [NewsFeedService]
+  providers: [NewsFeedService],
 })
 export class NewsFeedComponent
   implements OnInit, CanComponentDeactivate, OnDestroy {
@@ -30,7 +30,7 @@ export class NewsFeedComponent
   postSubscription: Subscription;
 
   user: User = null;
-  isLoading : boolean = false; 
+  isLoading: boolean = false;
   constructor(
     private authService: AuthService,
     private newsFeedService: NewsFeedService,
@@ -77,8 +77,8 @@ export class NewsFeedComponent
 
   canDeactivate(): boolean | Observable<boolean> | Promise<boolean> {
     if (
-      this.newsFeedService.canNewsFeedDeactivate.post &&
-      this.newsFeedService.canNewsFeedDeactivate.comment
+      this.postService.canPostDeactivate.post &&
+      this.postService.canPostDeactivate.comment
     ) {
       return true;
     }

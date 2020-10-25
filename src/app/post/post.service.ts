@@ -24,6 +24,14 @@ export interface IPostOperation extends Function {
   providedIn: 'root',
 })
 export class PostService {
+  canPostDeactivate: {
+    post: boolean;
+    comment: boolean;
+  } = {
+    post: true,
+    comment: true,
+  };
+
   allPost: Post[] = [];
 
   user: User = null;
@@ -37,6 +45,7 @@ export class PostService {
     return this.updatePostsServer.createPost(post).pipe(
       tap(() => {
         const newPost = createNewPost(post, user);
+        console.log('New post : ', newPost);
         this.update.next(operationCreatePost(newPost));
       })
     );

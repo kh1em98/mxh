@@ -42,8 +42,6 @@ export class WallService {
   getUserProfile(username: string) {
     return this.http.get<User>(`/api/user/${username}`).pipe(
       tap((response: any) => {
-        console.log(response.user);
-
         this.userProfile = this.createUserProfile(response.user);
 
         this.postService.update.next(

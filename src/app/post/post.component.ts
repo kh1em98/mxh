@@ -72,15 +72,19 @@ export class PostComponent implements OnInit {
   }
 
   onToggleLike() {
+    this.isLoading = true;
     if (this.isLiked) {
       this.isLiked = false;
+
       this.postService
         .unlikePost(this.post._id, this.user)
+        .pipe(tap(() => (this.isLoading = false)))
         .subscribe(noop, (error) => this.showNotificationError(error));
     } else {
       this.isLiked = true;
       this.postService
         .likePost(this.post._id, this.user)
+        .pipe(tap(() => (this.isLoading = false)))
         .subscribe(noop, (error) => this.showNotificationError(error));
     }
   }
@@ -89,12 +93,16 @@ export class PostComponent implements OnInit {
     if (this.isRetweeted) {
       this.showNotificationError('Bạn đã chia sẻ bài viết rồi');
     } else {
+      this.isLoading = true;
       this.isRetweeted = true;
       this.notification = {
         message: 'Chia sẻ bài viết thành công',
         typeNotification: 'alert-success',
       };
-      this.postService.retweetPost(this.post._id, this.user).subscribe();
+      this.postService
+        .retweetPost(this.post._id, this.user)
+        .pipe(tap(() => (this.isLoading = false)))
+        .subscribe();
     }
     setTimeout(() => {
       this.notification = null;

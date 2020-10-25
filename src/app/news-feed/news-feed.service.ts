@@ -12,14 +12,6 @@ import { operationLoadPosts } from '../post/util-post';
 export class NewsFeedService implements OnDestroy {
   posts: Observable<Post[]> = null;
 
-  canNewsFeedDeactivate: {
-    post: boolean;
-    comment: boolean;
-  } = {
-    post: true,
-    comment: true,
-  };
-
   canLoadMore: boolean = true;
 
   constructor(private http: HttpClient, private postService: PostService) {}
@@ -29,7 +21,6 @@ export class NewsFeedService implements OnDestroy {
   }
 
   fetchPosts(postsSkip: number, postsPerScroll: number) {
-    console.log(`Post skips : ${postsSkip}, post scroll : ${postsPerScroll}`);
     return this.http.get(`/api/post/${postsPerScroll}/${postsSkip}`).pipe(
       tap((posts: any) => {
         if (posts.length === 0) {
@@ -42,6 +33,6 @@ export class NewsFeedService implements OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log('Destroy new feeds service');
+
   }
 }

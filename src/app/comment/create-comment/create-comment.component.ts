@@ -23,8 +23,7 @@ export class CreateCommentComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private postService: PostService,
-    private newsFeedService: NewsFeedService
+    private postService: PostService
   ) {}
 
   ngOnInit(): void {
@@ -37,8 +36,9 @@ export class CreateCommentComponent implements OnInit {
     });
 
     this.commentForm.valueChanges.subscribe(() => {
-      this.newsFeedService.canNewsFeedDeactivate.comment = !this.commentForm
-        .valid;
+      this.postService.canPostDeactivate.comment = !this.commentForm.get(
+        'content'
+      ).value;
     });
   }
 

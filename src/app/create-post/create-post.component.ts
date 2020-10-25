@@ -1,10 +1,9 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PostService } from '../post/post.service';
 import { Observable, noop } from 'rxjs';
 import { tap, concatMap } from 'rxjs/operators';
 import { requiredFileType } from '../core/validations';
-import { HttpEventType } from '@angular/common/http';
 import mongoose from 'mongoose';
 
 @Component({
@@ -29,9 +28,11 @@ export class CreatePostComponent implements OnInit {
       image: new FormControl(null, [requiredFileType]),
     });
 
-    /*  this.createPostForm.valueChanges.subscribe(() => {
-      this.postService.canNewsFeedDeactivate.post = !this.createPostForm.valid;
-    }); */
+    this.createPostForm.valueChanges.subscribe(() => {
+      this.postService.canPostDeactivate.post = !this.createPostForm.get(
+        'content'
+      ).value;
+    });
   }
 
   onCreatePost() {
