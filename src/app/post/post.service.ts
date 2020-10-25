@@ -45,7 +45,6 @@ export class PostService {
     return this.updatePostsServer.createPost(post).pipe(
       tap(() => {
         const newPost = createNewPost(post, user);
-        console.log('New post : ', newPost);
         this.update.next(operationCreatePost(newPost));
       })
     );

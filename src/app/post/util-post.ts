@@ -3,7 +3,6 @@ import { User } from './../shared/user.model';
 import { Post } from './post.model';
 
 export function operationCreatePost(newPost: Post): IPostOperation {
-  console.log('Operation create new post');
   return (posts: Post[]) => {
     return [newPost, ...posts];
   };

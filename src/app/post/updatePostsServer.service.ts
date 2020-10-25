@@ -31,6 +31,7 @@ export class UpdatePostsServer {
   }
 
   likePost(postId: string) {
+
     return this.http
       .post('/api/post/like', { postId })
       .pipe(catchError(this.handleError));

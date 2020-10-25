@@ -6,7 +6,7 @@ import { exhaustMap, scan, tap } from 'rxjs/operators';
 import { User } from '../shared/user.model';
 import { Post } from '../post/post.model';
 import { scrollToBottom$ } from '../shared/utils';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription, Observable, pipe } from 'rxjs';
 import { CanComponentDeactivate } from '../core/can-deactive-guard.service';
 import { FormGroup } from '@angular/forms';
 
@@ -45,7 +45,7 @@ export class NewsFeedComponent
     this.posts = this.postService.update.pipe(
       scan((posts: Post[], operation: IPostOperation) => {
         return operation(posts);
-      }, initialPosts)
+      }, initialPosts),
     );
 
     this.newsFeedService
