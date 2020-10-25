@@ -44,6 +44,7 @@ export class CreatePostComponent implements OnInit {
       const postObject = this.createPostObject();
 
       if (this.createPostForm.get('image').value) {
+        console.log(this.formData);
         // Nếu có ảnh -> upload ảnh trước, lấy url ảnh trả về để push vào images của post
         createPost$ = this.postService.uploadImg(this.formData).pipe(
           concatMap((response: any) => {
