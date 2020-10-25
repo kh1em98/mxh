@@ -17,6 +17,7 @@ export interface UserProfile {
   bigAvatar: string;
   wallPosts: [];
   bio?: string;
+  phone?: string;
 }
 
 @Injectable({
@@ -62,6 +63,7 @@ export class WallService {
       bigAvatar: userResponse.bigAvatar,
       wallPosts: userResponse.wallPosts,
       bio: userResponse.bio ? userResponse.bio : '',
+      phone: userResponse.phone ? userResponse.phone : '',
     };
   }
 

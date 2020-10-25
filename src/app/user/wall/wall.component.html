@@ -27,7 +27,7 @@
       </div>
 
       <div>
-        <button class="btn" *ngIf="!isMe">
+        <button class="btn" *ngIf="!isMe" disabled>
           <i class="fas fa-user-plus"></i> Follow
         </button>
       </div>
@@ -47,7 +47,7 @@
           {{ userProfile.bio ? userProfile.bio : "Hay viet tieu su cua ban" }}
         </p>
 
-        <button class="btn mt-3" *ngIf="!isMe">
+        <button class="btn mt-3" *ngIf="!isMe" disabled>
           <i class="fas fa-user-plus"></i> Follow
         </button>
       </div>
