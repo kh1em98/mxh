@@ -14,7 +14,7 @@ export class UpdatePostsServer {
     const imagesToSend = JSON.stringify(images);
 
     return this.http
-      .post('https://mxh-angular.herokuapp.com/api/post', {
+      .post('/api/post', {
         content,
         images: imagesToSend,
         _id,
@@ -24,13 +24,13 @@ export class UpdatePostsServer {
 
   uploadImg(formData: FormData) {
     return this.http
-      .post('https://mxh-angular.herokuapp.com/api/post/uploadImg', formData)
+      .post('/api/post/uploadImg', formData)
       .pipe(catchError(this.handleError));
   }
 
   createComment(postId: string, content: string, _id: any) {
     return this.http
-      .post('https://mxh-angular.herokuapp.com/api/post/comment', {
+      .post('/api/post/comment', {
         postId,
         content,
         _id,
@@ -40,33 +40,31 @@ export class UpdatePostsServer {
 
   likePost(postId: string) {
     return this.http
-      .post('https://mxh-angular.herokuapp.com/api/post/like', { postId })
+      .post('/api/post/like', { postId })
       .pipe(catchError(this.handleError));
   }
 
   unlikePost(postId: string) {
     return this.http
-      .post('https://mxh-angular.herokuapp.com/api/post/unlike', { postId })
+      .post('/api/post/unlike', { postId })
       .pipe(catchError(this.handleError));
   }
 
   retweetPost(postId: string) {
     return this.http
-      .post('https://mxh-angular.herokuapp.com/api/post/retweet', { postId })
+      .post('/api/post/retweet', { postId })
       .pipe(catchError(this.handleError));
   }
 
   deletePost(postId: string) {
     return this.http
-      .delete(`https://mxh-angular.herokuapp.com/api/post/${postId}`)
+      .delete(`/api/post/${postId}`)
       .pipe(catchError(this.handleError));
   }
 
   deleteComment(postId: string, commentId: string) {
     return this.http
-      .delete(
-        `https://mxh-angular.herokuapp.com/api/post/comment/${postId}/${commentId}`
-      )
+      .delete(`/api/post/comment/${postId}/${commentId}`)
       .pipe(catchError(this.handleError));
   }
 
