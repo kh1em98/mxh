@@ -1,4 +1,4 @@
-# Angular Social App - 👋 (Updating...)
+# Social App - MEAN stack 👋 (Updating...)
 
 ## Features 🔭 
 - 🔭 Create post with image
