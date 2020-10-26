@@ -1,10 +1,10 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PostService } from '../post/post.service';
 import { Observable, noop } from 'rxjs';
 import { tap, concatMap } from 'rxjs/operators';
 import { requiredFileType } from '../core/validations';
-import { HttpEventType } from '@angular/common/http';
+import mongoose from 'mongoose';
 
 @Component({
   selector: 'app-create-post',
@@ -29,7 +29,9 @@ export class CreatePostComponent implements OnInit {
     });
 
     this.createPostForm.valueChanges.subscribe(() => {
-      this.postService.canNewsFeedDeactivate.post = !this.createPostForm.valid;
+      this.postService.canPostDeactivate.post = !this.createPostForm.get(
+        'content'
+      ).value;
     });
   }
 
@@ -42,17 +44,16 @@ export class CreatePostComponent implements OnInit {
       const postObject = this.createPostObject();
 
       if (this.createPostForm.get('image').value) {
-        console.log('Co anh');
         // Nếu có ảnh -> upload ảnh trước, lấy url ảnh trả về để push vào images của post
         createPost$ = this.postService.uploadImg(this.formData).pipe(
           concatMap((response: any) => {
             const imageUrl = response.imageUrl;
             postObject.images.push(imageUrl);
-            return this.postService.createPost(postObject);
+            return this.postService.createPost(postObject, this.user);
           })
         );
       } else {
-        createPost$ = this.postService.createPost(postObject);
+        createPost$ = this.postService.createPost(postObject, this.user);
       }
 
       createPost$
@@ -81,6 +82,7 @@ export class CreatePostComponent implements OnInit {
 
   createPostObject() {
     return {
+      _id: new mongoose.Types.ObjectId(),
       _idUserPost: this.user._id,
       content: this.createPostForm.get('content').value,
       name: this.user.name,
