@@ -1,6 +1,7 @@
 # Social App - MEAN stack 👋 (Updating...)
 
 ## Demo : https://sleepy-caverns-33833.herokuapp.com/ 🎧 
+#### Email : k1@gm.co; Password : 123 ⚡
 Use free database and free hosting so it is very slow
 
 
