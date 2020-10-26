@@ -32,11 +32,9 @@ export class WallComponent
   userProfile: UserProfile = null;
   wallPosts: Observable<Post[]> = null;
   ngOnInit(): void {
-    this.authService.user
-      .pipe(take(1))
-      .subscribe((user: User) => {
-        this.me = user;
-      });
+    this.authService.user.pipe(take(1)).subscribe((user: User) => {
+      this.me = user;
+    });
 
     this.route.params.subscribe((params) => {
       if (params.username === this.me.username) {

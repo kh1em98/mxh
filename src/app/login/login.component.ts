@@ -21,8 +21,14 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.alertLabel = this.authService.alertLabel;
     this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.email, Validators.required]),
-      password: new FormControl('', [Validators.required, Validators.min(3)]),
+      email: new FormControl('k1@gm.co', [
+        Validators.email,
+        Validators.required,
+      ]),
+      password: new FormControl('123', [
+        Validators.required,
+        Validators.min(3),
+      ]),
     });
   }
 
