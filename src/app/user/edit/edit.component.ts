@@ -16,6 +16,10 @@ import { Subscription } from 'rxjs';
 export class EditComponent implements OnInit, OnDestroy {
   editForm: FormGroup = null;
   isLoading: boolean = false;
+  alertLabel: {
+    typeAlert: string;
+    message: string;
+  } = null;
 
   subscription: Subscription = null;
 
@@ -52,6 +56,10 @@ export class EditComponent implements OnInit, OnDestroy {
       )
       .subscribe(
         () => {
+          this.alertLabel = {
+            message: 'Changed information successfully',
+            typeAlert: 'alert-success',
+          };
           this.authService.user.next(this.myCookieService.decodePayload());
         },
         (error) => {
@@ -70,6 +78,10 @@ export class EditComponent implements OnInit, OnDestroy {
       .pipe(tap(() => (this.isLoading = false)))
       .subscribe(
         () => {
+          this.alertLabel = {
+            message: 'Changed avatar successfully',
+            typeAlert: 'alert-success',
+          };
           this.authService.user.next(this.myCookieService.decodePayload());
         },
         (error) => {

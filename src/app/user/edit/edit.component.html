@@ -5,6 +5,11 @@
     ><span class="mr-2 fontweight-1 fontsize-6">&lt;</span> Back</a
   >
 
+  <app-alert-label
+    *ngIf="alertLabel !== null"
+    [message]="alertLabel.message"
+    [typeAlert]="alertLabel.typeAlert"
+  ></app-alert-label>
   <div class="edit__form pt-4 pl-5 pr-5 pb-4 mt-3">
     <h3>Change Info</h3>
     <p class="fontsize-2 fontweight-1" style="color: #828282">
