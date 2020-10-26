@@ -1,10 +1,18 @@
+<<<<<<< HEAD
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+=======
+import { Component, Input, OnInit } from '@angular/core';
+>>>>>>> prod
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PostService } from '../post/post.service';
 import { Observable, noop } from 'rxjs';
 import { tap, concatMap } from 'rxjs/operators';
 import { requiredFileType } from '../core/validations';
+<<<<<<< HEAD
 import { HttpEventType } from '@angular/common/http';
+=======
+import mongoose from 'mongoose';
+>>>>>>> prod
 
 @Component({
   selector: 'app-create-post',
@@ -29,7 +37,13 @@ export class CreatePostComponent implements OnInit {
     });
 
     this.createPostForm.valueChanges.subscribe(() => {
+<<<<<<< HEAD
       this.postService.canNewsFeedDeactivate.post = !this.createPostForm.valid;
+=======
+      this.postService.canPostDeactivate.post = !this.createPostForm.get(
+        'content'
+      ).value;
+>>>>>>> prod
     });
   }
 
@@ -42,17 +56,28 @@ export class CreatePostComponent implements OnInit {
       const postObject = this.createPostObject();
 
       if (this.createPostForm.get('image').value) {
+<<<<<<< HEAD
         console.log('Co anh');
+=======
+>>>>>>> prod
         // Nếu có ảnh -> upload ảnh trước, lấy url ảnh trả về để push vào images của post
         createPost$ = this.postService.uploadImg(this.formData).pipe(
           concatMap((response: any) => {
             const imageUrl = response.imageUrl;
             postObject.images.push(imageUrl);
+<<<<<<< HEAD
             return this.postService.createPost(postObject);
           })
         );
       } else {
         createPost$ = this.postService.createPost(postObject);
+=======
+            return this.postService.createPost(postObject, this.user);
+          })
+        );
+      } else {
+        createPost$ = this.postService.createPost(postObject, this.user);
+>>>>>>> prod
       }
 
       createPost$
@@ -81,6 +106,10 @@ export class CreatePostComponent implements OnInit {
 
   createPostObject() {
     return {
+<<<<<<< HEAD
+=======
+      _id: new mongoose.Types.ObjectId(),
+>>>>>>> prod
       _idUserPost: this.user._id,
       content: this.createPostForm.get('content').value,
       name: this.user.name,

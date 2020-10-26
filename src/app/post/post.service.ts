@@ -1,15 +1,43 @@
+<<<<<<< HEAD
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Post } from './post.model';
 import { BehaviorSubject, Subject, throwError } from 'rxjs';
 import { User } from '../shared/user.model';
 import { tap, catchError, concatMap } from 'rxjs/operators';
+=======
+import { UpdatePostsServer } from './updatePostsServer.service';
+import { Injectable, OnInit } from '@angular/core';
+import { Post } from './post.model';
+import { BehaviorSubject, Subject, Observable } from 'rxjs';
+import { User } from '../shared/user.model';
+import { tap, catchError, map } from 'rxjs/operators';
+import {
+  createNewPost,
+  operationLoadPosts,
+  operationCreateComment,
+  operationCreatePost,
+  operationDeleteComment,
+  operationDeletePost,
+  operationLike,
+  operationRetweet,
+  operationUnlike,
+} from './util-post';
+
+export interface IPostOperation extends Function {
+  (posts: Post[]): Post[];
+}
+>>>>>>> prod
 
 @Injectable({
   providedIn: 'root',
 })
 export class PostService {
+<<<<<<< HEAD
   canNewsFeedDeactivate: {
+=======
+  canPostDeactivate: {
+>>>>>>> prod
     post: boolean;
     comment: boolean;
   } = {
@@ -17,6 +45,7 @@ export class PostService {
     comment: true,
   };
 
+<<<<<<< HEAD
   needLoadMoreNewsFeed: boolean = true;
   postPerScroll = 3;
   postSkip = 0;
@@ -53,10 +82,27 @@ export class PostService {
         );
         this.allPost.unshift(newPost);
         this.postsChanged.next(this.allPost.slice());
+=======
+  allPost: Post[] = [];
+
+  user: User = null;
+
+  posts: Observable<Post[]> = null;
+
+  update = new Subject();
+  constructor(private updatePostsServer: UpdatePostsServer) {}
+
+  createPost(post, user: User) {
+    return this.updatePostsServer.createPost(post).pipe(
+      tap(() => {
+        const newPost = createNewPost(post, user);
+        this.update.next(operationCreatePost(newPost));
+>>>>>>> prod
       })
     );
   }
 
+<<<<<<< HEAD
   uploadImg(formData: FormData) {
     return this.http.post('/api/post/uploadImg', formData);
   }
@@ -84,10 +130,17 @@ export class PostService {
         });
 
         this.postsChanged.next(this.allPost.slice());
+=======
+  likePost(postId, user: User) {
+    return this.updatePostsServer.likePost(postId).pipe(
+      tap(() => {
+        this.update.next(operationLike(postId, user._id));
+>>>>>>> prod
       })
     );
   }
 
+<<<<<<< HEAD
   likePost({ userId, postId }) {
     return this.http.post('/api/post/like', { postId }).pipe(
       catchError(this.handleError),
@@ -97,10 +150,17 @@ export class PostService {
         this.allPost[postIndex].likes.push(userId);
 
         this.postsChanged.next(this.allPost.slice()); */
+=======
+  unlikePost(postId, user: User) {
+    return this.updatePostsServer.unlikePost(postId).pipe(
+      tap(() => {
+        this.update.next(operationUnlike(postId, user._id));
+>>>>>>> prod
       })
     );
   }
 
+<<<<<<< HEAD
   unlikePost({ userId, postId }) {
     return this.http.post('/api/post/unlike', { postId }).pipe(
       catchError(this.handleError),
@@ -114,10 +174,17 @@ export class PostService {
         this.allPost[postIndex].likes.splice(userToDeleteIndex, 1);
 
         this.postsChanged.next(this.allPost.slice()); */
+=======
+  retweetPost(postId, user: User) {
+    return this.updatePostsServer.retweetPost(postId).pipe(
+      tap(() => {
+        this.update.next(operationRetweet(postId, user._id));
+>>>>>>> prod
       })
     );
   }
 
+<<<<<<< HEAD
   retweetPost({ postId, userId }) {
     return this.http.post('/api/post/retweet', { postId }).pipe(
       catchError(this.handleError),
@@ -126,10 +193,17 @@ export class PostService {
         this.allPost[postIndex].retweets.push(userId);
 
         this.postsChanged.next(this.allPost.slice());
+=======
+  deletePost(postId) {
+    return this.updatePostsServer.deletePost(postId).pipe(
+      tap(() => {
+        this.update.next(operationDeletePost(postId));
+>>>>>>> prod
       })
     );
   }
 
+<<<<<<< HEAD
   deletePost({ postId }) {
     return this.http.delete(`/api/post/${postId}`).pipe(
       catchError(this.handleError),
@@ -138,11 +212,26 @@ export class PostService {
         this.allPost.splice(postIndex, 1);
 
         this.postsChanged.next(this.allPost.slice());
+=======
+  uploadImg(formData: FormData) {
+    return this.updatePostsServer.uploadImg(formData);
+  }
+
+  createComment(info, user: User) {
+    const { postId, content, _id } = info;
+
+    return this.updatePostsServer.createComment(postId, content, _id).pipe(
+      tap(() => {
+        this.update.next(
+          operationCreateComment(postId, { _id, content }, user)
+        );
+>>>>>>> prod
       })
     );
   }
 
   deleteComment({ postId, commentId }) {
+<<<<<<< HEAD
     return this.http.delete(`/api/post/comment/${postId}/${commentId}`).pipe(
       catchError(this.handleError),
       tap(() => {
@@ -199,4 +288,12 @@ export class PostService {
     }
     return throwError('Lỗi không xác định');
   }
+=======
+    return this.updatePostsServer.deleteComment(postId, commentId).pipe(
+      tap(() => {
+        this.update.next(operationDeleteComment(postId, commentId));
+      })
+    );
+  }
+>>>>>>> prod
 }

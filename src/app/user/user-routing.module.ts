@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+import { CanDeactivateGuard } from './../core/can-deactive-guard.service';
+>>>>>>> prod
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../core/guard/auth.guard';
@@ -16,6 +20,10 @@ const userRoutes: Routes = [
       {
         path: '',
         component: WallComponent,
+<<<<<<< HEAD
+=======
+        canDeactivate: [CanDeactivateGuard],
+>>>>>>> prod
       },
       {
         path: 'edit',

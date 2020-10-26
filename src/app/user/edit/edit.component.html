@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+
+>>>>>>> prod
 <div class="profile__edit pt-4 pb-4">
   <a class="pl-3" [routerLink]="['../', 'profile']"
     ><span class="mr-2 fontweight-1 fontsize-6">&lt;</span> Back</a
@@ -9,6 +14,7 @@
       Changes will be reflected to every services
     </p>
 
+<<<<<<< HEAD
     <form>
       <div class="d-flex pt-2 form-group align-items-center">
         <img [src]="user.avatar" alt="khiem" />
@@ -26,6 +32,24 @@
         <input id="avatarUpload" type="file" />
       </div>
 
+=======
+    <div class="d-flex pt-2 form-group align-items-center">
+      <img [src]="user.bigAvatar" alt="khiem" />
+      <label
+        for="avatarUpload"
+        class="customFileUpload ml-3 fonweight-1 fontsize-2"
+        style="color: #828282"
+      >
+        <img
+          src="../../../assets/icons/upload.svg"
+          style="width: 24px; height: 24px; cursor: pointer"
+        />
+        CHANGE PHOTO
+      </label>
+      <input id="avatarUpload" type="file" (change)="uploadImg($event)" />
+    </div>
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+>>>>>>> prod
       <div class="form-group pt-2">
         <label for="name">Name</label>
         <input
@@ -33,6 +57,10 @@
           type="text"
           class="form-control"
           id="name"
+<<<<<<< HEAD
+=======
+          formControlName="name"
+>>>>>>> prod
         />
       </div>
 
@@ -43,6 +71,10 @@
           class="form-control"
           id="bio"
           rows="3"
+<<<<<<< HEAD
+=======
+          formControlName="bio"
+>>>>>>> prod
         ></textarea>
       </div>
 
@@ -53,6 +85,7 @@
           type="text"
           class="form-control"
           id="phone"
+<<<<<<< HEAD
         />
       </div>
 
@@ -67,6 +100,12 @@
       </div>
 
       <button class="btn mt-2">Save</button>
+=======
+          formControlName="phone"
+        />
+      </div>
+      <button type="submit" class="btn mt-2">Save</button>
+>>>>>>> prod
     </form>
   </div>
 </div>
