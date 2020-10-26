@@ -40,15 +40,18 @@ export class CreateCommentComponent implements OnInit {
   onCreateComment() {
     if (this.commentForm.valid) {
       this.isLoading = true;
+
+      const newComment = {
+        ...this.commentForm.value,
+        postId: this.postId,
+        userId: this.user._id,
+        name: this.user.name,
+        avatar: this.user.avatar,
+        username: this.user.username,
+      };
+
       this.postService
-        .createComment({
-          ...this.commentForm.value,
-          postId: this.postId,
-          userId: this.user._id,
-          name: this.user.name,
-          avatar: this.user.avatar,
-          username: this.user.username,
-        })
+        .createComment(newComment)
         .pipe(
           tap(() => {
             this.commentForm.reset();

@@ -13,6 +13,7 @@ import {
 } from '@angular/animations';
 import { noop } from 'rxjs';
 import { UserProfile } from '../user/wall.service';
+import { like, unlike } from './util-post';
 
 @Component({
   selector: 'app-post',
@@ -74,11 +75,14 @@ export class PostComponent implements OnInit {
   onToggleLike() {
     if (this.isLiked) {
       this.isLiked = false;
+      unlike(this.post, this.user._id);
+
       this.postService
         .unlikePost({ userId: this.user._id, postId: this.post._id })
         .subscribe(noop, (error) => this.showNotificationError(error));
     } else {
       this.isLiked = true;
+      like(this.post, this.user._id);
       this.postService
         .likePost({ userId: this.user._id, postId: this.post._id })
         .subscribe(noop, (error) => this.showNotificationError(error));

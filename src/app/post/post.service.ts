@@ -92,11 +92,11 @@ export class PostService {
     return this.http.post('/api/post/like', { postId }).pipe(
       catchError(this.handleError),
       tap(() => {
-        const postIndex = this.allPost.findIndex((post) => post._id === postId);
+        /*         const postIndex = this.allPost.findIndex((post) => post._id === postId);
 
         this.allPost[postIndex].likes.push(userId);
 
-        this.postsChanged.next(this.allPost.slice());
+        this.postsChanged.next(this.allPost.slice()); */
       })
     );
   }
@@ -105,7 +105,7 @@ export class PostService {
     return this.http.post('/api/post/unlike', { postId }).pipe(
       catchError(this.handleError),
       tap(() => {
-        const postIndex = this.allPost.findIndex((post) => post._id === postId);
+        /*  const postIndex = this.allPost.findIndex((post) => post._id === postId);
 
         const userToDeleteIndex = this.allPost[postIndex].likes.findIndex(
           (userLike) => userLike === userId
@@ -113,7 +113,7 @@ export class PostService {
 
         this.allPost[postIndex].likes.splice(userToDeleteIndex, 1);
 
-        this.postsChanged.next(this.allPost.slice());
+        this.postsChanged.next(this.allPost.slice()); */
       })
     );
   }
