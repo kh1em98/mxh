@@ -13,6 +13,10 @@ import {
 } from '@angular/animations';
 import { noop } from 'rxjs';
 import { UserProfile } from '../user/wall.service';
+<<<<<<< HEAD
+import { like, unlike } from './util-post';
+=======
+>>>>>>> prod
 
 @Component({
   selector: 'app-post',
@@ -72,6 +76,20 @@ export class PostComponent implements OnInit {
   }
 
   onToggleLike() {
+<<<<<<< HEAD
+    if (this.isLiked) {
+      this.isLiked = false;
+      unlike(this.post, this.user._id);
+
+      this.postService
+        .unlikePost({ userId: this.user._id, postId: this.post._id })
+        .subscribe(noop, (error) => this.showNotificationError(error));
+    } else {
+      this.isLiked = true;
+      like(this.post, this.user._id);
+      this.postService
+        .likePost({ userId: this.user._id, postId: this.post._id })
+=======
     this.isLoading = true;
     if (this.isLiked) {
       this.isLiked = false;
@@ -85,6 +103,7 @@ export class PostComponent implements OnInit {
       this.postService
         .likePost(this.post._id, this.user)
         .pipe(tap(() => (this.isLoading = false)))
+>>>>>>> prod
         .subscribe(noop, (error) => this.showNotificationError(error));
     }
   }
@@ -93,15 +112,25 @@ export class PostComponent implements OnInit {
     if (this.isRetweeted) {
       this.showNotificationError('Bạn đã chia sẻ bài viết rồi');
     } else {
+<<<<<<< HEAD
+=======
       this.isLoading = true;
+>>>>>>> prod
       this.isRetweeted = true;
       this.notification = {
         message: 'Chia sẻ bài viết thành công',
         typeNotification: 'alert-success',
       };
       this.postService
+<<<<<<< HEAD
+        .retweetPost({
+          postId: this.post._id,
+          userId: this.user._id,
+        })
+=======
         .retweetPost(this.post._id, this.user)
         .pipe(tap(() => (this.isLoading = false)))
+>>>>>>> prod
         .subscribe();
     }
     setTimeout(() => {
@@ -112,18 +141,26 @@ export class PostComponent implements OnInit {
   onDeletePost() {
     this.isLoading = true;
     this.postService
+<<<<<<< HEAD
+      .deletePost({ postId: this.post._id })
+=======
       .deletePost(this.post._id)
+>>>>>>> prod
       .pipe(
         tap(() => {
           this.isLoading = false;
         })
       )
+<<<<<<< HEAD
+      .subscribe(noop, (error) => this.showNotificationError(error));
+=======
       .subscribe(
         () => {
           this.post = null;
         },
         (error) => this.showNotificationError(error)
       );
+>>>>>>> prod
   }
 
   checkIsMyPost() {

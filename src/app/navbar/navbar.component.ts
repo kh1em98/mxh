@@ -15,7 +15,11 @@ export class NavbarComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
+<<<<<<< HEAD
+    this.authService.user.pipe(take(1)).subscribe((user: User) => {
+=======
     this.authService.user.subscribe((user: User) => {
+>>>>>>> prod
       this.user = user;
     });
   }

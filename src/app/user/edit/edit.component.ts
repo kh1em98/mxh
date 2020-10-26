@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/core/auth.service';
+import { User } from 'src/app/shared/user.model';
+import { take } from 'rxjs/operators';
+=======
 import { MyCookieService } from './../../core/my-cookie.service';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -7,12 +13,23 @@ import { AuthService } from 'src/app/core/auth.service';
 import { User } from 'src/app/shared/user.model';
 import { take, tap } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
+>>>>>>> prod
 
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.css'],
 })
+<<<<<<< HEAD
+export class EditComponent implements OnInit {
+  user: User = null;
+  constructor(private authService: AuthService) {}
+
+  ngOnInit(): void {
+    this.authService.user.pipe(take(1)).subscribe((user: User) => {
+      this.user = user;
+    });
+=======
 export class EditComponent implements OnInit, OnDestroy {
   editForm: FormGroup = null;
   isLoading: boolean = false;
@@ -80,5 +97,6 @@ export class EditComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+>>>>>>> prod
   }
 }

@@ -3,7 +3,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../shared/user.model';
 import { scan, tap } from 'rxjs/operators';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { Post } from '../post/post.model';
 import { operationLoadPosts } from '../post/util-post';
 
