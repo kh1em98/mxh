@@ -10,9 +10,6 @@ export function unlike(post: Post, userId: string) {
   post.likes = post.likes.filter((user) => user !== userId);
 }
 
-export function comment(post: Post, content: string, user: User)
-{
-    post.comments.unshift({
-
-    })
+export function comment(post: Post, content: string, user: User) {
+  post.comments.unshift({});
 }
