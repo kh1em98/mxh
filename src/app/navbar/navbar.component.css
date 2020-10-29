@@ -35,15 +35,17 @@ nav .navbar__body .active {
   border-bottom: 2px solid #2f80ed;
 }
 
-nav .navbar__footer .noti-bell {
+nav .icon-nav {
+  cursor: pointer;
   color: #2f80ed;
 }
 
-nav .navbar__footer .noti-bell:hover {
+nav .icon-nav:hover {
   color: #79a8e8;
 }
 
-nav .navbar__footer .badge {
+nav .badge {
+  margin-left: 3px;
   background: #e74c3c;
   color: white;
   font-size: 10px;

@@ -26,6 +26,7 @@
     "ngx-cookie-service": "^10.1.1",
     "popper.js": "^1.16.1",
     "rxjs": "~6.6.0",
+    "socket.io-client": "^2.3.1",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },

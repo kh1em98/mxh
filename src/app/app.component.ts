@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './core/auth.service';
+import { NotificationService } from './real-time/notification.service';
 
 @Component({
   selector: 'app-root',
@@ -20,10 +21,52 @@ export class AppComponent implements OnInit {
     typeNotification: 'alert-primary',
   } */;
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private notiService: NotificationService
+  ) {}
 
-  ngOnInit() {
-    this.authService.autoLogin();
+  async ngOnInit() {
+    console.log('123');
+
+    const cac = new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(4);
+      }, 5000);
+    });
+
+    const value = await cac;
+    console.log('dau buoi');
+    console.log(value);
+
+    /* const a = new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(1);
+        console.log('A');
+      }, 3000);
+    });
+
+    const b = new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(2);
+        console.log('B');
+      }, 5000);
+    });
+
+    const c = new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(3);
+        console.log('C');
+      }, 4000);
+    });
+
+    let results = await Promise.all([a, b, c]);
+
+    console.log(
+      results.reduce((total: number, value: number) => total * value)
+    ); */
+
+    /* this.authService.autoLogin();
 
     this.authService.user.subscribe((user) => {
       if (user === null) {
@@ -31,7 +74,7 @@ export class AppComponent implements OnInit {
       } else {
         this.isLoggedIn = true;
       }
-    });
+    }); */
   }
 
   showNotification(notification: any) {

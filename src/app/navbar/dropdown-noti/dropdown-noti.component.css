@@ -1,0 +1,26 @@
+.icon-nav {
+  color: #2f80ed;
+}
+
+.icon-nav:hover {
+  color: #79a8e8;
+}
+
+.badge {
+  background: #e74c3c;
+  color: white;
+  font-size: 10px;
+  position: relative;
+  top: -10px;
+}
+
+.daubuoi {
+  max-width: 300px;
+  word-wrap: break-word;
+}
+
+.daubuoi a {
+  width: 100%;
+  height: auto;
+}
+/*# sourceMappingURL=dropdown-noti.component.css.map */

@@ -18,6 +18,7 @@ import { ProtectCSRFInterceptor } from './core/protectCSRF-interceptor.service';
 import { PostModule } from './post/post.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CanDeactivateGuard } from './core/can-deactive-guard.service';
+import { DropdownNotiComponent } from './navbar/dropdown-noti/dropdown-noti.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { CanDeactivateGuard } from './core/can-deactive-guard.service';
     NewsFeedComponent,
     RightComponent,
     NotFoundComponent,
+    DropdownNotiComponent,
   ],
   imports: [
     BrowserModule,

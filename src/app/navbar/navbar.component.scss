@@ -39,24 +39,24 @@ nav {
     }
   }
 
+  .icon-nav {
+    cursor: pointer;
+    color: #2f80ed;
+
+    &:hover {
+      color: #79a8e8;
+    }
+  }
+  .badge {
+    margin-left: 3px;
+    background: #e74c3c;
+    color: white;
+    font-size: 10px;
+    position: relative;
+    top: -10px;
+  }
+
   .navbar__footer {
-
-    .noti-bell {
-      color: #2f80ed;
-
-      &:hover {
-        color : #79a8e8;
-      }
-    }
-
-    .badge {
-      background : #e74c3c;
-      color : white; 
-      font-size: 10px;
-      position: relative; 
-      top: -10px; 
-    }
-
     img {
       width: 32px;
       height: 32px;
@@ -100,7 +100,6 @@ nav {
         a {
           color: #696969 !important;
         }
-
       }
     }
   }
