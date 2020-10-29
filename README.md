@@ -6,6 +6,8 @@ Use free database and free hosting so it is very slow
 
 ## Sceenshot
 ![image](https://user-images.githubusercontent.com/53696994/97551784-facf9980-1a05-11eb-88a4-9d8b66234688.png)
+![image](https://user-images.githubusercontent.com/53696994/97552745-39198880-1a07-11eb-8d53-e69695dc7dbe.png)
+![image](https://user-images.githubusercontent.com/53696994/97552887-5ea69200-1a07-11eb-8164-45ca6e2b8ab9.png)
 
 
 ## Features 🔭
