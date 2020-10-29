@@ -13,6 +13,35 @@
     class="navbar__footer col-md-6 d-flex justify-content-center align-items-center"
   >
     <div class="dropdown">
+      <div
+        style="cursor: pointer"
+        id="dropdownNotiButton"
+        data-toggle="dropdown"
+      >
+        <i class="far fa-bell fontweight-1 fontsize-5 noti-bell"></i>
+        <span class="badge badge-light">4</span>
+      </div>
+
+      <div class="dropdown-menu" aria-labelledby="dropdownNotiButton">
+        <a
+          [routerLink]="['', user.username]"
+          class="dropdown-item fontweight-1 gray-7 pt-2 pb-2"
+        >
+          <i class="far fa-thumbs-up mr-2"></i> Thien Nguyen đã thích bài viết
+          của bạn</a
+        >
+
+        <a
+          [routerLink]="['', user.username]"
+          class="dropdown-item fontweight-1 gray-7 pt-2 pb-2"
+        >
+          <i class="far fa-comment mr-2"></i> Huy Nguyen đã bình luận bài viết
+          của bạn</a
+        >
+      </div>
+    </div>
+
+    <div class="dropdown ml-5">
       <button
         class="btn dropdown-toggle d-flex justify-content-center align-items-center fontweight-2 gray-8"
         type="button"

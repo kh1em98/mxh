@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './core/auth.service';
-import { PostService } from './post/post.service';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +10,15 @@ export class AppComponent implements OnInit {
   title = 'Social App';
 
   isLoggedIn: boolean = false;
+
+  notification: {
+    message: string;
+    typeNotification: string;
+  } = null /* {
+    message:
+      '<a class="dropdown-item fontweight-1 gray-7 pt-2 pb-2"> <i class="far fa-thumbs-up mr-2"></i> Thien Nguyen đã thích bài viết của bạn</a>',
+    typeNotification: 'alert-primary',
+  } */;
 
   constructor(private authService: AuthService) {}
 
@@ -24,5 +32,16 @@ export class AppComponent implements OnInit {
         this.isLoggedIn = true;
       }
     });
+  }
+
+  showNotification(notification: any) {
+    this.notification = {
+      message: notification.message,
+      typeNotification: notification.type,
+    };
+
+    setTimeout(() => {
+      this.notification = null;
+    }, 1500);
   }
 }

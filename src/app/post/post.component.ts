@@ -4,13 +4,6 @@ import { AuthService } from '../core/auth.service';
 import { take, tap } from 'rxjs/operators';
 import { User } from '../shared/user.model';
 import { PostService } from './post.service';
-import {
-  animate,
-  state,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
 import { noop } from 'rxjs';
 import { UserProfile } from '../user/wall.service';
 
@@ -18,33 +11,6 @@ import { UserProfile } from '../user/wall.service';
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css'],
-  animations: [
-    // Animation fade notification
-    trigger('fade', [
-      state(
-        'in',
-        style({
-          opacity: 1,
-        })
-      ),
-
-      transition('void => *', [
-        style({
-          opacity: 0,
-        }),
-        animate(350),
-      ]),
-
-      transition('* => void', [
-        animate(
-          350,
-          style({
-            opacity: 0,
-          })
-        ),
-      ]),
-    ]),
-  ],
 })
 export class PostComponent implements OnInit {
   isLoading: boolean = false;
