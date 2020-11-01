@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './core/auth.service';
-import { NotificationService } from './real-time/notification.service';
+import { SocketService } from './real-time/socket.service';
 
 @Component({
   selector: 'app-root',
@@ -23,58 +23,22 @@ export class AppComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private notiService: NotificationService
+    private socketService: SocketService
   ) {}
 
-  async ngOnInit() {
-    console.log('123');
-
-    const cac = new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(4);
-      }, 5000);
-    });
-
-    const value = await cac;
-    console.log('dau buoi');
-    console.log(value);
-
-    /* const a = new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(1);
-        console.log('A');
-      }, 3000);
-    });
-
-    const b = new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(2);
-        console.log('B');
-      }, 5000);
-    });
-
-    const c = new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(3);
-        console.log('C');
-      }, 4000);
-    });
-
-    let results = await Promise.all([a, b, c]);
-
-    console.log(
-      results.reduce((total: number, value: number) => total * value)
-    ); */
-
-    /* this.authService.autoLogin();
+  ngOnInit() {
+    this.authService.autoLogin();
 
     this.authService.user.subscribe((user) => {
       if (user === null) {
+        console.log('Disconnect socket');
         this.isLoggedIn = false;
+        this.socketService.disconnectSocket();
       } else {
         this.isLoggedIn = true;
+        this.socketService.setupSocketConnection();
       }
-    }); */
+    });
   }
 
   showNotification(notification: any) {
