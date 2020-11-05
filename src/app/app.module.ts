@@ -19,6 +19,8 @@ import { PostModule } from './post/post.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CanDeactivateGuard } from './core/can-deactive-guard.service';
 import { DropdownNotiComponent } from './navbar/dropdown-noti/dropdown-noti.component';
+import { ForgetComponent } from './forget/forget.component';
+import { ResetComponent } from './reset/reset.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { DropdownNotiComponent } from './navbar/dropdown-noti/dropdown-noti.comp
     RightComponent,
     NotFoundComponent,
     DropdownNotiComponent,
+    ForgetComponent,
+    ResetComponent,
   ],
   imports: [
     BrowserModule,

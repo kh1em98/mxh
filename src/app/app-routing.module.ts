@@ -4,6 +4,8 @@ import { AuthGuard } from './core/guard/auth.guard';
 import { NewsFeedComponent } from './news-feed/news-feed.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CanDeactivateGuard } from './core/can-deactive-guard.service';
+import { ForgetComponent } from './forget/forget.component';
+import { ResetComponent } from './reset/reset.component';
 
 const routes: Routes = [
   {
@@ -16,6 +18,14 @@ const routes: Routes = [
   {
     path: 'not-found',
     component: NotFoundComponent,
+  },
+  {
+    path: 'forgetPassword',
+    component: ForgetComponent,
+  },
+  {
+    path: 'resetPassword',
+    component: ResetComponent,
   },
   {
     path: ':username',
