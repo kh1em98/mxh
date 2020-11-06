@@ -37,7 +37,7 @@ export class AuthService {
   login(formValue) {
     const { email, password } = formValue;
     return this.http
-      .post('/api/login', {
+      .post('http://localhost:5502/api/v1/auth/signIn', {
         email,
         password,
       })

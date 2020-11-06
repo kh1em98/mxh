@@ -21,6 +21,7 @@ import { CanDeactivateGuard } from './core/can-deactive-guard.service';
 import { DropdownNotiComponent } from './navbar/dropdown-noti/dropdown-noti.component';
 import { ForgetComponent } from './forget/forget.component';
 import { ResetComponent } from './reset/reset.component';
+import { PostIdentityComponent } from './post-identity/post-identity.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ResetComponent } from './reset/reset.component';
     DropdownNotiComponent,
     ForgetComponent,
     ResetComponent,
+    PostIdentityComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,41 @@
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+<div class="container mt-5">
+  <app-alert-label
+    *ngIf="alertLabel !== null"
+    [message]="alertLabel.message"
+    [typeAlert]="alertLabel.typeAlert"
+  ></app-alert-label>
+
+  <div class="d-flex pt-2 form-group align-items-center mt-4 mb-4">
+    <label
+      for="avatarUpload"
+      class="customFileUpload ml-3 fonweight-1 fontsize-2"
+      style="color: #828282"
+    >
+      <img
+        src="../../../assets/icons/upload.svg"
+        style="width: 24px; height: 24px; cursor: pointer"
+      />
+      UPLOAD IDENTITY CARD
+    </label>
+    <input id="uploadIdentity1" type="file" (change)="uploadImg($event)" />
+  </div>
+
+  <div class="d-flex pt-2 form-group align-items-center mt-4">
+    <label
+      for="avatarUpload"
+      class="customFileUpload ml-3 fonweight-1 fontsize-2"
+      style="color: #828282"
+    >
+      <img
+        src="../../../assets/icons/upload.svg"
+        style="width: 24px; height: 24px; cursor: pointer"
+      />
+      UPLOAD IDENTITY CARD
+    </label>
+    <input id="uploadIdentity1" type="file" (change)="uploadImg($event)" />
+  </div>
+
+  <img *ngIf="identity1" class="mt-4 mb-4 mr-4" [src]="identity1" alt="" />
+  <img *ngIf="identity2" [src]="identity2" alt="" />
+</div>

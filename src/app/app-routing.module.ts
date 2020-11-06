@@ -6,6 +6,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { CanDeactivateGuard } from './core/can-deactive-guard.service';
 import { ForgetComponent } from './forget/forget.component';
 import { ResetComponent } from './reset/reset.component';
+import { PostIdentityComponent } from './post-identity/post-identity.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'resetPassword',
     component: ResetComponent,
+  },
+  {
+    path: 'post-identity',
+    component: PostIdentityComponent,
   },
   {
     path: ':username',

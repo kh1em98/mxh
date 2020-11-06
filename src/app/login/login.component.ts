@@ -14,7 +14,10 @@ export class LoginComponent implements OnInit, OnDestroy {
   alertClose: Subscription = null;
   errorMessage: string = '';
   loginForm: FormGroup = null;
-  alertLabel = null;
+  alertLabel: {
+    message: string;
+    typeAlert: string;
+  } = null;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -45,11 +48,14 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.authService.login(this.loginForm.value).subscribe(
       () => {
         this.isLoading = false;
-        this.router.navigate(['/']);
+        this.alertLabel = {
+          message: 'Đăng nhập thành công',
+          typeAlert: 'alert-success',
+        };
       },
       (error) => {
         this.isLoading = false;
-        this.errorMessage = error;
+        this.errorMessage = 'Đăng nhập không thành công. Hãy thử lại';
       }
     );
   }
