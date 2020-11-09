@@ -4,7 +4,6 @@
   background: #9796f0;
   /* fallback for old browsers */
   /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-gradient(linear, left top, right top, from(#9796f0), to(#fbc7d4));
   background: linear-gradient(to right, #9796f0, #fbc7d4);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
@@ -27,8 +26,7 @@ p {
   z-index: 100;
   margin: 0 auto;
   background: white;
-  -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
-          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
   border-radius: 12px;
 }
 
@@ -67,8 +65,7 @@ p {
 
 .wall__nav {
   background: white;
-  -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
-          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
   width: 300px;
   height: 100%;
@@ -126,16 +123,9 @@ p {
   .stat {
     width: 100% !important;
     margin-top: 16px;
-    -webkit-box-orient: vertical !important;
-    -webkit-box-direction: normal !important;
-        -ms-flex-direction: column !important;
-            flex-direction: column !important;
-    -webkit-box-align: center !important;
-        -ms-flex-align: center !important;
-            align-items: center !important;
-    -webkit-box-pack: center !important;
-        -ms-flex-pack: center !important;
-            justify-content: center !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
   .wall__info {
     padding-bottom: 0 !important;
@@ -152,14 +142,10 @@ p {
     margin-top: 16px;
   }
   .wall__body {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    flex-direction: column;
   }
   .wall__body .wall__nav {
     width: 100%;
     text-align: center;
   }
 }
-/*# sourceMappingURL=wall.component.css.map */

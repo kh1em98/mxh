@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.authService.login(this.loginForm.value).subscribe(
       () => {
+        console.log('Login thanh cong');
         this.isLoading = false;
         this.router.navigate(['/']);
       },

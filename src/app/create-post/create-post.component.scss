@@ -1,5 +1,5 @@
 .create-post {
-  background: #ffffff;
+  background: #fff;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
   border-radius: 12px;
 
@@ -13,14 +13,14 @@
   font-size: 13px;
   line-height: 18px;
   color: #3f3f3f;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: $medium-border;
 }
 
 textarea {
   width: 100%;
   border: none;
   outline: none;
-  color: #4f4f4f;
+  color: $black-p-color;
   word-wrap: break;
 }
 
@@ -30,7 +30,6 @@ textarea {
   line-height: 22px;
   color: #bdbdbd;
 }
-
 
 .create-post__footer {
   button {

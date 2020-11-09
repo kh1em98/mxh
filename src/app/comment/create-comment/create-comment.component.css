@@ -4,7 +4,8 @@
 }
 
 .footer__comment img {
-  width: 45px;
+  max-width: 45px;
+  max-height: 45px;
   border-radius: 8px;
 }
 
@@ -14,8 +15,7 @@
   width: 100%;
   background: #fafafa;
   border: 1px solid #f2f2f2;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   border-radius: 8px;
 }
 
@@ -38,4 +38,3 @@
 .footer__comment .list-icons i:hover {
   color: #6b6b6b;
 }
-/*# sourceMappingURL=create-comment.component.css.map */

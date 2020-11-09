@@ -37,27 +37,6 @@ form {
   width: 100% !important;
 }
 
-::-webkit-input-placeholder {
-  font-size: 16px;
-  line-height: 22px;
-  letter-spacing: -0.035em;
-  color: #828282;
-}
-
-:-ms-input-placeholder {
-  font-size: 16px;
-  line-height: 22px;
-  letter-spacing: -0.035em;
-  color: #828282;
-}
-
-::-ms-input-placeholder {
-  font-size: 16px;
-  line-height: 22px;
-  letter-spacing: -0.035em;
-  color: #828282;
-}
-
 ::placeholder {
   font-size: 16px;
   line-height: 22px;
@@ -76,4 +55,3 @@ form {
 .form__footer img {
   border: 1px solid #828282;
 }
-/*# sourceMappingURL=login.component.css.map */

@@ -76,23 +76,13 @@ nav .navbar__footer .dropdown-item:active {
   nav {
     padding-left: 4rem;
     padding-right: 4rem;
-    -webkit-box-pack: justify !important;
-        -ms-flex-pack: justify !important;
-            justify-content: space-between !important;
-    -webkit-box-orient: vertical !important;
-    -webkit-box-direction: normal !important;
-        -ms-flex-direction: column !important;
-            flex-direction: column !important;
+    justify-content: space-between !important;
+    flex-direction: column !important;
   }
   nav .navbar__head {
     padding-left: 0 !important;
-    -webkit-box-orient: horizontal !important;
-    -webkit-box-direction: normal !important;
-        -ms-flex-direction: row !important;
-            flex-direction: row !important;
-    -webkit-box-pack: justify !important;
-        -ms-flex-pack: justify !important;
-            justify-content: space-between !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
   }
   nav .nav-item {
     cursor: pointer;
@@ -107,4 +97,3 @@ nav .navbar__footer .dropdown-item:active {
     display: none !important;
   }
 }
-/*# sourceMappingURL=navbar.component.css.map */

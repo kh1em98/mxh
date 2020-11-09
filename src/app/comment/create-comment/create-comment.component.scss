@@ -1,39 +1,38 @@
 .footer__comment {
-    border-bottom: 1px solid #f2f2f2;
-    position: relative;
+  border-bottom: $light-border;
+  position: relative;
 
-    img {
-        width: 45px;
-        border-radius: 8px;
+  img {
+    @include smallAvatar();
+  }
+
+  input {
+    font-size: 14px;
+    color: $black-p-color;
+    width: 100%;
+    background: $light-background-comment;
+    border: $light-border;
+    box-sizing: border-box;
+    border-radius: 8px;
+
+    &:focus {
+      border: 1px solid #d6d6d6;
+      outline: none;
     }
+  }
 
-    input {
-        font-size: 14px;
-        color: #4f4f4f;
-        width: 100%;
-        background: #fafafa;
-        border: 1px solid #f2f2f2;
-        box-sizing: border-box;
-        border-radius: 8px;
+  .list-icons {
+    z-index: 2;
+    position: absolute;
+    left: 93%;
 
-        &:focus {
-            border: 1px solid #d6d6d6;
-            outline: none;
-        }
+    i {
+      cursor: pointer;
+      color: $black-p-color;
+
+      &:hover {
+        color: #6b6b6b;
+      }
     }
-
-    .list-icons {
-        z-index: 2;
-        position: absolute;
-        left: 93%;
-
-        i {
-            cursor: pointer;
-            color: #4f4f4f;
-
-            &:hover {
-                color: #6b6b6b;
-            }
-        }
-    }
+  }
 }

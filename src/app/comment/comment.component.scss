@@ -5,20 +5,12 @@
   }
 
   img {
-    width: 45px;
-    height: 45px;
-    border-radius: 7px;
+    @include smallAvatar();
   }
 
   .text-part {
-    background: #fafafa;
+    background: $light-background-comment;
     border-radius: 8px;
-  }
-
-  .reaction-part {
-    font-weight: 500;
-    color: #adadad;
-    font-size: 12px;
   }
 }
 

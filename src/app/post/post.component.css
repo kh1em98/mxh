@@ -10,8 +10,7 @@
   width: 100%;
   overflow-x: hidden;
   background: white;
-  -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
-          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
 }
 
@@ -46,9 +45,7 @@
 }
 
 .post__footer .footer__actions {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 0px;
-          flex: 1 1 0;
+  flex: 1 1 0;
   border-top: 1px solid #f2f2f2;
   border-bottom: 1px solid #f2f2f2;
 }
@@ -73,4 +70,3 @@
   background: #f2f2f2;
   border-radius: 8px;
 }
-/*# sourceMappingURL=post.component.css.map */

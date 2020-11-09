@@ -13,8 +13,8 @@ input {
   border-radius: 12px;
 
   .title {
-    color: #4F4F4F;
-    border-bottom: 1px solid #E0E0E0;
+    color: $black-p-color;
+    border-bottom: $medium-border;
     font-weight: 600;
     font-size: 13px;
     line-height: 18px;
@@ -24,7 +24,7 @@ input {
 
 .trend {
   p {
-    margin-bottom: 8px
+    margin-bottom: 8px;
   }
 
   padding-top: 12px;
